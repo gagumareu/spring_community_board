@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="org.coke.mapper.ReplyMapper">
+    
+    	<insert id="insert">
+    		insert into coke_reply (rno, bno, reply, replyer)
+    		values(seq_coke_reply.nextval, #{bno}, #{reply}, #{replyer})
+    	</insert>
+    
+    	<select id="read" resultType="org.coke.domain.ReplyVO">
+    		select * from coke_reply where rno = #{rno}
+    	</select>
+    	
+    	<delete id="delete">
+    		delete from coke_reply where rno = #{rno}
+    	</delete>
+    	
+    	<update id="update">
+    		update coke_reply set reply = #{reply}, updatedate = sysdate where rno = #{rno}
+    	</update>
+    	
+    	<select id="getListWithPaging" resultType="org.coke.domain.ReplyVO">
+    		<![CDATA[
+    			select rno, bno, reply, replyDate, updateDate, replyer
+	    		from coke_reply
+	    		where bno = #{bno}
+	    		order by rno asc
+    		]]>
+    	</select>
+    	
+    </mapper>
