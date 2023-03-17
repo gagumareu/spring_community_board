@@ -75,13 +75,18 @@ public class BoardController {
 	@GetMapping("/list")
 	public void empList(Model model, Criteria cri, @RequestParam(value = "bsort", required = false) String bsort) {
 		
+		
+		
+		
+		cri.setBsort(bsort);
+		
 		log.info("boardList:  " + cri);
 		log.info("sort: " + bsort);
-		log.info("sort by cri: " + cri.getBsort());	
+		log.info("pageNum: " + cri.getPageNum());
+		log.info("sort by cri: " + cri.getBsort());
 		
 		int total = boardService.getTotalAmount(cri);
 		
-//		model.addAttribute("bsort", bsort);
 		model.addAttribute("boardList", boardService.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		

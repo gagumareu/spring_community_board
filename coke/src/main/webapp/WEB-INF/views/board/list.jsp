@@ -181,6 +181,7 @@
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 						<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 						<input type="hidden" name="type" value="${pageMaker.cri.type }">
+						<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
 					</form>
 					
 				</div> <!-- board_content_list -->
@@ -191,12 +192,7 @@
 	
 	
 		<div class="footer">
-			<p>
-			<c:forEach items="${memberList }" var="member">
-				<div>${member.mname }</div>
-				<div>${member.email }</div>
-			</c:forEach>
-			</p>
+			
 		</div> <!-- footer -->
 		
 	</div> <!-- wrapper -->

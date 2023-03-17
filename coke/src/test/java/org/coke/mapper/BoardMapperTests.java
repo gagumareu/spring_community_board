@@ -25,8 +25,9 @@ public class BoardMapperTests {
 	public void getListWithPage() {
 		
 		Criteria cri = new Criteria();
-		cri.setPageNum(3);
-		cri.setAmount(20);
+		cri.setPageNum(2);
+		cri.setAmount(10);
+		//cri.setBsort("음악");
 		
 		List<BoardVO> list = boardMapper.getListWithPage(cri);
 		
@@ -37,12 +38,26 @@ public class BoardMapperTests {
 	public void testSerch() {
 		
 		Criteria cri = new Criteria();
-		cri.setKeyword("테스");
+		cri.setKeyword("내가");
 		cri.setType("TC");
+		cri.setBsort("컴퓨터");
 		
 		List<BoardVO> list = boardMapper.getListWithPage(cri);
 		
 		list.forEach(board -> log.info(board));
 	}
 
+	@Test
+	public void getTotalCount() {
+		
+		Criteria cri = new Criteria();
+		
+		//cri.setBsort("음악");
+		
+		int total = boardMapper.getTotal(cri);
+		
+		log.info(total);
+		
+	}
+	
 }

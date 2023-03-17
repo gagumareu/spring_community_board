@@ -21,6 +21,7 @@
 			</foreach>
 		</trim>
 	</sql>
+	
 	<sql id="search">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item="type" collection="typeArr">
@@ -60,11 +61,32 @@
 	    				coke_board
     				where 
     		]]>
-			<include refid="search"></include>
-    		<![CDATA[		
-    				rownum <= #{pageNum} * #{amount}
-    			)   				
-    			where rn > (#{pageNum} -1) * #{amount}    			
+    		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+    			<foreach collection="typeArr" item="type" separator="OR">
+    				<choose>
+    					<when test="type == 'T'.toString()">
+    						btitle like '%'||#{keyword}||'%'
+    					</when>
+    					<when test="type == 'C'.toString()">
+    						bcontent like '%'||#{keyword}||'%'
+    					</when>
+    					<when test="type == 'N'.toString()">
+    						nickname like '%'||#{keyword}||'%'
+    					</when>
+    				</choose>
+    			</foreach>
+    		</trim>
+    		<trim suffix="AND">
+    			<if test="bsort != null">
+    				bsort = #{bsort}
+    			</if>
+   			</trim>  
+    		<![CDATA[
+    			
+    				bno > 0 and rownum <= #{pageNum} * #{amount}
+    			)    		   	  				
+    			where			
+    			 rn > (#{pageNum} -1) * #{amount}    			
     		]]>
 	</select>
 
@@ -101,7 +123,14 @@
 	<select id="getTotal" resultType="int">
 		select count(*) from coke_board where
 		<include refid="search"></include>
+		<trim suffix="AND">
+			<if test="bsort != null">
+				bsort = #{bsort}
+			</if>
+		</trim>
+		<![CDATA[
 		bno > 0
+		]]>
 	</select>
 
 	<update id="getHit">
