@@ -3,16 +3,53 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="org.coke.mapper.BoardMapper">
-    
-    	<select id="getList" resultType="org.coke.domain.BoardVO">
+
+<mapper namespace="org.coke.mapper.BoardMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND">
+			<foreach collection="typeArr" index="type" separator="OR">
+				<if test="type == 'T'.toString()">
+					btitle like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 'C'.toString()">
+					bcontent like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 'N.toString()">
+					nickname like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+	<sql id="search">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							btitle like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							bcontent like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'N'.toString()">
+							nickname like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+
+	<select id="getList" resultType="org.coke.domain.BoardVO">
     		<![CDATA[
     			select * from coke_board where bno > 0 order by bno desc
     		]]>
-    	</select>
-    	
-    	<select id="getListWithPage" resultType="org.coke.domain.BoardVO">
+	</select>
+
+	<select id="getListWithPage"
+		resultType="org.coke.domain.BoardVO">
     		<![CDATA[
     			select bno, email, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
     			from 
@@ -23,107 +60,57 @@
 	    				coke_board
     				where 
     		]]>
-    			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-    				<foreach item="type" collection="typeArr">
-    					<trim prefix="OR">
-    						<choose>
-    							<when test="type == 'T'.toString()">
-    								btitle like '%'||#{keyword}||'%'
-    							</when>
-    							<when test="type == 'C'.toString()">
-    								bcontent like '%'||#{keyword}||'%'
-    							</when>
-    							<when test="type == 'N'.toString()">
-    								nickname like '%'||#{keyword}||'%'
-    							</when>
-    						</choose>
-    					</trim>
-    				</foreach>
-    			</trim>
+			<include refid="search"></include>
     		<![CDATA[		
     				rownum <= #{pageNum} * #{amount}
     			)   				
     			where rn > (#{pageNum} -1) * #{amount}    			
     		]]>
-    	</select>
-    	
-    	
-    	
-    	<select id="getListWithPage2" resultType="org.coke.domain.BoardVO">    	
-    		<![CDATA[
-    			select bno, email, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
-    			from 
-    			(
-	    			select /*+ INDEX_DESC(coke_board pk_cboard)*/
-	    				rownum rn, bno, email, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
-	    			from 
-	    				coke_board
-    				where 
-    		]]>
-    			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-    				<foreach item="type" collection="typeArr">
-    					<trim prefix="OR">
-    						<choose>
-    							<when test="type == 'T'.toString()">
-    								btitle like '%'||#{keyword}||'%'
-    							</when>
-    							<when test="type == 'C'.toString()">
-    								bcontent like '%'||#{keyword}||'%'
-    							</when>
-    							<when test="type == 'N'.toString()">
-    								nickname like '%'||#{keyword}||'%'
-    							</when>
-    						</choose>
-    					</trim>
-    				</foreach>
-    			</trim>
-    		<![CDATA[		
-    				rownum <= #{pageNum} * #{amount}
-    			)   				
-    			where rn > (#{pageNum} -1) * #{amount}    			
-    		]]>
-    	</select>
-    	
-    	
-    	
-    	
-    	
-    	
-    	<insert id="insert">
-    		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
-    			select seq_board.nextval from dual
-    		</selectKey>
-    		insert into 
-    		coke_board
-    		(bno, email, btitle, bcontent, bsort, nickname, btag)
-    		values
-    		(#{bno}, #{email}, #{btitle}, #{bcontent}, #{bsort}, #{nickname}, #{btag})
-    	</insert>
-    
-    	<select id="read" resultType="org.coke.domain.BoardVO">
-    		select * from coke_board where bno = #{bno}
-    	</select>
-    		
-    	<update id="update">
-    		update coke_board set 
-    		btitle = #{btitle}, bcontent = #{bcontent}, bsort = #{bsort}, btag = #{btag}, bupdate = sysdate where bno = #{bno}
-    	</update>
-    
-    	<delete id="delete">
-    		delete from coke_board where bno = #{bno}
-    	</delete>
-    	
-    	<select id="getTotal" resultType="int">
-    		select count(*) from coke_board where bno > 0
-    	</select>
-    	
-    	<update id="getHit">
-    		update coke_board set bhit = bhit + 1 where bno = #{bno}
-    	</update>
-    	
-    	<update id="updateReplyCnt">
-    		update coke_board set replycnt = replycnt + #{amount} where bno = #{bno}
-    	</update>
-    
-    
-    </mapper>
+	</select>
+
+
+
+
+
+	<insert id="insert">
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+		insert into
+		coke_board
+		(bno, email, btitle, bcontent, bsort, nickname, btag)
+		values
+		(#{bno}, #{email}, #{btitle}, #{bcontent}, #{bsort}, #{nickname}, #{btag})
+	</insert>
+
+	<select id="read" resultType="org.coke.domain.BoardVO">
+		select * from coke_board where bno = #{bno}
+	</select>
+
+	<update id="update">
+		update coke_board set
+		btitle = #{btitle}, bcontent = #{bcontent}, bsort = #{bsort}, btag =
+		#{btag}, bupdate = sysdate where bno = #{bno}
+	</update>
+
+	<delete id="delete">
+		delete from coke_board where bno = #{bno}
+	</delete>
+
+	<select id="getTotal" resultType="int">
+		select count(*) from coke_board where
+		<include refid="search"></include>
+		bno > 0
+	</select>
+
+	<update id="getHit">
+		update coke_board set bhit = bhit + 1 where bno = #{bno}
+	</update>
+
+	<update id="updateReplyCnt">
+		update coke_board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
+
+
+</mapper>

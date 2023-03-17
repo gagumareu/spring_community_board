@@ -77,39 +77,14 @@ public class BoardController {
 		
 		log.info("boardList:  " + cri);
 		log.info("sort: " + bsort);
-		log.info("sort by cri: " + cri.getBsort());		
+		log.info("sort by cri: " + cri.getBsort());	
+		
 		int total = boardService.getTotalAmount(cri);
 		
 //		model.addAttribute("bsort", bsort);
 		model.addAttribute("boardList", boardService.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
-//		if(bsort == null) {
-//			
-//			model.addAttribute("bsort", bsort);
-//			model.addAttribute("boardList", boardService.getBoardList(cri));
-//			model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
-
-//		}else if(bsort.equals("커뮤니티")) {
-//			
-//			model.addAttribute("bsort", bsort);
-//			model.addAttribute("boardList", boardService.getBoardList(cri));
-//			model.addAttribute("pageMaker", new PageDTO(cri, total));
-//		}else if(bsort.equals("음악")) {
-//			
-//			model.addAttribute("bsort", bsort);		
-//			model.addAttribute("boardList", boardService.getBoardList(cri));
-//			model.addAttribute("pageMaker", new PageDTO(cri, total));
-//		}else if(bsort.equals("지식")) {
-//			
-//			model.addAttribute("bsort", bsort);
-//			model.addAttribute("boardList", boardService.getBoardList(cri));
-//			model.addAttribute("pageMaker", new PageDTO(cri, total));
-//		}else if(bsort.equals("질문")) {
-//			
-//			model.addAttribute("bsort", bsort);
-//		}
 			
 			
 	}
