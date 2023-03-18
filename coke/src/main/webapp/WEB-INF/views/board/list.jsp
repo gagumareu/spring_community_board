@@ -108,6 +108,7 @@
 					<button>SEARCH</button>
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+					<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
 				</form >
 			</div>
 			

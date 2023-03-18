@@ -27,7 +27,7 @@ public class BoardMapperTests {
 		Criteria cri = new Criteria();
 		cri.setPageNum(2);
 		cri.setAmount(10);
-		//cri.setBsort("음악");
+		cri.setBsort("음악");
 		
 		List<BoardVO> list = boardMapper.getListWithPage(cri);
 		
@@ -40,6 +40,8 @@ public class BoardMapperTests {
 		Criteria cri = new Criteria();
 		cri.setKeyword("내가");
 		cri.setType("TC");
+		cri.setPageNum(2);
+		cri.setAmount(10);
 		cri.setBsort("컴퓨터");
 		
 		List<BoardVO> list = boardMapper.getListWithPage(cri);
