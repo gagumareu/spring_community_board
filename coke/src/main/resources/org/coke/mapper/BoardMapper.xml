@@ -76,11 +76,11 @@
     				</choose>
     			</foreach>
     		</trim>
-    		<trim suffix="AND">
-    			<if test="bsort != null">
-    				bsort = #{bsort}
-    			</if>
-   			</trim>  
+    		
+   			<if test="bsort != null">
+   				bsort = #{bsort} AND
+   			</if>
+   			
     		<![CDATA[
     			
     				bno > 0 and rownum <= #{pageNum} * #{amount}

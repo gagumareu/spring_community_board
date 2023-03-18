@@ -89,7 +89,7 @@
 					</div>
 				</div>
 				<div class="board_top_content_filter">
-					필터
+					필터 
 				</div>
 				
 			</div>
@@ -108,7 +108,10 @@
 					<button>SEARCH</button>
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-					<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
+					<c:if test="${!empty pageMaker.cri.bsort }">
+						<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
+					</c:if>
+					
 				</form >
 			</div>
 			
@@ -182,7 +185,9 @@
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 						<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
 						<input type="hidden" name="type" value="${pageMaker.cri.type }">
-						<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
+						<c:if test="${!empty pageMaker.cri.bsort }">
+							<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
+						</c:if>
 					</form>
 					
 				</div> <!-- board_content_list -->
@@ -191,7 +196,7 @@
 			</div> <!-- board_content_wrapper -->
 		</div> <!-- board_content -->
 	
-	
+		
 		<div class="footer">
 			
 		</div> <!-- footer -->
@@ -200,20 +205,23 @@
 	
 	<script type="text/javascript">
 	
-	$(function(){
+	$(document).ready(function(){
 		
 		var actionForm = $("#actionForm");
 		
 		
 		$(".paginate_button a").on("click", function(e){
 			
-			e.preventDefault();
-	
 			console.log('click');
-	
+			
+			e.preventDefault();
+						
 			actionForm.find("input[name='pageNum']")
-					.val($(this).attr("href"));
+			.val($(this).attr("href"));			
+						
 			actionForm.submit();
+
+		
 		});
 			
 		
@@ -245,8 +253,11 @@
 			searchForm.submit();
 			
 		});
+		
+		
 	});
 	
+
 	
 	
 	</script>	
