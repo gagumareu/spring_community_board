@@ -46,8 +46,7 @@ public class ReplyServiceimpl implements ReplyService{
 			
 			log.info("이미지 있음");
 		}
-		
-		
+				
 		return mapper.insert(vo);
 	}
 
@@ -65,7 +64,7 @@ public class ReplyServiceimpl implements ReplyService{
 		ReplyVO vo = mapper.read(rno);
 		
 		boardMapper.updateReplyCnt(vo.getBno(), -1);
-		
+	
 		return mapper.delete(rno);
 	}
 
@@ -74,6 +73,7 @@ public class ReplyServiceimpl implements ReplyService{
 		log.info("modify " + vo);
 		return mapper.update(vo);
 	}
+
 
 	@Override
 	public List<ReplyVO> getList(Criteria cri, long bno) {

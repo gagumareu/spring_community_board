@@ -271,8 +271,6 @@
 			
 			<div id="reply_modal" class="reply_modal">
 				<div class="reply_modal_content">
-					<div class="reply_modal_replyer"><input type="text" name="replyer"></div>
-					<div class="reply_modal_date"><input type="text" name="replydate"></div>
 					<textarea id="summernote2"> </textarea>
 					<script>
 					    $(document).ready(function() {
@@ -329,7 +327,7 @@
 				}
 				
 				for(var i = 0, len = list.length || 0; i < len; i++){
-					str += "<li class='reply_box' data-rno='"+list[i].rno+"'>";
+					str += "<li class='reply_box' data-rno='"+list[i].rno+"' data-bno='"+bnoValue+"'>";
 					str += "	<strong class='reply_writer'>"+list[i].replyer+"</strong>";
 					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small>"
 					str += "	<div class='reply_content'>"+list[i].reply+"</div>";
@@ -356,12 +354,9 @@
 			
 			console.log("-----------------------");			
 				
-			var editorValue = $('#summernote').summernote('code');
-		    
+			var editorValue = $('#summernote').summernote('code');		    
 			var summernoteEditor = $('#summernote').summernote();
-	
 			var attachList = [];
-			
 			var replyInsertForm = $("#replyUploadInsertForm");
 			
 			$(".uploadImageDiv ul li").each(function(i, obj){
@@ -411,25 +406,7 @@
 				summernoteEditor.summernote('reset');
 				
 				showList(-1);
-			});e
-				
-				
-			
-			
-			
-			
-			
-			
-	//	    if(!replyForm.find("input[name=replyer]").val()){
-	//			alert("작성자를 입력하세요");
-	//			return false;
-	//		}
-					
-		   
-		    
-				
-		
-			
+			});						
 		}); // add end
 		
 		var replyModifyBtn = $(".modifyBtn");
@@ -484,8 +461,10 @@
 		replyDeleteBtn.on("click", function(e){
 			
 			var rno = modal.data("rno");
+			var bno = modal.data("bno");
 			
 			console.log("rno: " + rno);
+			console.log("bno: " + bno);
 			
 			replyService.remove(rno, function(result){
 				
