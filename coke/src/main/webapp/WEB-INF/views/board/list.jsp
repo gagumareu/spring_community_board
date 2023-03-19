@@ -68,6 +68,10 @@
 			margin-left: 5px;
 		}
 		
+		.tagLink{
+			margin-left: 0.9em;
+		}
+		
 		
 	</style>
 		
@@ -77,17 +81,16 @@
 				<div class="board_top_content_register">
 					<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }">글 작성하기</a>
 				</div>
-				<div class="board_top_content_tagSort">
-					<div class="tag_btn">
-						<a href="/board/list?tag=일상">일상</a>
-					</div>
-					<div class="tag_btn">
-						<a href="/board/list?tag=유머">유머</a>
-					</div>
-					<div class="tag_btn">
-						<a href="/board/list?tag=모임">모임</a>
-					</div>
+				
+				<div class="board_top_content_tagSort">					
+					<c:forEach items="${tagList }" var="dto">
+						<c:if test="${dto != null }">
+							<a class="tagLink" href=#>${dto}</a>
+						</c:if>						
+					</c:forEach>
 				</div>
+			
+				
 				<div class="board_top_content_filter">
 					필터 
 				</div>
@@ -131,10 +134,10 @@
 									</div>
 								</div>
 								<a class="move" href="${dto.bno }">${dto.btitle }</a>
-								<c:if test="${empty bsort }">
+								<c:if test="${empty pageMaker.cri.bsort }">
 									<div><a href="#">${dto.bsort }</a></div>
 								</c:if>
-								<c:if test="${!empty bsort }">
+								<c:if test="${!empty pageMaker.cri.bsort }">
 									<div><a href="#">${dto.btag }</a></div>
 								</c:if>							
 							</div> <!-- board_list_title_wrapper -->

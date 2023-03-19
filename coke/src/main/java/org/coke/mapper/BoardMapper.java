@@ -25,5 +25,7 @@ public interface BoardMapper {
 	public void getHit(long bno);
 	
 	public void updateReplyCnt(@Param("bno") long bno, @Param("amount") int amount);
+	
+	public List<String> getTagList(Criteria cri);
 
 }

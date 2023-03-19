@@ -108,6 +108,13 @@ public class BoardServiceImpl implements BoardService{
 		return attachMapper.findByBno(bno);
 	}
 
+	@Override
+	public List<String> getTagList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardMapper.getTagList(cri);
+	}
+
+	
 	
 
 	

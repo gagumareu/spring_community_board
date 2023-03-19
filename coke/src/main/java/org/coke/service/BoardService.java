@@ -24,4 +24,6 @@ public interface BoardService {
 	
 	public List<BoardAttachVO> getAttachLsit(long bno);
 	
+	public List<String> getTagList(Criteria cri);
+	
 }

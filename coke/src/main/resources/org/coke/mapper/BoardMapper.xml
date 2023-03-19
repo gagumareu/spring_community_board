@@ -140,6 +140,9 @@
 	<update id="updateReplyCnt">
 		update coke_board set replycnt = replycnt + #{amount} where bno = #{bno}
 	</update>
-
+	
+	<select id="getTagList" resultType="String">
+		select distinct(btag) from coke_board where bsort = #{bsort}
+	</select>
 
 </mapper>

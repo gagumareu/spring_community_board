@@ -62,4 +62,17 @@ public class BoardMapperTests {
 		
 	}
 	
+	@Test
+	public void getTagList() {
+		
+		Criteria cri = new Criteria();
+		cri.setBsort("컴퓨터");
+		
+		List<String> list = boardMapper.getTagList(cri);
+		
+		list.forEach(tag -> log.info(tag));
+	}
+	
+	
+	
 }
