@@ -247,6 +247,10 @@
 					
 				</form>
 			</div>
+			
+			<form id="replyUploadInsertForm" action="/replies/uploadRply" method="post">
+			
+			</form>
 				
 			<div class="uploadImageDiv">
 				<ul class="uploadImageUl">
@@ -285,7 +289,7 @@
 		
 			
 		</div> <!-- board_content -->
-	
+		
 	
 		<div class="footer">
 			<h3>HellO World</h3>
@@ -303,209 +307,228 @@
 	<script type="text/javascript">
 		
 	
-		$(document).ready(function(){
-			
-			var bnoValue = ${BoardVO.bno};
-			var replyUL = $(".reply_boxes");
-			
-			console.log("bno by BoardVO: " + ${BoardVO.bno});
-			
-			showList(1);
-			
-			function showList(page){
-				
-				replyService.getList({bno:bnoValue, page:page||1}, function(list){
-					
-					console.log(list);
-					
-					var str = "";
-					
-					if(list == null || list.length == 0){
-						replyUL.html("<h3>첫 댓글이 없습니다.</h3>");
-					}
-					
-					for(var i = 0, len = list.length || 0; i < len; i++){
-						str += "<li class='reply_box' data-rno='"+list[i].rno+"'>";
-						str += "	<strong class='reply_writer'>"+list[i].replyer+"</strong>";
-						str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small>"
-						str += "	<div class='reply_content'>"+list[i].reply+"</div>";
-						str += "</li>"
-					}
-					
-					replyUL.html(str);
-				});
-				
-				
-			} // showList end
-			
-			var replyForm = $(".replyForm");
-			var replyerValue = replyForm.find("input[name='replyer']");
-			var replyValue = replyForm.find("textarea[name='reply']");
-			
-			var replyBtn = $(".replyAddBtn");
+	$(document).ready(function(){
 		
-			console.log("bno: " + bnoValue);
-						
-			replyBtn.on("click", function(e){
+		var bnoValue = ${BoardVO.bno};
+		var replyUL = $(".reply_boxes");
+		
+		console.log("bno by BoardVO: " + ${BoardVO.bno});
+		
+		showList(1);
+		
+		function showList(page){
+			
+			replyService.getList({bno:bnoValue, page:page||1}, function(list){
 				
-				console.log("-----------------------");
-				e.preventDefault();
-					
-				var editorValue = $('#summernote').summernote('code');
-			    
-				var summernoteEditor = $('#summernote').summernote();
-				
-				var imageList = [];
+				console.log(list);
 				
 				var str = "";
 				
-				$(".uploadImageDiv ul li").each(function(i, obj){
+				if(list == null || list.length == 0){
+					replyUL.html("<h3>첫 댓글이 없습니다.</h3>");
+				}
 				
-				str += {uploadPath: obj.uploadPath};
-				str += {uuid: obj.uuid};
-				str += {fileName: obj.fileName};	
-				str += {fileType: 'true'};	
-						
+				for(var i = 0, len = list.length || 0; i < len; i++){
+					str += "<li class='reply_box' data-rno='"+list[i].rno+"'>";
+					str += "	<strong class='reply_writer'>"+list[i].replyer+"</strong>";
+					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small>"
+					str += "	<div class='reply_content'>"+list[i].reply+"</div>";
+					str += "</li>"
+				}
 				
+				replyUL.html(str);
+			});
+			
+			
+		} // showList end
+		
+		var replyForm = $(".replyForm");
+		var replyerValue = replyForm.find("input[name='replyer']");
+		var replyValue = replyForm.find("textarea[name='reply']");
+		
+		var replyBtn = $(".replyAddBtn");
+	
+		console.log("bno: " + bnoValue);
+					
+		replyBtn.on("click", function(e){
+			
+			e.preventDefault();
+			
+			console.log("-----------------------");			
 				
-				//	str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+obj.uploadPath+"'>"
-				//	str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+obj.uuid+"'>"
-				//	str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+obj.fileName+"'>"
-				//	str += "<input type='hidden' name='attachList["+i+"].fileType' value='true'>"
-				imageList.push(str);	
-				});
+			var editorValue = $('#summernote').summernote('code');
+		    
+			var summernoteEditor = $('#summernote').summernote();
+	
+			var attachList = [];
+			
+			var replyInsertForm = $("#replyUploadInsertForm");
+			
+			$(".uploadImageDiv ul li").each(function(i, obj){
 				
+				console.log(obj);
 				
+				var dataObj = $(obj);
 				
-				console.log(imageList);
+				console.log(dataObj.data("path"));
+				console.log(dataObj.data("uuid"));
+				console.log(dataObj.data("name"));
 				
-			    var reply = {
-						reply: editorValue,
-						replyer: replyerValue.val(),
-						bno: bnoValue,
-						attachList: imageList
-				};
+				var uploadPath = dataObj.data("path");
+				var uuid = dataObj.data("uuid");
+				var fileName = dataObj.data("name");
+				var fileType = dataObj.data("type");
 				
-		//	    if(!replyForm.find("input[name=replyer]").val()){
-		//			alert("작성자를 입력하세요");
-		//			return false;
-		//		}
-						
-			    if ($.trim(editorValue) === '') {
+				console.log(uploadPath);
+				console.log(uuid);
+				console.log(fileName);
+				console.log(fileType);								
+				
+				var list = {uploadPath, uuid, fileName, fileType};
+				
+				attachList.push(list);
+			});		
+			
+			console.log(attachList);
+			
+			
+			var reply = {
+					replyer: replyerValue.val(),
+					reply: editorValue,
+					bno: bnoValue,
+					attachList: attachList
+			}
+			
+			replyService.add(reply, function(result){
+				
+				//alter(result);
+				
+				 if ($.trim(editorValue) === '') {
 			        alert('Please enter some content');
 			        return false; // prevent the form from being submitted
-			        //$('.replyForm').load('my-url.php');
-
 			      }
-			    summernoteEditor.summernote('reset');
-			    
-				replyService.add(reply, function(result){
-					
-					// reset the editor
-					
-					showList(1);
-				});
-					
-
-			}); // add end
+				 
+				summernoteEditor.summernote('reset');
+				
+				showList(-1);
+			});e
+				
+				
 			
-			var replyModifyBtn = $(".modifyBtn");
-			var replyDeleteBtn = $(".removeBtn");
 			
-			var modal = $("#reply_modal");
-						
-			var summernoteEditor2 = $("#summernote2").summernote('code');
-			var replyModalWriter = modal.find("input[name='replyer']");
-			var replyModalReply = modal.find("textarea[name='reply']");
-			var replyModalDate = modal.find("input[name='replydate']");
 			
-			$(".reply_boxes").on("click", "li", function(e){
-				
-				//$(this).html("");
-				
-				//var str = "";
-				
-				//var replyBox = $(this).html();
-				
-				var rno = $(this).data('rno');
-				
-				console.log(rno);
-				
-				$("#reply_modal").show();
-				
-				replyService.get(rno, function(param){
-					
-					console.log("rno: " + param.rno);
-					console.log("replyer: " + param.replyer);
-					console.log("reply: " + param.reply);
-					console.log("replydate : " + param.replydate);
-					
-					var reply = param.reply;
-					
-					modal.data("rno", param.rno);
-										
-					replyModalWriter.val(param.replyer).attr("readonly", "readonly")
-					replyModalReply.val(param.reply);
-					replyModalDate.val(replyService.displayTime(param.replydate)).attr("readonly", "readonly");
-					
-					$("#summernote2").summernote('code', param.reply);
-					
-				});
-				
-				$(".closeBtn").click(function(){
-					$("#reply_modal").hide();
-				})
-				
-			}); // get end
 			
-			replyDeleteBtn.on("click", function(e){
-				
-				var rno = modal.data("rno");
-				
-				console.log("rno: " + rno);
-				
-				replyService.remove(rno, function(result){
+			
+			
+	//	    if(!replyForm.find("input[name=replyer]").val()){
+	//			alert("작성자를 입력하세요");
+	//			return false;
+	//		}
 					
-					alert(result);
-					$("#reply_modal").hide();
-					showList(1);
-				});
+		   
+		    
 				
-			}); // remove end
 		
 			
-			replyModifyBtn.on("click", function(e){
-				
-				var replyValue = $("#summernote2").summernote('code', modal.data("reply"));
-				
-				var reply = {rno: modal.data("rno"), reply: replyValue};
-				
-				replyService.update(reply, function(result){
+		}); // add end
+		
+		var replyModifyBtn = $(".modifyBtn");
+		var replyDeleteBtn = $(".removeBtn");
+		
+		var modal = $("#reply_modal");
 					
-					$("#reply_modal").hide();
-					showList(1);
-				});
+		var summernoteEditor2 = $("#summernote2").summernote('code');
+		var replyModalWriter = modal.find("input[name='replyer']");
+		var replyModalReply = modal.find("textarea[name='reply']");
+		var replyModalDate = modal.find("input[name='replydate']");
+		
+		$(".reply_boxes").on("click", "li", function(e){
+			
+			//$(this).html("");
+			
+			//var str = "";
+			
+			//var replyBox = $(this).html();
+			
+			var rno = $(this).data('rno');
+			
+			console.log(rno);
+			
+			$("#reply_modal").show();
+			
+			replyService.get(rno, function(param){
+				
+				console.log("rno: " + param.rno);
+				console.log("replyer: " + param.replyer);
+				console.log("reply: " + param.reply);
+				console.log("replydate : " + param.replydate);
+				
+				var reply = param.reply;
+				
+				modal.data("rno", param.rno);
+									
+				replyModalWriter.val(param.replyer).attr("readonly", "readonly")
+				replyModalReply.val(param.reply);
+				replyModalDate.val(replyService.displayTime(param.replydate)).attr("readonly", "readonly");
+				
+				$("#summernote2").summernote('code', param.reply);
 				
 			});
 			
-			$(function(){
-				var actionForm = $(".actionForm");
+			$(".closeBtn").click(function(){
+				$("#reply_modal").hide();
+			})
+			
+		}); // get end
+		
+		replyDeleteBtn.on("click", function(e){
+			
+			var rno = modal.data("rno");
+			
+			console.log("rno: " + rno);
+			
+			replyService.remove(rno, function(result){
 				
-				$(".m_btn").click(function(){
-					actionForm.attr("action", "/board/modify").submit();
-				});
-				
-				$(".l_btn").click(function(){
-					actionForm.find(".bno").remove();
-					actionForm.attr("action", "/board/list").submit();
-				});
-				
+				alert(result);
+				$("#reply_modal").hide();
+				showList(1);
 			});
 			
+		}); // remove end
+	
+		
+		replyModifyBtn.on("click", function(e){
 			
+			var replyValue = $("#summernote2").summernote('code', modal.data("reply"));
 			
+			var reply = {rno: modal.data("rno"), reply: replyValue};
 			
-		}); // the end
+			replyService.update(reply, function(result){
+				
+				$("#reply_modal").hide();
+				showList(1);
+			});
+			
+		});
+		
+		$(function(){
+			var actionForm = $(".actionForm");
+			
+			$(".m_btn").click(function(){
+				actionForm.attr("action", "/board/modify").submit();
+			});
+			
+			$(".l_btn").click(function(){
+				actionForm.find(".bno").remove();
+				actionForm.attr("action", "/board/list").submit();
+			});
+			
+		});
+		
+		
+		
+		
+	}); // the end
 		
 	
 	</script>
