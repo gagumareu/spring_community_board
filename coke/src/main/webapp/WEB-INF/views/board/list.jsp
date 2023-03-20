@@ -126,14 +126,16 @@
 						
 					<c:forEach items="${boardList }" var="dto">
 						<div class="dto_list">
-							<div class="board_list_title_wrapper">
+							<div class="board_list_title_wrapper">							
 								<div class="board_list_nickName_wrapper">
 									<div class="board_list_nickNameDiv"><a href="#">${dto.nickname }</a></div>
 									<div class="board_list_date" >
 										<fmt:formatDate value="${dto.bregdate }" pattern="yyyy-MM-dd"/>
 									</div>
 								</div>
+								
 								<a class="move" href="${dto.bno }">${dto.btitle }</a>
+								
 								<c:if test="${empty pageMaker.cri.bsort }">
 									<div><a href="#">${dto.bsort }</a></div>
 								</c:if>

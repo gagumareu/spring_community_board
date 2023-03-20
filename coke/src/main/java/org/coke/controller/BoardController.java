@@ -64,8 +64,7 @@ public class BoardController {
 				
 			} catch (Exception e) {
 				log.error("delete file error" + e.getMessage());
-			}
-			
+			}			
 		});
 		
 	}
@@ -88,14 +87,11 @@ public class BoardController {
 		if(cri.getBsort() != null) {
 			model.addAttribute("tagList", boardService.getTagList(cri));
 			log.info("cri sort: " + cri.getBsort());
-		}
-		
+		}		
 		
 		model.addAttribute("boardList", boardService.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
-			
-			
+								
 	}
 	
 	
@@ -122,12 +118,13 @@ public class BoardController {
 		}
 						
 		boardService.writeBoard(boardVO);
+								
+		Criteria cri = new Criteria();
+		cri.setBsort(boardVO.getBsort());
 		
-		rttr.addFlashAttribute("success", boardVO.getBno());		
+		rttr.addFlashAttribute("success", boardVO.getBno());
+		rttr.addAttribute("bsort", cri.getBsort());
 		
-		model.addAttribute("bsort", boardVO.getBno());
-		
-			
 		return "redirect:/board/list";
 		
 	}	

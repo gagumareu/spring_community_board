@@ -288,13 +288,10 @@
 				        		}				        		
 				        	});
 				        }	 // uploadImageFile		
-				        
-				       				        						        			
-	        			
+				        				       				        						        				        			
 	        			function uploadResult(arr){
 	        				 
-					        var uploadUL = $(".uploadImageUl");
-		        			
+					        var uploadUL = $(".uploadImageUl");		        			
 		        			var str ="";	
 		        			
 		        			$(arr).each(function(i, dto){
@@ -315,12 +312,7 @@
 		        			
 		        			console.log(imageList);        				
 	        				
-	        			} // uploadResult ernd
-	        			
-				        
-				        
-				        
-				        
+	        			} // uploadResult ernd				        
 				    });
 				 </script>
 			    	 
@@ -333,6 +325,9 @@
 			  <!-- temporary input hidden tag -->
 			  <input type="hidden" name="email" value="user3@email.com">
 			  <input type="hidden" name="nickname" value="tester3">
+			  
+			  
+ 			 
 			</form>
 			
 			<div class="uploadImagesDiv">
@@ -345,6 +340,7 @@
 	
 		<div class="footer">
 			<h1>TEST</h1>
+			<h2>${bsort }</h2>
 		</div> <!-- footer -->
 		
 	</div> <!-- wrapper -->

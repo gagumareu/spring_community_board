@@ -153,6 +153,9 @@
 				<input type="hidden" name="amount"	 value="${cri.amount }">
 				<input type="hidden" name="type"	 value="${cri.type }">
 				<input type="hidden" name="keyword"	 value="${cri.keyword }">
+				<c:if test="${!empty cri.bsort }">
+					<input type="hidden" name="bsort" value="${cri.bsort }">
+				</c:if>
 			</form>
 			
 			<div class="board_read_reply_wrapper">
