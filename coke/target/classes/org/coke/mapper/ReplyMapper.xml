@@ -7,8 +7,11 @@
     <mapper namespace="org.coke.mapper.ReplyMapper">
     
     	<insert id="insert">
+    		<selectKey keyProperty="rno" order="BEFORE" resultType="long">
+    			select seq_coke_reply.nextval from dual
+    		</selectKey>
     		insert into coke_reply (rno, bno, reply, replyer)
-    		values(seq_coke_reply.nextval, #{bno}, #{reply}, #{replyer})
+    		values(#{rno}, #{bno}, #{reply}, #{replyer})
     	</insert>
     
     	<select id="read" resultType="org.coke.domain.ReplyVO">

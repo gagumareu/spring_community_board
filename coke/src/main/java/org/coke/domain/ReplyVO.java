@@ -16,5 +16,5 @@ public class ReplyVO {
 	private Date replydate;
 	private Date updatedate;
 	
-	private List<BoardAttachVO> attachList;
+	private List<ReplyAttachVO> attachList;
 }

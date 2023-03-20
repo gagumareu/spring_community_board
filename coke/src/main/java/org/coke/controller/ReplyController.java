@@ -1,6 +1,9 @@
 package org.coke.controller;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +14,7 @@ import javax.xml.crypto.Data;
 import org.coke.domain.AttachFileDTO;
 import org.coke.domain.BoardAttachVO;
 import org.coke.domain.Criteria;
+import org.coke.domain.ReplyAttachVO;
 import org.coke.domain.ReplyVO;
 import org.coke.service.ReplyService;
 import org.springframework.http.HttpStatus;
@@ -38,6 +42,29 @@ public class ReplyController {
 	
 	private ReplyService replyService;
 	
+	private void deleteFile(List<ReplyAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			
+		}
+		
+		log.info("delete attached files... ");
+		
+		log.info(attachList);
+		
+		attachList.forEach(attach ->{
+			try {
+				
+				Path files = Paths.get("C:\\workspace\\upload\\coke\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				
+				Files.deleteIfExists(files);
+				
+			} catch (Exception e) {
+				log.error("delete files error" + e.getMessage());
+			}
+		});
+		
+	}
 	
 	
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE})
@@ -86,7 +113,15 @@ public class ReplyController {
 		
 		log.info("remove reply by rno : " + rno);
 		
-		return replyService.remove(rno) == 1 
+		List<ReplyAttachVO> list = replyService.getAttachList(rno);
+		
+		int count = replyService.remove(rno);
+		
+		if(count == 1) {
+			deleteFile(list);
+		}
+		
+		return count == 1 
 				? new ResponseEntity<>("success", HttpStatus.OK) 
 						: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

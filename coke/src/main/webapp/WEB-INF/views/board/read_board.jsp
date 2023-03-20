@@ -331,7 +331,7 @@
 				
 				for(var i = 0, len = list.length || 0; i < len; i++){
 					str += "<li class='reply_box' data-rno='"+list[i].rno+"' data-bno='"+bnoValue+"'>";
-					str += "	<strong class='reply_writer'>"+list[i].replyer+"</strong>";
+					str += "	<strong class='reply_writer'>"+[list[i].rno]+list[i].replyer+"</strong>";
 					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small>"
 					str += "	<div class='reply_content'>"+list[i].reply+"</div>";
 					str += "</li>"
@@ -438,6 +438,7 @@
 			
 			replyService.get(rno, function(param){
 				
+				console.log("bno: " + param.bno);
 				console.log("rno: " + param.rno);
 				console.log("replyer: " + param.replyer);
 				console.log("reply: " + param.reply);
@@ -446,6 +447,7 @@
 				var reply = param.reply;
 				
 				modal.data("rno", param.rno);
+				modal.data("bno", param.bno);
 									
 				replyModalWriter.val(param.replyer).attr("readonly", "readonly")
 				replyModalReply.val(param.reply);

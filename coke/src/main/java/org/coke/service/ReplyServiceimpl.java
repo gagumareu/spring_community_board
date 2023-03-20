@@ -3,9 +3,11 @@ package org.coke.service;
 import java.util.List;
 
 import org.coke.domain.Criteria;
+import org.coke.domain.ReplyAttachVO;
 import org.coke.domain.ReplyVO;
 import org.coke.mapper.BoardAttachMapper;
 import org.coke.mapper.BoardMapper;
+import org.coke.mapper.ReplyAttachMapper;
 import org.coke.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,29 +27,31 @@ public class ReplyServiceimpl implements ReplyService{
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper boardMapper;
 	
-	private BoardAttachMapper attachMapper;
+	@Setter(onMethod_ = @Autowired)	
+	private ReplyAttachMapper replyAttachMapper;
 	
 	@Transactional
 	@Override
 	public int register(ReplyVO vo) {
+		
 		log.info("**********************************");
 		log.info("register : " + vo);
-		
+	
 		boardMapper.updateReplyCnt(vo.getBno(), 1);
 
+		int count = mapper.insert(vo);
+		
+		
 		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
-			log.info("이미지 없음");
-		}else {
-			
-			vo.getAttachList().forEach(attach ->{
-			attach.setBno(vo.getBno());
-				attachMapper.insert(attach);
-			});
-			
-			log.info("이미지 있음");
+			System.out.println("첨부 파일 없음");
 		}
-				
-		return mapper.insert(vo);
+		
+		vo.getAttachList().forEach(attach ->{
+			attach.setRno(vo.getRno());
+			replyAttachMapper.insert(attach);
+		});
+		
+		return count;
 	}
 
 	@Override
@@ -64,6 +68,8 @@ public class ReplyServiceimpl implements ReplyService{
 		ReplyVO vo = mapper.read(rno);
 		
 		boardMapper.updateReplyCnt(vo.getBno(), -1);
+		
+		replyAttachMapper.deleteAll(rno);
 	
 		return mapper.delete(rno);
 	}
@@ -79,6 +85,12 @@ public class ReplyServiceimpl implements ReplyService{
 	public List<ReplyVO> getList(Criteria cri, long bno) {
 		log.info("getList : " +bno );
 		return mapper.getListWithPaging(cri, bno);
+	}
+
+	@Override
+	public List<ReplyAttachVO> getAttachList(long rno) {
+		log.info("findByRno rno: " + rno);
+		return replyAttachMapper.findByRno(rno);
 	}
 	
 

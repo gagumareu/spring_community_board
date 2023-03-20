@@ -136,7 +136,7 @@ public class BoardController {
 		log.info("readBoard :" + bno);
 		boardService.getHitCount(bno);
 		model.addAttribute("BoardVO", boardService.readBoard(bno));
-		model.addAttribute("replyList", replyMapper.getListWithPaging(cri, bno));
+		//model.addAttribute("replyList", replyMapper.getListWithPaging(cri, bno));
 	}
 	
 	@GetMapping("/modify")

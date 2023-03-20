@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.coke.domain.BoardVO;
 import org.coke.domain.Criteria;
+import org.coke.domain.ReplyAttachVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class BoardMapperTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper boardMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyAttachMapper replyAttachMapper;
 	
 	@Test
 	public void getListWithPage() {
@@ -72,6 +76,33 @@ public class BoardMapperTests {
 		
 		list.forEach(tag -> log.info(tag));
 	}
+	
+	@Test
+	public void replyAttach() {
+		
+		ReplyAttachVO vo = new ReplyAttachVO();
+				
+		vo.setFileName("test2");
+		vo.setFileType(true);
+		vo.setRno(635);
+		vo.setUploadPath("test2");
+		vo.setUuid("test2");
+		log.info(vo);
+		replyAttachMapper.insert(vo);
+		
+	}
+	
+	@Test
+	public void deleteReplyAttach() {
+		
+		ReplyAttachVO vo = new ReplyAttachVO();
+		
+		vo.setRno(692);
+		
+		replyAttachMapper.deleteAll(vo.getRno());
+	}
+	
+	
 	
 	
 	

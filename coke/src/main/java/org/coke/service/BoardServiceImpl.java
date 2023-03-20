@@ -36,13 +36,18 @@ public class BoardServiceImpl implements BoardService{
 		log.info("------boardServiceImpl---------");
 		log.info("insert Board :" + boardVO);
 		log.info("insert Board :" + boardVO.getGetAttachList());
+		System.out.println("bno: " + boardVO.getBno());
 		
 		boardMapper.insert(boardVO);
-				
+		
+		System.out.println("bno2: " + boardVO.getBno());
+		
 		if(boardVO.getGetAttachList() == null || boardVO.getGetAttachList().size() <= 0 ) {			
 			return;		
 		}
 		
+		System.out.println("************************************");
+		System.out.println("bno3: " + boardVO.getBno());
 		boardVO.getGetAttachList().forEach(attach ->{
 			
 			attach.setBno(boardVO.getBno());
