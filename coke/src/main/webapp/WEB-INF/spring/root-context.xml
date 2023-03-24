@@ -41,10 +41,12 @@
 	<tx:annotation-driven/>
 	
 	<mybatis-spring:scan base-package="org.coke.mapper"/>
-	
-	<context:component-scan base-package="org.coke.service"></context:component-scan>
-	<context:component-scan base-package="org.coke.aop"></context:component-scan>
+	<context:component-scan base-package="org.coke.service" />
+	<context:component-scan base-package="org.coke.aop" />
+	<context:component-scan base-package="org.coke.task" />
 		
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<task:annotation-driven/>	
 	
 </beans>

@@ -12,6 +12,11 @@
 			border-bottom: 1px solid #e5e7eb;
 			height: 90px;
 		}
+		
+		.board_content_list{
+		width: 80%;
+	
+		}
 
 		.board_list_title_wrapper{
 			display: flex;
@@ -85,7 +90,7 @@
 				<div class="board_top_content_tagSort">					
 					<c:forEach items="${tagList }" var="dto">
 						<c:if test="${dto != null }">
-							<a class="tagLink" href=#>${dto}</a>
+							<a class="tagLink" href="/board/list?btag=${dto }">${dto}</a>
 						</c:if>						
 					</c:forEach>
 				</div>
@@ -96,32 +101,9 @@
 				</div>
 				
 			</div>
-			<div class="board_search">
-				<form id="searchForm" action="/board/list" method="get">
-					<select name="type">
-						<option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>-----</option>
-						<option value="T" <c:out value="${pageMaer.cri.type eq 'T'?'selected':'' }" />>제목</option>
-						<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }" />>내용</option>
-						<option value="N" <c:out value="${pageMaker.cri.type eq 'N'?'selected':'' }" />>작성자</option>
-						<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }" />>제목+내용</option>	
-						<option value="TN" <c:out value="${pageMaker.cri.type eq 'TN'?'selected':'' }" />>제목+작성자</option>	
-						<option value="TCN" <c:out value="${pageMaker.cri.type eq 'TCN'?'selected':'' }" />>제목+내용+작성자</option>	
-					</select>
-					<input type="text" name="keyword" value="${pageMaker.cri.keyword }" placeholder="검색어 입력">
-					<button>SEARCH</button>
-					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-					<c:if test="${!empty pageMaker.cri.bsort }">
-						<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
-					</c:if>
-					
-				</form >
-			</div>
 			
-			<div class="board_content_wrapper">
 			
-				
-				
+			<div class="board_content_wrapper">			
 				<div class="board_content_list">
 						
 					<c:forEach items="${boardList }" var="dto">
@@ -140,7 +122,7 @@
 									<div><a href="#">${dto.bsort }</a></div>
 								</c:if>
 								<c:if test="${!empty pageMaker.cri.bsort }">
-									<div><a href="#">${dto.btag }</a></div>
+									<div><a href="/board/list?btag=${dto.btag }">${dto.btag }</a></div>
 								</c:if>							
 							</div> <!-- board_list_title_wrapper -->
 								
@@ -199,6 +181,27 @@
 				
 			
 			</div> <!-- board_content_wrapper -->
+			<div class="board_search">
+				<form id="searchForm" action="/board/list" method="get">
+					<select name="type">
+						<option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>-----</option>
+						<option value="T" <c:out value="${pageMaer.cri.type eq 'T'?'selected':'' }" />>제목</option>
+						<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }" />>내용</option>
+						<option value="N" <c:out value="${pageMaker.cri.type eq 'N'?'selected':'' }" />>작성자</option>
+						<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }" />>제목+내용</option>	
+						<option value="TN" <c:out value="${pageMaker.cri.type eq 'TN'?'selected':'' }" />>제목+작성자</option>	
+						<option value="TCN" <c:out value="${pageMaker.cri.type eq 'TCN'?'selected':'' }" />>제목+내용+작성자</option>	
+					</select>
+					<input type="text" name="keyword" value="${pageMaker.cri.keyword }" placeholder="검색어 입력">
+					<button>SEARCH</button>
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+					<c:if test="${!empty pageMaker.cri.bsort }">
+						<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
+					</c:if>
+					
+				</form >
+			</div>
 		</div> <!-- board_content -->
 	
 		

@@ -67,15 +67,27 @@ public class BoardMapperTests {
 	}
 	
 	@Test
+	public void getSortList() {
+		
+		Criteria cri = new Criteria();
+		cri.setBtag("주변기기");
+		
+		List<BoardVO> list = boardMapper.getListWithPage(cri);
+		
+		list.forEach(tag -> log.info(tag));
+	}
+	
+	@Test
 	public void getTagList() {
 		
 		Criteria cri = new Criteria();
-		cri.setBsort("컴퓨터");
+		cri.setBtag("컴퓨터");
 		
 		List<String> list = boardMapper.getTagList(cri);
 		
 		list.forEach(tag -> log.info(tag));
 	}
+	
 	
 	@Test
 	public void replyAttach() {

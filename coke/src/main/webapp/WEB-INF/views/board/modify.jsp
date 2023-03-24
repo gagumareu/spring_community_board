@@ -311,7 +311,7 @@
 				<input type="hidden" name="amount" value="${cri.amount }">
 				<input type="hidden" name="type" value="${cri.type }">
 				<input type="hidden" name="keyword" value="${cri.keyword }">
-			  
+			  	
 			 	 <!-- temporary input hidden tag -->			  
 			  	<input type="hidden" name="email" value="user3@email.com">
 			  	<input type="hidden" name="nickname" value="tester3">

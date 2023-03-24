@@ -166,6 +166,7 @@ public class BoardController {
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
+		rttr.addAttribute("bsort", cri.getBsort());
 		
 		return "redirect:/board/list";
 	}

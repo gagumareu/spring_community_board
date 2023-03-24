@@ -16,6 +16,7 @@ public class Criteria {
 	private String keyword;
 	
 	private String bsort;
+	private String btag;
 	
 	public Criteria() {
 		this(1, 10);

@@ -21,5 +21,9 @@
     	<delete id="deleteAll">
     		delete coke_attach where bno = #{bno}
     	</delete>
+    	
+    	<select id="getOldFiles" resultType="org.coke.domain.BoardAttachVO">
+   			select * from coke_attach where uploadpath = to_char(sysdate -1, 'yyyy\MM\dd')		
+    	</select>
     
     </mapper>

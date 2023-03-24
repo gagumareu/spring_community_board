@@ -134,10 +134,7 @@
 	
 	
 	
-	.board_content_list{
-		width: 100%;
 	
-	}
 	
 	
 	
@@ -154,7 +151,14 @@
 		margin-left: 1.2em;
 	}
 	
+	.header_search_div{
+		border-radius: 43px;
+	    border-width: 1px;
+	}
 	
+	.header_search_input{
+		
+	}
 	
 	/******** tag and search *******/
 	
@@ -221,7 +225,10 @@
 		
 			<div class="header_search_form">
 				<form action="#" method="post" class="header_search_form">
-					<input type="text">
+					<div class="header_search_div">
+						<input class="header_search_input" type="text">
+						
+					</div>
 					<div>
 						<button type="submit">SEARCH</button>
 					</div>

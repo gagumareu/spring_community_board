@@ -7,9 +7,7 @@
 <%@ include file="../include/header.jsp" %>
 
 <style>	
-	.modal-backdrop{
-	opacity: 0;
-	}
+
 	.reply_boxes{
 		padding:0px;
 		
@@ -35,7 +33,7 @@
 	}
 	
 	.reply_modal{
-		  display: none;
+		/*display: none;
 		  position: fixed;
 		  z-index: 1;
 		  left: 0;
@@ -43,7 +41,7 @@
 		  width: 100%;
 		  height: 100%;
 		  overflow: auto;
-		  background-color: rgba(0, 0, 0, 0.4);
+		  background-color: rgba(0, 0, 0, 0.4);*/
 	}
 	
 	.reply_modal_content{

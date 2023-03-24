@@ -79,8 +79,7 @@
     		
    			<if test="bsort != null">
    				bsort = #{bsort} AND
-   			</if>
-   			
+   			</if>			
     		<![CDATA[
     			
     				bno > 0 and rownum <= #{pageNum} * #{amount}
