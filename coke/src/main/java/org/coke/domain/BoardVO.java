@@ -9,7 +9,7 @@ import lombok.Data;
 public class BoardVO {
 	
 	private Long bno;
-	private String email;
+	private String userid;
 	private String btitle;
 	private String bcontent;
 	private int bhit;

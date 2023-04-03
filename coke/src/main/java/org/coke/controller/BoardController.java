@@ -18,10 +18,10 @@ import org.coke.mapper.BoardAttachMapper;
 import org.coke.mapper.ComputerMapper;
 import org.coke.mapper.ReplyMapper;
 import org.coke.service.BoardService;
-import org.coke.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +44,6 @@ public class BoardController {
 	
 	private BoardService boardService;
 		
-	private ReplyMapper replyMapper;
 	
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		
@@ -94,7 +93,7 @@ public class BoardController {
 								
 	}
 	
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/writeBoard")
 	public void writeBoard(@RequestParam(value = "bsort", required = false) String bsort, Model model) {
 		
@@ -106,6 +105,7 @@ public class BoardController {
 		}
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register_board")
 	public String registerBoard(BoardVO boardVO, RedirectAttributes rttr, Model model) {
 		
@@ -148,9 +148,9 @@ public class BoardController {
 
 	}
 	
+	@PreAuthorize("principal.username == #boardVO.userid")
 	@PostMapping("/modify_board")
-	public String modifyBoard(BoardVO boardVO, 
-			@ModelAttribute("cri") Criteria cri, 
+	public String modifyBoard(BoardVO boardVO, @ModelAttribute("cri") Criteria cri, 
 			RedirectAttributes rttr,
 			Model model) {
 		
@@ -171,10 +171,13 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@PreAuthorize("principal.username == #userid")
 	@PostMapping("/delete")
-	public String deleteBoard(BoardVO boardVO, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	public String deleteBoard(BoardVO boardVO, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri, String userid) {
 		
-		log.info("delete board: " + boardVO.getBno());
+		log.info("userid on board_delete_controller: " + userid);
+		
+		log.info("delete board NO.: " + boardVO.getBno());
 		
 		List<BoardAttachVO> list = boardService.getAttachLsit(boardVO.getBno());
 		

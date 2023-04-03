@@ -3,7 +3,7 @@
     
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ include file="../include/header.jsp" %>
 
 
@@ -120,8 +120,8 @@
 			
 				<div class="board_write_titleAndSort">
 					
-					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required>
-			 		
+					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required autofocus="autofocus">
+			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">			 		
 			 		<div class="board_write_sort_wrapper" >
 			 			<c:if test="${bsort == '음악' }">
 			 				<select class="board_write_sort_first" name="bsort" required>
@@ -219,6 +219,9 @@
 			 			</c:if>
 						  
 			 		</div> <!-- board_write_sort_wrapper -->	
+			 		
+			 	<input class="board_write_title" type="text" name="userid" value='<security:authentication property="principal.username"/>' readonly="readonly">
+			 		
 				</div> <!-- board_write_titleAndSort -->
 			 
 			  
@@ -268,6 +271,9 @@
 								} // callbacks
 							}); //summernote
 				        
+						var csrfHeaderName = "${_csrf.headerName}";
+						var csrfTokenValue = "${_csrf.token}";
+							
 				        function uploadImageFile(file, el){
 				        	
 				        	var formData = new FormData();
@@ -277,6 +283,9 @@
 				        	$.ajax({				
 				        		url: "/uploadAction",
 				        		type: "POST",
+				        		beforeSend: function(xhr){
+				        			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+				        		},
 				        		data: formData,				        		
 				        		cache:false,
 				        		contentType:false,
@@ -323,9 +332,8 @@
 			  </div>
 			  
 			  <!-- temporary input hidden tag -->
-			  <input type="hidden" name="email" value="user3@email.com">
 			  <input type="hidden" name="nickname" value="tester3">
-			  
+			 
 			  
  			 
 			</form>

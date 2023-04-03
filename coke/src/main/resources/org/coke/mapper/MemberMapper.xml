@@ -6,8 +6,28 @@
     
     <mapper namespace="org.coke.mapper.MemberMapper">
     
-    	<select id="getList" resultType="org.coke.domain.MemberVO">
-    		select * from coke_member
+    	<resultMap type="org.coke.domain.MemberVO" id="memberMap">
+    		<id property="userid" column="userid"/>
+    		<result property="userid" column="userid"/>
+    		<result property="userpw" column="userpw"/>
+    		<result property="userName" column="userName"/>
+    		<result property="regDate" column="regDate"/>
+    		<result property="updateDate" column="updateDate"/> 
+    		<collection property="authList" resultMap="authMap"></collection>
+    	</resultMap>
+    	
+    	<resultMap type="org.coke.domain.AuthVO" id="authMap">
+    		<result property="userid" column="userid"/>
+    		<result property="auth" column="auth"/>
+    	</resultMap>
+    	
+    	<select id="read" resultMap="memberMap">
+    		select 
+    			mem.userid, userpw, username, enabled, regdate, updatedate, auth
+    		from
+    			coke_member mem left outer join coke_member_auth auth on mem.userid = auth.userid
+    		where mem.userid = #{userid}
     	</select>
+    	
     
     </mapper>

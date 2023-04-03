@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.HttpHandler;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +49,7 @@ public class UploadController {
 		return str.replace("-", File.separator);
 	}
 	
-
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAction", produces = org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost2(MultipartFile[] uploadFile) {
@@ -139,6 +140,7 @@ public class UploadController {
 		return result;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deletefiles")
 	@ResponseBody
 	public ResponseEntity<String> deleteFiles(String fileName){

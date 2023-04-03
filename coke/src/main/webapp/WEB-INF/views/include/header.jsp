@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -267,9 +268,17 @@
 				</div>
 				<div class="header_login">
 				
-					<div class="header_login_btn">
-						<a href="#">로그인</a>
-					</div>
+					<security:authorize access="isAnonymous()">
+						<div>
+							<a href="/LoginPage">로그인</a>
+						</div>
+					</security:authorize>
+					<security:authorize access="isAuthenticated()">
+						<div class="header_login_btn">
+							<a href="/Logout">로그아웃</a>
+						</div>
+					</security:authorize>
+					
 					<div class="header_signUp_btn">
 						<a href="#">회원가입</a>
 					</div>

@@ -52,11 +52,11 @@
 	<select id="getListWithPage"
 		resultType="org.coke.domain.BoardVO">
     		<![CDATA[
-    			select bno, email, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+    			select bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
     			from 
     			(
 	    			select /*+ INDEX_DESC(coke_board pk_cboard)*/
-	    				rownum rn, bno, email, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+	    				rownum rn, bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
 	    			from 
 	    				coke_board
     				where 
@@ -100,9 +100,9 @@
 		</selectKey>
 		insert into
 		coke_board
-		(bno, email, btitle, bcontent, bsort, nickname, btag)
+		(bno, userid, btitle, bcontent, bsort, nickname, btag)
 		values
-		(#{bno}, #{email}, #{btitle}, #{bcontent}, #{bsort}, #{nickname}, #{btag})
+		(#{bno}, #{userid}, #{btitle}, #{bcontent}, #{bsort}, #{nickname}, #{btag})
 	</insert>
 
 	<select id="read" resultType="org.coke.domain.BoardVO">

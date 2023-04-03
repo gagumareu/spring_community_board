@@ -3,7 +3,7 @@
     
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ include file="../include/header.jsp" %>
 
 <style>	
@@ -123,7 +123,7 @@
 			<div class="board_member_info">					
 				<div class="board_read_memInfo_wrapper">
 					<div class="board_member_nickNmae">
-						<a href="#">${BoardVO.nickname }</a>
+						<a class="board_read_userid" href="#">${BoardVO.userid }</a>
 					</div>
 					<div class="board_read_member_dateAndHit">
 						<div>
@@ -141,7 +141,12 @@
 					
 				</div>	<!-- board_read_memInfo_wrapper -->
 				<div class="board_read_btn_wrapper">
-					<button class="m_btn">수정</button>
+					<security:authentication property="principal" var="prin"/>
+					<security:authorize access="isAuthenticated()">
+						<c:if test="${prin.username eq BoardVO.userid }">
+							<button class="m_btn">수정</button>	
+						</c:if>
+					</security:authorize>
 					<button class="l_btn">리스트</button>
 				</div>
 						
@@ -166,10 +171,9 @@
 					<input type="hidden" name="bsort" value="${cri.bsort }">
 				</c:if>
 			</form>
-			
+			<security:authorize access="isAuthenticated()">
 			<div class="board_read_reply_wrapper">
 				<form class="replyForm">
-					<input class="replyer" name="replyer" type="hidden" value="tester3">
 					<textarea id="summernote" name="reply" required> </textarea>
 					<script>
 					    $(document).ready(function() {
@@ -254,16 +258,12 @@
 					    }); // the end
 					  </script>
 					  <div class="board_read_reply_insert_wrapper">
-						<button class="replyAddBtn" type="button">댓글 작성</button>  
-					  </div>
-					
+					  	<button class="replyAddBtn" type="button">댓글 작성</button>					  						
+					  </div>				
 				</form>
 			</div>
+			</security:authorize>
 			
-			<form id="replyUploadInsertForm" action="/replies/uploadRply" method="post">
-			
-			</form>
-				
 			<div class="uploadImageDiv">
 				<ul class="uploadImageUl">
 				</ul>	
@@ -283,6 +283,7 @@
 			
 			<div id="reply_modal" class="reply_modal">
 				<div class="reply_modal_content">
+					<input type="text" name="replyer" value="">
 					<textarea id="summernote2"> </textarea>
 					<script>
 					    $(document).ready(function() {
@@ -388,10 +389,26 @@
 	
 	$(document).ready(function(){
 		
+		var replyer = null;
+		
+		<security:authorize access="isAuthenticated()">
+			replyer = '<security:authentication property="principal.username"/>';
+		</security:authorize>
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		console.log("replyer by loginPerson: " + replyer);
+
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
+		
 		var bnoValue = ${BoardVO.bno};
 		var replyUL = $(".reply_boxes");
 		
 		console.log("bno by BoardVO: " + ${BoardVO.bno});
+		
 		
 		showList(1);
 		
@@ -429,6 +446,7 @@
 		var replyBtn = $(".replyAddBtn");
 	
 		console.log("bno: " + bnoValue);
+		console.log("replyer: " + replyer);
 					
 		replyBtn.on("click", function(e){
 			
@@ -470,7 +488,7 @@
 			
 			
 			var reply = {
-					replyer: replyerValue.val(),
+					replyer: replyer,
 					reply: editorValue,
 					bno: bnoValue,
 					attachList: attachList
@@ -503,19 +521,26 @@
 		
 		$(".reply_boxes").on("click", "li", function(e){
 			
-			//$(this).html("");
-			
-			//var str = "";
-			
-			//var replyBox = $(this).html();
-			
 			var rno = $(this).data('rno');
 			
-			console.log(rno);
+			console.log("reply rno: " + rno);
+			
 			
 			$("#reply_modal").show();
 			
 			replyService.get(rno, function(param){
+				
+				if(!replyer){
+					alert("로그인 사용자만 수정가능합니다.");
+					$("#reply_modal").hide();
+					return;
+				}
+				
+				if(replyer != param.replyer){
+					alert("댓글 등록자만 수정가능합니다.");
+					$("#reply_modal").hide();
+					return;
+				}
 				
 				console.log("bno: " + param.bno);
 				console.log("rno: " + param.rno);
@@ -533,7 +558,7 @@
 				replyModalDate.val(replyService.displayTime(param.replydate)).attr("readonly", "readonly");
 				
 				$("#summernote2").summernote('code', param.reply);
-				
+				modal.find("input[name='replyer']").val(param.replyer);
 			});
 			
 			$(".closeBtn").click(function(){
@@ -544,13 +569,28 @@
 		
 		replyDeleteBtn.on("click", function(e){
 			
+			var originalReplyer = replyModalWriter.val();
+			
 			var rno = modal.data("rno");
 			var bno = modal.data("bno");
 			
 			console.log("rno: " + rno);
 			console.log("bno: " + bno);
+			console.log("originalReplyer: " + originalReplyer);
 			
-			replyService.remove(rno, function(result){
+			if(!replyer){
+				alert("로그인 후 서비스 가능합니다.");
+				$("#reply_modal").hide();
+				return;
+			}
+			
+			if(originalReplyer != replyer){
+				alert("댓글 등록자만 삭제 가능합니다.");
+				$("#reply_modal").hide();
+				return;
+			}
+			
+			replyService.remove(rno, originalReplyer, function(result){
 				
 				alert(result);
 				$("#reply_modal").hide();
@@ -562,9 +602,29 @@
 		
 		replyModifyBtn.on("click", function(e){
 			
+			var originalReplyer = replyModalWriter.val();
+			
+			console.log("originalReplyer: " + originalReplyer);
+			
+			if(!replyer){
+				alert("로그인시 사용가능한 서비스입니다.");
+				$("#reply_modal").hide();
+				return;
+			}
+			
+			if(replyer != originalReplyer){
+				alert("댓글 작성자만 수정이 가능합니다.");
+				$("#reply_modal").hide();
+				return;
+			}
+			
 			var replyValue = $("#summernote2").summernote('code', modal.data("reply"));
 			
-			var reply = {rno: modal.data("rno"), reply: replyValue};
+			var reply = {
+					rno: modal.data("rno"),
+					replyer: originalReplyer,
+					reply: replyValue
+					};
 			
 			replyService.update(reply, function(result){
 				

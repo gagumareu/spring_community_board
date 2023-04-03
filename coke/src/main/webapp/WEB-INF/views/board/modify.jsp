@@ -71,7 +71,7 @@
 				<div class="board_write_titleAndSort">
 					
 					<input class="board_write_title" type="text" name="btitle" value="${boardDto.btitle }" required>
-			 		
+			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			 		<div class="board_write_sort_wrapper" >
 			 			<c:if test="${boardDto.bsort == '음악' }">
 			 				<select class="board_write_sort_first" name="bsort" required>
@@ -211,9 +211,12 @@
 								    		  targetIl.remove();
 								    	  }								    	  
 								      });						
-						         }
-							}
-						});
+						         } //onMediaDelete
+							} // callbacks
+						}); // summbernote 
+				        
+						var csrfHeaderName = "${_csrf.headerName}";
+						var csrfTokenValue = "${_csrf.token}";
 				        
 				        function uploadImageFile(file, el){
 				        	
@@ -224,14 +227,15 @@
 				        	$.ajax({				
 				        		url: "/uploadAction",
 				        		type: "POST",
-				        		data: formData,				        		
+				        		beforeSend: function(xhr){
+				        			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+				        		},
+				        		data: formData,			        		
 				        		cache:false,
 				        		contentType:false,
 				        		processData: false,
 				        		enctype: 'multipart/form-data',			        		
-				        		success:function(result){
-				        			//$(el).summernote('editor.insertImage', data.url);
-				        			
+				        		success:function(result){				        			
 				        			$(result).each(function(index, dto){
 				        				
 				        				var fileCallPath = encodeURIComponent(dto.uploadPath + "/" +dto.uuid+ "_" +dto.fileName);				        				
@@ -302,8 +306,9 @@
 			    	 
 
 			   <div>
-				  <button class="mbtn" type="submit" data-oper="modify">수정</button>
-				  <button class="mbtn" type="button" data-oper="delete">삭제</button>
+			   	
+			   	<button class="mbtn" type="submit" data-oper="modify">수정</button>
+						<button class="mbtn" type="button" data-oper="delete">삭제</button>
 				  <button class="mbtn" type="button" data-oper="list">리스트</button>
 			  </div>
 			  	<input type="hidden" name="bno" value="${boardDto.bno }">
@@ -313,7 +318,7 @@
 				<input type="hidden" name="keyword" value="${cri.keyword }">
 			  	
 			 	 <!-- temporary input hidden tag -->			  
-			  	<input type="hidden" name="email" value="user3@email.com">
+			  	<input type="hidden" name="userid" value="${boardDto.userid }">
 			  	<input type="hidden" name="nickname" value="tester3">
 			</form> 
 			

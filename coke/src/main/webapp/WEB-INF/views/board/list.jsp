@@ -84,7 +84,10 @@
 		<div class="board_content">
 			<div class="board_top_content">
 				<div class="board_top_content_register">
-					<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }">글 작성하기</a>
+					<security:authorize access="isAuthenticated()">
+						<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }">글 작성하기</a>
+					</security:authorize>
+					
 				</div>
 				
 				<div class="board_top_content_tagSort">					
@@ -110,7 +113,7 @@
 						<div class="dto_list">
 							<div class="board_list_title_wrapper">							
 								<div class="board_list_nickName_wrapper">
-									<div class="board_list_nickNameDiv"><a href="#">${dto.nickname }</a></div>
+									<div class="board_list_nickNameDiv"><a href="#">${dto.userid }</a></div>
 									<div class="board_list_date" >
 										<fmt:formatDate value="${dto.bregdate }" pattern="yyyy-MM-dd"/>
 									</div>
