@@ -4,6 +4,12 @@
     <%@ include file="../include/header.jsp" %>
 
 	<style type="text/css">
+		a{
+			text-decoration: none;
+			color: black;
+		}
+	
+		
 		.dto_list{
 			padding: 10px;
 			justify-content: space-between;
@@ -34,6 +40,7 @@
 		}
 		.move{
 			font-size: 1.3em;
+			
 		}
 		
 		.board_list_hit_wrapper{
@@ -44,7 +51,7 @@
 		
 		.board_list_view{
 		    margin-left: 20px;
-			color: #00a3d2;
+
 			display: flex;
     		flex-direction: row;
 		}
@@ -56,7 +63,7 @@
 		.board_list_hit{
 		    display: flex;
    			flex-direction: row;
-   			color: #00a3d2;	
+
 		}
 		
 		.board_list_hit img {
@@ -82,33 +89,35 @@
 		
 		
 		<div class="board_content">
+			
 			<div class="board_top_content">
-				<div class="board_top_content_register">
-					<security:authorize access="isAuthenticated()">
-						<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }">글 작성하기</a>
-					</security:authorize>
-					
-				</div>
-				
-				<div class="board_top_content_tagSort">					
-					<c:forEach items="${tagList }" var="dto">
-						<c:if test="${dto != null }">
-							<a class="tagLink" href="/board/list?btag=${dto }">${dto}</a>
-						</c:if>						
-					</c:forEach>
-				</div>
-			
-				
-				<div class="board_top_content_filter">
-					필터 
-				</div>
-				
-			</div>
-			
-			
-			<div class="board_content_wrapper">			
-				<div class="board_content_list">
+				<div class="board_top_content_wrapper">
+					<div class="board_top_content_register">
+						<security:authorize access="isAuthenticated()">
+							<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }">글 작성하기</a>
+						</security:authorize>
 						
+					</div>
+					
+					<div class="board_top_content_tagSort">					
+						<c:forEach items="${tagList }" var="dto">
+							<c:if test="${dto != null }">
+								<a class="tagLink" href="/board/list?btag=${dto }">${dto}</a>
+							</c:if>						
+						</c:forEach>
+					</div>
+				
+					
+					<div class="board_top_content_filter">
+						필터 
+					</div>
+				</div>
+			</div> <!-- board_top_content -->	
+			
+			<div class="board_content_wrapper">
+							
+				<div class="board_content_list">
+					
 					<c:forEach items="${boardList }" var="dto">
 						<div class="dto_list">
 							<div class="board_list_title_wrapper">							

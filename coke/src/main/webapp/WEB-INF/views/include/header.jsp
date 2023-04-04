@@ -20,6 +20,7 @@
 
 	}
 	
+	
 	body{
 		min-height: 100vh;
 		display: flex;
@@ -28,9 +29,6 @@
 		align-items: center;
 	}
 	
-	a{
-		text-decoration: none;
-	}
 	
 	ul {
 		list-style: none;
@@ -170,6 +168,14 @@
 	.board_top_content {
 		display: flex;
     	flex-direction: row;
+    	justify-content: center;
+	}
+	
+	.board_top_content_wrapper{
+		display: flex;
+	    /* flex-direction: row; */
+	    width: 80%;
+	
 	}
 	
 	.board_top_content_register{
@@ -224,17 +230,7 @@
 	<div class="wrapper">
 		<div class="header" >
 		
-			<div class="header_search_form">
-				<form action="#" method="post" class="header_search_form">
-					<div class="header_search_div">
-						<input class="header_search_input" type="text">
-						
-					</div>
-					<div>
-						<button type="submit">SEARCH</button>
-					</div>
-				</form>
-			</div>
+			
 			
 			<div class="header_navbar">
 				<div class="header_main_log">
@@ -280,7 +276,7 @@
 					</security:authorize>
 					
 					<div class="header_signUp_btn">
-						<a href="#">회원가입</a>
+						<a href="/SignUpPage">회원가입</a>
 					</div>
 				</div> <!-- header_login -->
 				

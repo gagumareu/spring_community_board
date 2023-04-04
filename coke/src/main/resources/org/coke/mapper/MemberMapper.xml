@@ -29,5 +29,9 @@
     		where mem.userid = #{userid}
     	</select>
     	
+    	
+    	<insert id="insert">
+    		insert into coke_member (userid, userpw, username) values(#{userid}, #{userpw}, #{username})
+    	</insert>
     
     </mapper>

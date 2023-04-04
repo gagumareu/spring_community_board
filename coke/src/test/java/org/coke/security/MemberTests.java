@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 
 import javax.sql.DataSource;
 
+import org.coke.domain.MemberVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,5 +129,55 @@ public class MemberTests {
 		}
 		
 	}
+	
+	
+	@Test
+	public void insermember() {
+		
+		String sql = "insert into coke_member (userid, userpw, username) values(?,?,?)";
+		
+		String sql2 = "insert into coke_member_auth (userid, auth) values(?,?)";
+		
+		int count = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "test00");
+			pstmt.setString(2, encoder.encode("tt00"));
+			pstmt.setString(3, "tester00");
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			
+		}finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e2) {
+					
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (Exception e2) {
+					
+				}
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 
 }

@@ -115,6 +115,20 @@
 		display: none;
 	}
 	
+	.need_new_reply{
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+		border: 1px solid #e5e7eb;
+		height: 50px;
+   		border-radius: 8px;
+	}
+	
+	.need_new_reply span{
+		font-size: 1.2em;
+	}
+	
+	
 </style>
 
 		
@@ -171,7 +185,9 @@
 					<input type="hidden" name="bsort" value="${cri.bsort }">
 				</c:if>
 			</form>
+			
 			<security:authorize access="isAuthenticated()">
+			
 			<div class="board_read_reply_wrapper">
 				<form class="replyForm">
 					<textarea id="summernote" name="reply" required> </textarea>
@@ -262,6 +278,16 @@
 					  </div>				
 				</form>
 			</div>
+			
+			
+			</security:authorize>
+			<security:authorize access="isAnonymous()">
+				<div>
+					<div class="need_new_reply">
+						<span>댓글을 작성하려면 <a href="/LoginPage">로그인</a>이 필요합니다.</span>
+					</div>
+					
+				</div>
 			</security:authorize>
 			
 			<div class="uploadImageDiv">

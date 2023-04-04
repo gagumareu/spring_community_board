@@ -4,6 +4,8 @@ import org.coke.domain.MemberVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.authentication.PasswordEncoderParser;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -18,6 +20,9 @@ public class MemberMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder encoder; 
+	
 	@Test
 	public void testRead() {
 	
@@ -29,6 +34,17 @@ public class MemberMapperTests {
 		
 	}
 	
+	@Test
+	public void insermember() {
+		
+		MemberVO vo = new MemberVO();
+		
+		vo.setUserid("tester01");
+		vo.setUserpw("te01");
+		vo.setUserName("박테스터");
+		
+		mapper.insert(vo);
+	}
 	
 	
 
