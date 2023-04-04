@@ -79,7 +79,10 @@
     		
    			<if test="bsort != null">
    				bsort = #{bsort} AND
-   			</if>			
+   			</if>
+   			<if test="btag != null">
+   				btag = #{btag} AND
+   			</if>				
     		<![CDATA[
     			
     				bno > 0 and rownum <= #{pageNum} * #{amount}
@@ -126,6 +129,9 @@
 			<if test="bsort != null">
 				bsort = #{bsort}
 			</if>
+			<if test="btag != null">
+				btag = #{btag}
+			</if>
 		</trim>
 		<![CDATA[
 		bno > 0
@@ -141,7 +147,19 @@
 	</update>
 	
 	<select id="getTagList" resultType="String">
-		select distinct(btag) from coke_board where bsort = #{bsort}
+		<if test="bsort != null">
+		select distinct(btag) from coke_board 
+		where 
+			bsort = #{bsort}
+		</if>
+		<if test="btag != null">
+		select distinct(btag) 
+		from
+			coke_board
+		where
+			bsort = (select distinct(bsort) from coke_board where btag = #{btag})
+		</if>
+		
 	</select>
 
 </mapper>

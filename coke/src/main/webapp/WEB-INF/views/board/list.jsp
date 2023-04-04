@@ -94,7 +94,13 @@
 				<div class="board_top_content_wrapper">
 					<div class="board_top_content_register">
 						<security:authorize access="isAuthenticated()">
-							<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }">글 작성하기</a>
+							<c:if test="${!empty pageMaker.cri.bsort}">
+								<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
+							</c:if>
+							<c:if test="${!empty pageMaker.cri.btag}">
+								<a href="/board/writeBoard?btag=${pageMaker.cri.btag }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
+							</c:if>
+							
 						</security:authorize>
 						
 					</div>
@@ -131,11 +137,16 @@
 								<a class="move" href="${dto.bno }">${dto.btitle }</a>
 								
 								<c:if test="${empty pageMaker.cri.bsort }">
-									<div><a href="#">${dto.bsort }</a></div>
-								</c:if>
+									<c:if test="${empty pageMaker.cri.btag }">	
+										<div><a href="#">${dto.bsort }</a></div>
+									</c:if>
+									<c:if test="${!empty pageMaker.cri.btag }">	
+										<div><a href="/board/list?btag=${dto.btag }">${dto.btag }</a></div>	
+									</c:if>			
+								</c:if>								
 								<c:if test="${!empty pageMaker.cri.bsort }">
-									<div><a href="/board/list?btag=${dto.btag }">${dto.btag }</a></div>
-								</c:if>							
+									<div><a href="/board/list?btag=${dto.btag }">${dto.btag }</a></div>	
+								</c:if>						
 							</div> <!-- board_list_title_wrapper -->
 								
 							<div class="board_list_hit_wrapper">
@@ -186,6 +197,9 @@
 						<input type="hidden" name="type" value="${pageMaker.cri.type }">
 						<c:if test="${!empty pageMaker.cri.bsort }">
 							<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
+						</c:if>
+						<c:if test="${!empty pageMaker.cri.btag }">
+							<input type="hidden" name="btag" value="${pageMaker.cri.btag }">
 						</c:if>
 					</form>
 					

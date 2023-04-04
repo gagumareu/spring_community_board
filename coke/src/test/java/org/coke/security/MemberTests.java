@@ -137,9 +137,7 @@ public class MemberTests {
 		String sql = "insert into coke_member (userid, userpw, username) values(?,?,?)";
 		
 		String sql2 = "insert into coke_member_auth (userid, auth) values(?,?)";
-		
-		int count = null;
-		
+				
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		

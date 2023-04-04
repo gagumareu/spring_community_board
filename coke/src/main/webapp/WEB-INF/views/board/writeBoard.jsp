@@ -121,7 +121,10 @@
 				<div class="board_write_titleAndSort">
 					
 					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required autofocus="autofocus">
-			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">			 		
+			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
+			 		<input type="hidden" name="nickname" value="tester3">
+			 		
+			 			 		
 			 		<div class="board_write_sort_wrapper" >
 			 			<c:if test="${bsort == '음악' }">
 			 				<select class="board_write_sort_first" name="bsort" required>
@@ -328,14 +331,20 @@
 
 			  <div class="board_write_insert_btn">
 			  	<button id="uploadBtn" type="submit">작성</button>
-			  	<button id="cancelBtn" type="submit">취소</button>
+			  	<button id="cancelBtn">취소</button>
 			  </div>
 			  
-			  <!-- temporary input hidden tag -->
-			  <input type="hidden" name="nickname" value="tester3">
-			 
-			  
- 			 
+			</form>
+			
+			<form action="/board/list" method="get" id="backToListForm">
+				<c:if test="${bsort != null }">
+		 			<input type="hidden" name="bsort" value="${bsort }">
+		 		</c:if>
+		 		<c:if test="${btag != null }">
+		 			<input type="hidden" name="btag" value="${btag }">
+		 		</c:if>
+		 		<input type="hidden" name="pageNum" value="${cri.pageNum }">
+		 		<input type="hidden" name="amount" value="${cri.amount }">
 			</form>
 			
 			<div class="uploadImagesDiv">
@@ -359,13 +368,27 @@
 			
 			var formObj = $("form[role='form']");
 			
+			var backForm = $("#backToListForm");
+			
+			var sort = null;
+			var tag = null;
+			
+			var sort = "${bsort}";
+			var tag = "${btag}";
+			
+			
+			
 			$("#cancelBtn").on("click", function(e){
 				
-				console.log("test okay");
+				e.preventDefault();
 				
-				formObj.attr("action", "/board/list").attr("method", "get");
+				backForm.submit();
 				
-				formObj.submit();
+				//console.log("test okay");
+				
+				//formObj.attr("action", "/board/list").attr("method", "get");
+				
+				//formObj.submit();
 				
 			});
 			

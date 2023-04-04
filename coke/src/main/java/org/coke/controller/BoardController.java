@@ -71,21 +71,27 @@ public class BoardController {
 	
 	
 	@GetMapping("/list")
-	public void empList(Model model, Criteria cri, @RequestParam(value = "bsort", required = false) String bsort) {
+	public void empList(Model model, Criteria cri, @RequestParam(value = "bsort", required = false) String bsort, 
+			@RequestParam(value = "btag", required = false) String btag) {
 		
 		cri.setBsort(bsort);
+		cri.setBtag(btag);
 		
 		log.info("--------------------------------");
 		log.info("boardList:  " + cri);
 		log.info("sort: " + bsort);
+		log.info("btag: " + btag);
 		log.info("pageNum: " + cri.getPageNum());
 		log.info("sort by cri: " + cri.getBsort());
+		log.info("tag by cri: " + cri.getBtag());
 		
 		int total = boardService.getTotalAmount(cri);
 
-		if(cri.getBsort() != null) {
-			model.addAttribute("tagList", boardService.getTagList(cri));
+		if(cri.getBsort() != null || cri.getBtag() != null) {
 			log.info("cri sort: " + cri.getBsort());
+			log.info("cri tag: " + cri.getBtag());
+			model.addAttribute("tagList", boardService.getTagList(cri));
+			
 		}		
 		
 		model.addAttribute("boardList", boardService.getBoardList(cri));
@@ -95,13 +101,25 @@ public class BoardController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/writeBoard")
-	public void writeBoard(@RequestParam(value = "bsort", required = false) String bsort, Model model) {
+	public void writeBoard(@RequestParam(value = "bsort", required = false) String bsort, Model model, 
+			@RequestParam(value = "btag", required = false) String btag, @ModelAttribute("cri") Criteria cri) {
+		
+		log.info("---------------------------");
+		log.info("sort on writeBoard: " + bsort);
+		log.info("tag on writeBoard: " + btag);
+		log.info("page: " + cri.getPageNum());
+		log.info("amount: " + cri.getAmount());
 		
 		if(bsort != null) {
 			
 			log.info("sort: " + bsort);
 			
 			model.addAttribute("bsort", bsort);
+		}else if(btag != null) {
+			
+			log.info("tag: " + btag);
+			
+			model.addAttribute("btag", btag);
 		}
 	}
 	
@@ -133,6 +151,7 @@ public class BoardController {
 	@GetMapping("/read_board")
 	public void readBoard(@RequestParam("bno") long bno, Model model, @ModelAttribute("cri") Criteria cri) {
 		
+		log.info("=======================");
 		log.info("readBoard :" + bno);
 		boardService.getHitCount(bno);
 		model.addAttribute("BoardVO", boardService.readBoard(bno));

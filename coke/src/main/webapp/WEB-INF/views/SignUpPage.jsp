@@ -24,7 +24,7 @@
 			</div>
 			
 			<form action="/signUp" method="post">
-				
+				<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 				<div>
 					<label>userid</label><input type="text" name="userid">
 				</div>

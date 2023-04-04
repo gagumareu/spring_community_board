@@ -63,8 +63,8 @@
 	  font-weight: bold;
 	}
 	
-	.reply_modal_btn:hover,
-	.reply_modal_btn:focus {
+	.reply_modalist_btn:hover,
+	.reply_modalist_btn:focus {
 	   color: #000;
 	  text-decoration: none;
 	  cursor: pointer;
@@ -161,7 +161,7 @@
 							<button class="m_btn">수정</button>	
 						</c:if>
 					</security:authorize>
-					<button class="l_btn">리스트</button>
+					<button class="list_btn">리스트</button>
 				</div>
 						
 			</div>
@@ -183,6 +183,9 @@
 				<input type="hidden" name="keyword"	 value="${cri.keyword }">
 				<c:if test="${!empty cri.bsort }">
 					<input type="hidden" name="bsort" value="${cri.bsort }">
+				</c:if>
+				<c:if test="${!empty cri.btag }">
+					<input type="hidden" name="btag" value="${cri.btag }">
 				</c:if>
 			</form>
 			
@@ -387,9 +390,9 @@
 					        
 					    });  // document end
 				 	 </script>
-					<span class="reply_modal_btn modifyBtn">modify</span>
-					<span class="reply_modal_btn removeBtn">remove</span>
-					<span class="reply_modal_btn closeBtn">close</span>
+					<span class="reply_modalist_btn modifyBtn">modify</span>
+					<span class="reply_modalist_btn removeBtn">remove</span>
+					<span class="reply_modalist_btn closeBtn">close</span>
 				</div>
 			</div>
 		
@@ -667,7 +670,7 @@
 				actionForm.attr("action", "/board/modify").submit();
 			});
 			
-			$(".l_btn").click(function(){
+			$(".list_btn").click(function(){
 				actionForm.find(".bno").remove();
 				actionForm.attr("action", "/board/list").submit();
 			});

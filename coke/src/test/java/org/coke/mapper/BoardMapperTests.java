@@ -29,9 +29,10 @@ public class BoardMapperTests {
 	public void getListWithPage() {
 		
 		Criteria cri = new Criteria();
-		cri.setPageNum(2);
+		cri.setPageNum(1);
 		cri.setAmount(10);
-		cri.setBsort(null);
+//		cri.setBsort("음악");
+		cri.setBtag("컴퓨터");
 		
 		List<BoardVO> list = boardMapper.getListWithPage(cri);
 		
