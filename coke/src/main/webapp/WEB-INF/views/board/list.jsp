@@ -8,7 +8,11 @@
 			text-decoration: none;
 			color: black;
 		}
-	
+		
+		a:hover {
+		  color: #7ba6de;
+		  text-decoration: none;
+		}
 		
 		.dto_list{
 			padding: 10px;
@@ -20,7 +24,8 @@
 		}
 		
 		.board_content_list{
-		width: 80%;
+			width: 80%;
+			border-top: 1px solid #e5e7eb;
 	
 		}
 
@@ -39,7 +44,7 @@
 			margin-right: 0.7em;
 		}
 		.move{
-			font-size: 1.3em;
+			font-size: 1.5em;
 			
 		}
 		
@@ -84,6 +89,18 @@
 			margin-left: 0.9em;
 		}
 		
+		.tagOrsort a{
+			color: #7ba6de;
+		}
+		
+		.board_top_content_tagSort a{
+			font-size: 1.1em;
+		}
+		
+		.board_top_content_wrapper{
+		
+		
+		}
 		
 	</style>
 		
@@ -94,6 +111,9 @@
 				<div class="board_top_content_wrapper">
 					<div class="board_top_content_register">
 						<security:authorize access="isAuthenticated()">
+							<c:if test="${pageMaker.cri.bsort eq null and pageMaker.cri.btag eq null}">
+								<a href="/board/writeBoard?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
+							</c:if>
 							<c:if test="${!empty pageMaker.cri.bsort}">
 								<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
 							</c:if>
@@ -135,18 +155,19 @@
 								</div>
 								
 								<a class="move" href="${dto.bno }">${dto.btitle }</a>
-								
+								<div class="tagOrsort">
 								<c:if test="${empty pageMaker.cri.bsort }">
 									<c:if test="${empty pageMaker.cri.btag }">	
-										<div><a href="#">${dto.bsort }</a></div>
+										<a href="#">${dto.bsort }</a>
 									</c:if>
 									<c:if test="${!empty pageMaker.cri.btag }">	
-										<div><a href="/board/list?btag=${dto.btag }">${dto.btag }</a></div>	
+										<a href="/board/list?btag=${dto.btag }">${dto.btag }</a>
 									</c:if>			
 								</c:if>								
 								<c:if test="${!empty pageMaker.cri.bsort }">
-									<div><a href="/board/list?btag=${dto.btag }">${dto.btag }</a></div>	
-								</c:if>						
+									<a href="/board/list?btag=${dto.btag }">${dto.btag }</a>
+								</c:if>	
+								</div>					
 							</div> <!-- board_list_title_wrapper -->
 								
 							<div class="board_list_hit_wrapper">

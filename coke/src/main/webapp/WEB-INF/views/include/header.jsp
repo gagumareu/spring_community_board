@@ -20,6 +20,10 @@
 
 	}
 	
+	a:hover {
+	  /*color: #7ba6de;*/
+	  text-decoration: none;
+	}
 	
 	body{
 		min-height: 100vh;
@@ -61,6 +65,10 @@
     	flex-direction: column;
     	/*border: 2px solid black;*/
     	width: 100%;
+    	font-family: 'Jua', sans-serif;
+    	font-size: 16px;
+    	background-color: #a2c0e7;
+    	height: 67px;
 	}
 	
 	.header_navbar{
@@ -68,7 +76,7 @@
     	flex-direction: row;
     	justify-content: space-between;
     	/*border: 2px solid black;*/
-    	height: 50px;
+    	height: 100%;
     	width: 100%;
     	align-items: center;
 		
@@ -103,6 +111,7 @@
 	
 	.header_signUp_btn {
 		margin-left: 1.5em;
+		    margin-right: 1.1em;
 	}
 	
 	
@@ -175,12 +184,12 @@
 		display: flex;
 	    /* flex-direction: row; */
 	    width: 80%;
-	
+		justify-content: space-between;
 	}
 	
 	.board_top_content_register{
     	width: 20%;
-	
+		font-size: 1.2em;
 	}
 	
 	.board_top_content_tagSort{
@@ -201,6 +210,12 @@
 	}
 	
 	/******************************/
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+		
+	
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

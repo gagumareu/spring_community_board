@@ -7,8 +7,18 @@
 <%@ include file="../include/header.jsp" %>
 
 <style>	
+
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	a:hover {
+	  /*color: #7ba6de;*/
+	  text-decoration: none;
+	}
+
 	.modal-backdrop{
-	opacity: 0;
+		opacity: 0;
 	}
 	.reply_boxes{
 		padding:0px;

@@ -92,7 +92,10 @@ public class BoardController {
 			log.info("cri tag: " + cri.getBtag());
 			model.addAttribute("tagList", boardService.getTagList(cri));
 			
-		}		
+		}else {
+//			cri.setBsort(null);
+//			cri.setBtag(null);
+		}
 		
 		model.addAttribute("boardList", boardService.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
