@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.coke.domain.BoardVO;
 import org.coke.domain.Criteria;
+import org.coke.domain.MemberVO;
 
 public interface BoardMapper {
 	
@@ -27,5 +28,6 @@ public interface BoardMapper {
 	public void updateReplyCnt(@Param("bno") long bno, @Param("amount") int amount);
 	
 	public List<String> getTagList(Criteria cri);
-
+	
+	public List<BoardVO> getTopwriter();
 }

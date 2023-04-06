@@ -99,7 +99,7 @@ public class BoardController {
 		
 		model.addAttribute("boardList", boardService.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-								
+		model.addAttribute("topwriterList", boardService.getTowriterList());						
 	}
 	
 	@PreAuthorize("isAuthenticated()")

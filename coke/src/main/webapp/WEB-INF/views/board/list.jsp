@@ -24,7 +24,7 @@
 		}
 		
 		.board_content_list{
-			width: 80%;
+			width: 70%;
 			border-top: 1px solid #e5e7eb;
 	
 		}
@@ -97,11 +97,160 @@
 			font-size: 1.1em;
 		}
 		
-		.board_top_content_wrapper{
 		
 		
-		}
 		
+		
+	.board_search{
+	text-align: center;
+	}
+	
+	.board_top_content {
+		display: flex;
+    	flex-direction: row;
+    	justify-content: center;
+    	width: 70%;
+	}
+	
+	.board_top_content_wrapper{
+		display: flex;
+	    /* flex-direction: row; */
+	    width: 100%;
+		justify-content: space-between;
+	}
+	
+	.board_top_content_register{
+    	width: 20%;
+		font-size: 1.2em;
+	}
+	.board_top_content_register a{
+		background-color: #3ab4e8;
+	    color: white;
+	    padding: 4px;
+	    border-radius: 8px;
+	}
+	
+	.board_top_content_register a:hover{
+		background-color: #0c81b3;
+		
+	}
+	
+	.board_top_content_tagSort{
+		display: flex;
+    	flex-direction: row;
+    	width: 60%;
+    	justify-content: center;
+    	
+	}
+	
+	.board_top_content_filter{
+    	width: 20%;
+		text-align: end;
+	}
+	
+	.tag_btn{
+		padding: 0px 10px 0px 10px;
+	}
+	
+	
+	.board_content{
+		width: 100%;
+		margin-top: 1.5em;
+		display: flex;
+	    flex-direction: column;
+	    margin-top: 30px;
+	    /* border: 2px solid red; */
+	    /* justify-content: center; */
+	    align-items: center;
+	}
+	
+	.board_content_wrapper{
+		display: flex;
+    	flex-direction: row;
+   	    margin-top: 30px;
+    	/*border: 2px solid red;*/
+    	justify-content: center;
+    	width: 100%;
+	}
+	
+	
+	
+	
+	
+	
+	
+	.board_paging ul {
+		list-style-type: none;
+		display: flex;
+		justify-content: center;
+		padding: 0px;
+	}
+	
+
+	
+	.paginate_button {
+		margin-left: 1.2em;
+	}
+	
+	.header_search_div{
+		border-radius: 43px;
+	    border-width: 1px;
+	}
+	
+	<!--  -->
+	
+	.topwriterList{
+		width: 15%;
+		padding-right: 30px;
+	}
+	
+	.sideBox_title{
+	   text-align: center;
+	   font-size: 1.1em;
+	   font-weight: 600;
+	}
+	
+	.topwriter_line{
+		border-bottom: 1px solid #e5e7eb;
+	    margin-bottom: 15px;
+	    margin-top: 15px;
+	}	
+	
+	.topwriterBoxes{
+		display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    margin-bottom: 10px;
+	    font-size: 0.9em;
+	}
+	
+	.rigthSideBox{
+		width: 15%;
+		padding-left: 30px;
+	}
+	
+	.rigthSideBox ul li {
+		margin-bottom: 10px;
+		/*border: 1px solid #e5e7eb;*/
+	}
+	
+	.searchBTN{
+		background-color: #3ab4e8;
+	    color: white;
+	    padding: 4px;
+	    border-radius: 8px;
+	    border: wheat;
+	}
+	
+	.searchBTN:hover {
+	  background-color: #0c81b3;
+	}
+	
+	.searchInput{
+		border-radius: 8px;
+    	border: 1px solid #e5e7eb;
+	}
+	
 	</style>
 		
 		
@@ -141,6 +290,19 @@
 			</div> <!-- board_top_content -->	
 			
 			<div class="board_content_wrapper">
+				
+				<div class="topwriterList">
+					<div class="sideBox_title">
+						TOP WRITER
+					</div>
+					<div class="topwriter_line">
+					</div>
+					<c:forEach begin="0" end="9" items="${topwriterList }" var="dto">
+					<div class="topwriterBoxes">	
+						<a href="#">${dto.userid }</a>  <div>${dto.counting }</div>	
+					</div>	
+					</c:forEach>
+				</div> <!-- topwriterList -->
 							
 				<div class="board_content_list">
 					
@@ -226,11 +388,36 @@
 					
 				</div> <!-- board_content_list -->
 				
+				<div class="rigthSideBox">
+					<div class="sideBox_title">
+						개선할 사항
+					</div>
+					<div class="topwriter_line">
+					</div>
+					<ul style="padding: 0px">
+						<li>대댓글 기능</li>
+						<li>reply 불필요 첨부파일 삭제</li>
+						<li>reply 첨부파일 폴더 변경</li>
+						<li>댓글 작성 후 summernote reset</li>
+						<li>댓글 summernote 이미지 첨부시 사진크기 제안</li>
+						<li></li>
+						<li>게시물 삭제시 댓글삭제(foreign key)</li>
+						<li>modify-backtolist: sortAndtag</li>
+						<li></li>
+						<li>비로그인 access denied</li>
+						<li>delete access denied</li>
+						<li>검색 후 분류와 태그 함께 넘기기</li>
+						<li>게시글 및 댓글 작성시간 시간 단위로 수정</li>
+						<li>게시물 작성시 널 값 불가 기능 추가</li>
+						<li>인기 게시물 추가</li>
+						<li></li>
+					</ul>
+				</div>
 			
 			</div> <!-- board_content_wrapper -->
 			<div class="board_search">
 				<form id="searchForm" action="/board/list" method="get">
-					<select name="type">
+					<select class="searchInput" name="type">
 						<option value="" <c:out value="${pageMaker.cri.type == null?'selected':'' }"/>>-----</option>
 						<option value="T" <c:out value="${pageMaer.cri.type eq 'T'?'selected':'' }" />>제목</option>
 						<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }" />>내용</option>
@@ -239,8 +426,8 @@
 						<option value="TN" <c:out value="${pageMaker.cri.type eq 'TN'?'selected':'' }" />>제목+작성자</option>	
 						<option value="TCN" <c:out value="${pageMaker.cri.type eq 'TCN'?'selected':'' }" />>제목+내용+작성자</option>	
 					</select>
-					<input type="text" name="keyword" value="${pageMaker.cri.keyword }" placeholder="검색어 입력">
-					<button>SEARCH</button>
+					<input class="searchInput" type="text" name="keyword" value="${pageMaker.cri.keyword }" placeholder="검색어 입력">
+					<button class="searchBTN">SEARCH</button>
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 					<c:if test="${!empty pageMaker.cri.bsort }">
@@ -253,7 +440,13 @@
 	
 		
 		<div class="footer">
-			
+		<ul>
+			<c:forEach begin="0" end="9" items="${topwriterList }" var="dto">
+			<li>	
+				${dto.userid } / ${dto.counting }	
+			</li>	
+			</c:forEach>
+		</ul>	
 		</div> <!-- footer -->
 		
 	</div> <!-- wrapper -->

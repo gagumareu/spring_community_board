@@ -55,8 +55,8 @@
 		width: 100%;
 	    /*border: 3px solid red;*/
     	min-height: 100vh;
-    	width: 950px;
-    	min-width: 950px;
+    	width: 1200px;
+    	min-width: 1200px;
 		
 	}
 	
@@ -67,25 +67,27 @@
     	width: 100%;
     	font-family: 'Jua', sans-serif;
     	font-size: 16px;
-    	background-color: #a2c0e7;
+    	/*background-color: #a2c0e7;*/
     	height: 67px;
+    	border-bottom: 1px solid #e5e7eb;
+    	
 	}
 	
 	.header_navbar{
 		display: flex;
     	flex-direction: row;
-    	justify-content: space-between;
     	/*border: 2px solid black;*/
     	height: 100%;
     	width: 100%;
     	align-items: center;
-		
+		justify-content: space-between;
 	}
 	
 	.header_sort {
 		display: flex;
     	flex-direction: row;
-    	margin-left: 105px;
+    	margin-left: 90px;
+    	align-items: center;
 	}
 	
 	.header_sort_title {
@@ -97,6 +99,18 @@
     	align-items: center;
 	}
 	
+	.header_login a{
+		background-color: #3ab4e8;
+	    color: white;
+	    padding: 4px;
+	    border-radius: 1.5rem;
+	
+	}
+	
+	.header_login a:hover{
+		background-color: #0c81b3;
+		color: white;
+	}
 	.header_search_form{
 		display: flex;
 		justify-content: end;
@@ -119,102 +133,16 @@
 		font-size: 2em;
 		color: black;
 	}
-	/*******************************************/
 	
-	
-	
-
-	
-	/******* board content***********/
-	
-	.board_content{
-		width: 100%;
-		margin-top: 1.5em;
-	}
-	
-	.board_content_wrapper{
+	.header_sortAndLogin_warpper{
 		display: flex;
     	flex-direction: row;
-   	    margin-top: 30px;
-    	/*border: 2px solid red;*/
-    	justify-content: center;
 	}
-	
-	
-	
-	
-	
-	
-	
-	.board_paging ul {
-		list-style-type: none;
-		display: flex;
-		justify-content: center;
-		padding: 0px;
-	}
-	
-
-	
-	.paginate_button {
-		margin-left: 1.2em;
-	}
-	
-	.header_search_div{
-		border-radius: 43px;
-	    border-width: 1px;
-	}
-	
-	.header_search_input{
-		
-	}
-	
-	/******** tag and search *******/
-	
-	.board_search{
-		text-align: center;
-	}
-	
-	.board_top_content {
-		display: flex;
-    	flex-direction: row;
-    	justify-content: center;
-	}
-	
-	.board_top_content_wrapper{
-		display: flex;
-	    /* flex-direction: row; */
-	    width: 80%;
-		justify-content: space-between;
-	}
-	
-	.board_top_content_register{
-    	width: 20%;
-		font-size: 1.2em;
-	}
-	
-	.board_top_content_tagSort{
-		display: flex;
-    	flex-direction: row;
-    	width: 60%;
-    	justify-content: center;
-    	
-	}
-	
-	.board_top_content_filter{
-    	width: 20%;
-		text-align: end;
-	}
-	
-	.tag_btn{
-		padding: 0px 10px 0px 10px;
-	}
-	
-	/******************************/
 	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-		
+	
 	
 </style>
 
@@ -248,11 +176,12 @@
 			
 			
 			<div class="header_navbar">
-				<div class="header_main_log">
-					<a href="/board/list">MAIN</a>
-				</div>
+				
 				
 				<div class="header_sortAndLogin_warpper">
+					<div class="header_main_log">
+						<a href="/board/list">MAIN</a>
+					</div>
 					<div class="header_sort">
 						<div>
 							<a href="/board/list">전체글</a>

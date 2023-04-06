@@ -22,5 +22,5 @@ public class BoardVO {
 	
 	private List<BoardAttachVO> getAttachList;
 	
-	
+	private int counting;
 }

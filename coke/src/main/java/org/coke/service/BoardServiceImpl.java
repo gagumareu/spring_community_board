@@ -115,8 +115,14 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<String> getTagList(Criteria cri) {
-		// TODO Auto-generated method stub
+		
 		return boardMapper.getTagList(cri);
+	}
+
+	@Override
+	public List<BoardVO> getTowriterList() {
+		
+		return boardMapper.getTopwriter();
 	}
 
 	

@@ -90,6 +90,7 @@
     			where			
     			 rn > (#{pageNum} -1) * #{amount}    			
     		]]>
+
 	</select>
 
 
@@ -159,7 +160,12 @@
 		where
 			bsort = (select distinct(bsort) from coke_board where btag = #{btag})
 		</if>
-		
 	</select>
+	
+	<select id="getTopwriter" resultType="org.coke.domain.BoardVO">
+	 	select userid, count(userid)as counting from coke_board group by userid order by counting desc
+	</select>
+	
+	
 
 </mapper>

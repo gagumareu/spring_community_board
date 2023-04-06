@@ -17,6 +17,8 @@
 	.board_write_wrapper{
 		width: 100%;
 		margin-top: 1.5em;
+	    display: flex;
+	    justify-content: center;
 	}
 	
 	.board_write_titleAndSort{
@@ -48,14 +50,14 @@
 	
 	.board_write_sort_first{
 		 margin-right: 0.5em;
-   		 width: 80%;
+   		 width: 70%;
 		border-radius: 8px;
 		border: 1px solid #e5e7eb;
 		padding: 10px;
 	}
 	
 	.board_write_sort_second{
-		width: 20%;
+		width: 30%;
 		border-radius: 8px;
 		border: 1px solid #e5e7eb;
 		padding: 10px;
@@ -111,12 +113,15 @@
 		
 	}
 	
+	.writeForm{
+	    width: 70%;
+	}
 	
 </style>
 
 		<div class="board_write_wrapper">
 		
-			<form role="form" action="/board/register_board" role="form" method="post">
+			<form class="writeForm" role="form" action="/board/register_board" role="form" method="post">
 			
 				<div class="board_write_titleAndSort">
 					

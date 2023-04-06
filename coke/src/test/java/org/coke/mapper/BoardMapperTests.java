@@ -115,7 +115,11 @@ public class BoardMapperTests {
 		replyAttachMapper.deleteAll(vo.getRno());
 	}
 	
-	
+	@Test
+	public void getTopwriter() {
+		
+		boardMapper.getTopwriter();
+	}
 	
 	
 	

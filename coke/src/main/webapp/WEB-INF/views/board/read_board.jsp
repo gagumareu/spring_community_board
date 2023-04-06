@@ -11,10 +11,21 @@
 	a{
 		text-decoration: none;
 		color: black;
+		
 	}
 	a:hover {
 	  /*color: #7ba6de;*/
 	  text-decoration: none;
+	  color: #7ba6de;
+		
+	}
+	
+	.rmbtn:hover{
+	
+		color: #7ba6de;
+	}
+	.rmbtn{
+		padding: 3px;
 	}
 
 	.modal-backdrop{
@@ -35,6 +46,11 @@
 		display: flex;
 	    flex-direction: row;
 	    justify-content: space-between;
+	}
+	
+	.reply_wrapper{
+	    width: 70%;
+	    margin-top: 30px;
 	}
 	
 	.board_read_reply_wrapper{
@@ -85,6 +101,7 @@
 	    margin-top: 1.7em;
 	    display: flex;
     	justify-content: space-between;
+    	width: 70%;
 	}
 	
 	.board_read_memInfo_wrapper{
@@ -98,20 +115,32 @@
 		flex-direction: row;
 	}
 	
-	
-	
 	.board_member_nickNmae{
-		font-size: 1.3em;
-	    font-weight: 600;
+		display: flex;
+	    flex-direction: column;
+	    justify-content: space-between;
+	    margin-bottom: 10px;
+	}
 	
+	.board_read_userid{
+		font-size: 1.3em;
+	    
+	    margin-top: 7px;
+		
+	}
+	
+	.board_read_sort a{
+		color: #337ab7;
 	}
 	
 	.board_read_title_wrapper{
 		margin-bottom: 3em;
+		width: 70%;
 	}
 	
 	.board_read_content_wrapper{
 		margin-bottom: 5em;
+		width: 70%;
 	}
 	
 	
@@ -138,7 +167,23 @@
 		font-size: 1.2em;
 	}
 	
+	.board_content{
+		display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	}
 	
+	.button{
+		background-color: #3ab4e8;
+	    color: white;
+	    border: wheat;
+	    padding: 6px;
+	    border-radius: 8px;
+	}
+	
+	.button:hover{
+		background-color: #0c81b3;
+	}
 </style>
 
 		
@@ -147,12 +192,15 @@
 			<div class="board_member_info">					
 				<div class="board_read_memInfo_wrapper">
 					<div class="board_member_nickNmae">
+						<div class="board_read_sort">
+							<a href="/board/list?bsort=${BoardVO.bsort }">${BoardVO.bsort }</a> / <a href="/board/list?btag=${BoardVO.btag }">${BoardVO.btag }</a>
+						</div>
 						<a class="board_read_userid" href="#">${BoardVO.userid }</a>
 					</div>
 					<div class="board_read_member_dateAndHit">
 						<div>
 							<c:if test="${BoardVO.bregdate == BoardVO.bupdate }">
-								등록일: <fmt:formatDate value="${BoardVO.bregdate }" pattern="yyyy-MM-dd" />	
+								등록일: <fmt:formatDate value="${BoardVO.bregdate }" pattern="yyyy-MM-dd"/>	
 							</c:if>
 							<c:if test="${BoardVO.bregdate != BoardVO.bupdate }">
 								수정일: <fmt:formatDate value="${BoardVO.bupdate }" pattern="yyyy-MM-dd"/>	
@@ -168,10 +216,10 @@
 					<security:authentication property="principal" var="prin"/>
 					<security:authorize access="isAuthenticated()">
 						<c:if test="${prin.username eq BoardVO.userid }">
-							<button class="m_btn">수정</button>	
+							<button class="m_btn button">수정</button>	
 						</c:if>
 					</security:authorize>
-					<button class="list_btn">리스트</button>
+					<button class="list_btn button">리스트</button>
 				</div>
 						
 			</div>
@@ -467,7 +515,7 @@
 					str += "<li class='reply_box' data-rno='"+list[i].rno+"' data-bno='"+bnoValue+"'>";				
 					str += "	<div class='reply_box_info'><div><strong class='reply_writer'>"+[list[i].rno]+list[i].replyer+"</strong>";
 					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small></div>"
-					str += "    <div>수정</div></div>"
+					str += "    <div class='rmbtn'>수정</div></div>"
 					str += "	<div class='reply_content'>"+list[i].reply+"</div>";
 					str += "</li>"
 				}
