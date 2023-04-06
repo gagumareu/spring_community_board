@@ -174,15 +174,15 @@
 	}
 	
 	.button{
-		background-color: #3ab4e8;
-	    color: white;
-	    border: wheat;
+		background-color: white;
+	    color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
 	    padding: 6px;
 	    border-radius: 8px;
 	}
 	
 	.button:hover{
-		background-color: #0c81b3;
+		background-color: #e5e7eb;
 	}
 </style>
 
@@ -219,7 +219,7 @@
 							<button class="m_btn button">수정</button>	
 						</c:if>
 					</security:authorize>
-					<button class="list_btn button">리스트</button>
+					<button style="margin-left: 10px" class="list_btn button">리스트</button>
 				</div>
 						
 			</div>
