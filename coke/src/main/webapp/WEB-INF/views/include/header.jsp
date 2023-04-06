@@ -125,7 +125,7 @@
 	
 	.header_signUp_btn {
 		margin-left: 1.5em;
-		    margin-right: 1.1em;
+	    margin-right: 1.1em;
 	}
 	
 	

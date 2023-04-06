@@ -164,7 +164,9 @@ public class BoardController {
 	@GetMapping("/modify")
 	public void modifyBoard(@RequestParam("bno") long bno, Model model, @ModelAttribute("cri") Criteria cri) {
 		
-		log.info("readBoard :" + bno);
+		log.info("--------------------------");
+		
+		log.info("modify :" + bno);
 		
 		model.addAttribute("boardDto", boardService.readBoard(bno));
 

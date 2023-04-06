@@ -57,7 +57,7 @@
 		padding: 30px;
 	    border: 1px solid #e5e7eb;
 	    border-radius: 8px;
-		
+		width: 70%;
 	}
 	
 	.reply_modal{
@@ -139,7 +139,7 @@
 	}
 	
 	.board_read_content_wrapper{
-		margin-bottom: 5em;
+		
 		width: 70%;
 	}
 	
@@ -155,12 +155,18 @@
 	}
 	
 	.need_new_reply{
-		display: flex;
+	    display: flex;
 	    justify-content: center;
 	    align-items: center;
-		border: 1px solid #e5e7eb;
-		height: 50px;
-   		border-radius: 8px;
+	    /* border: 1px solid #e5e7eb; */
+	    height: 50px;
+	    border-radius: 8px;
+	    background-color: #e5e7eb;
+	    width: 380px;
+	}
+	
+	.need_new_reply a{
+		font-weight: 600;
 	}
 	
 	.need_new_reply span{
@@ -183,6 +189,29 @@
 	
 	.button:hover{
 		background-color: #e5e7eb;
+	}
+	
+	.board_read_btn_wrapper{
+	    margin-bottom: 5em;
+	    /* justify-content: space-between; */
+	    display: flex;
+	    width: 70%;
+	    justify-content: right;
+	    margin-bottom: 5em;
+	    margin-top: 5em;
+	}
+	
+	.replyAddBtn{
+		background-color: white;
+	    color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    padding: 6px;
+	    border-radius: 8px;
+	}
+	
+	.list_btn{
+    	margin-right: 30px;
+	
 	}
 </style>
 
@@ -212,15 +241,7 @@
 					</div>
 					
 				</div>	<!-- board_read_memInfo_wrapper -->
-				<div class="board_read_btn_wrapper">
-					<security:authentication property="principal" var="prin"/>
-					<security:authorize access="isAuthenticated()">
-						<c:if test="${prin.username eq BoardVO.userid }">
-							<button class="m_btn button">수정</button>	
-						</c:if>
-					</security:authorize>
-					<button style="margin-left: 10px" class="list_btn button">리스트</button>
-				</div>
+				
 						
 			</div>
 			
@@ -232,7 +253,15 @@
 			<div class="board_read_content_wrapper">
 				${BoardVO.bcontent }
 			</div>
-			
+			<div class="board_read_btn_wrapper">
+				<security:authentication property="principal" var="prin"/>
+				<security:authorize access="isAuthenticated()">
+					<c:if test="${prin.username eq BoardVO.userid }">
+						<button class="m_btn button">수정</button>	
+					</c:if>
+				</security:authorize>
+				<button style="margin-left: 10px" class="list_btn button">리스트</button>
+			</div>
 			<form action="/board/modify" method="get" class="actionForm">
 				<input type="hidden" name="bno" value="${BoardVO.bno }" class="bno"> 
 				<input type="hidden" name="pageNum"	 value="${cri.pageNum }">

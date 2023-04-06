@@ -72,7 +72,7 @@
 		}
 		
 		.board_list_hit img {
-			width: 25px;
+			width: 26px;
 		}
 		
 		.hitCounting{
@@ -334,7 +334,7 @@
 								
 							<div class="board_list_hit_wrapper">
 								<div class="board_list_hit">
-									<img src="/resources/upload/icon/viewIcon.png">
+									<img src="/resources/upload/icon/view1.png">
 									<div class="hitCounting" >${dto.bhit }</div>	
 								</div>
 								<div class="board_list_view">
@@ -400,13 +400,14 @@
 						<li>reply 첨부파일 폴더 변경</li>
 						<li>댓글 작성 후 summernote reset</li>
 						<li>댓글 summernote 이미지 첨부시 사진크기 제안</li>
-						<li></li>
+						<li>-------------------</li>
 						<li>게시물 삭제시 댓글삭제(foreign key)</li>
 						<li>modify-backtolist: sortAndtag</li>
-						<li></li>
+						<li>-------------------</li>
 						<li>비로그인 access denied</li>
 						<li>delete access denied</li>
 						<li>검색 후 분류와 태그 함께 넘기기</li>
+						<li>-------------------</li>
 						<li>게시글 및 댓글 작성시간 시간 단위로 수정</li>
 						<li>게시물 작성시 널 값 불가 기능 추가</li>
 						<li>인기 게시물 추가</li>
