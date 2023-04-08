@@ -49,6 +49,13 @@
 		margin-top: 5em;
 	}
 	
+	.footerWrapper{
+		display: flex;
+	    justify-content: space-around;
+	    margin-top: 50px;
+	    margin-bottom: 50px;
+	
+	}
 	.wrapper{
 		display: flex;
 		flex-direction: column;

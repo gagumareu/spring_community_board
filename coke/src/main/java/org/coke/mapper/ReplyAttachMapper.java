@@ -12,5 +12,7 @@ public interface ReplyAttachMapper {
 	
 	public List<ReplyAttachVO> findByRno(long rno);
 	
+	public List<ReplyAttachVO> getOldReplyFiles();
+	
 
 }

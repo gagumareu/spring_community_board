@@ -321,10 +321,10 @@
 					        	
 					        	var formData = new FormData();
 					        	
-					        	formData.append("uploadFile", file);
+					        	formData.append("multipartFiles", file);
 					        	
 					        	$.ajax({
-					        		url: "/uploadAction",
+					        		url: "/replyUploadAction",
 					        		type: 'POST',
 					        		data: formData,
 					        		cashe: false,
@@ -348,11 +348,11 @@
 					        						        							        		
 					        		var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
 					        		
-					        		$('#summernote').summernote('insertImage', '/display?fileName='+fileCallPath);
+					        		$('#summernote').summernote('insertImage', '/displyReply?fileName='+fileCallPath);
 					        		
-					        		str += "<li name='display?fileName="+fileCallPath+"' data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-name='"+obj.fileName+"' data-type='true'></li>"
+					        		str += "<li name='displyReply?fileName="+fileCallPath+"' data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-name='"+obj.fileName+"' data-type='true'></li>"
 					        				
-					        		uploadedImageList.push("display?fileName="+fileCallPath);		
+					        		uploadedImageList.push("displyReply?fileName="+fileCallPath);		
 					        	});				       
 					        	
 					        	imageUL.append(str);
@@ -487,12 +487,7 @@
 		</div> <!-- board_content -->
 		
 	
-		<div class="footer">
-			<h3>HellO World</h3>
-			<h3>HellO World</h3>
-			<h3>HellO World</h3>
-			<h3>HellO World</h3>
-		</div> <!-- footer -->
+		<%@ include file="../include/footer.jsp" %>
 		
 	</div> <!-- wrapper -->
 	

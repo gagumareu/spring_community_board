@@ -56,7 +56,7 @@ public class ReplyController {
 		attachList.forEach(attach ->{
 			try {
 				
-				Path files = Paths.get("C:\\workspace\\upload\\coke\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				Path files = Paths.get("C:\\workspace\\upload\\reply\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
 				
 				Files.deleteIfExists(files);
 				
@@ -66,6 +66,8 @@ public class ReplyController {
 		});
 		
 	}
+	
+	
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE})

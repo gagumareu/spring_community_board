@@ -16,6 +16,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -112,6 +114,65 @@ public class UploadController {
 			
 	
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/replyUploadAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<AttachFileDTO>> replyUploadAjaxPost(MultipartFile[] multipartFiles){
+		
+		List<AttachFileDTO> list = new ArrayList<>();
+		
+		String uploadFolder = "C:\\workspace\\upload\\reply";
+		
+		String uploadFolderPath = getFoler();
+		
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
+		
+		log.info("uploadPath: " + uploadPath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		for(MultipartFile multipartFile : multipartFiles) {
+			
+			log.info("get for" );
+			
+			AttachFileDTO dto = new AttachFileDTO();
+			
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			log.info("originalFileName " + uploadFileName);
+			
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
+			
+			log.info("uploadFilName: " + uploadFileName);
+			
+			dto.setFileName(uploadFileName);
+			
+			UUID uuid = UUID.randomUUID();
+			
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
+			
+			try {
+				File saveFile = new File(uploadPath, uploadFileName);
+				
+				multipartFile.transferTo(saveFile);
+				
+				dto.setUuid(uuid.toString());
+				dto.setUploadPath(uploadFolderPath);
+				dto.setImage(true);
+				
+				list.add(dto);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} // end for 
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+		
+	}
 
 
 	@GetMapping("/display")
@@ -123,6 +184,32 @@ public class UploadController {
 		File file = new File("C:\\workspace\\upload\\coke\\" + fileName);
 		
 		log.info("File(/display): " + file);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@GetMapping("/displyReply")
+	@ResponseBody
+	public ResponseEntity<byte[]> getReplyFiles(String fileName){
+		
+		log.info("fileName : " + fileName);
+		
+		File file = new File("C:\\workspace\\upload\\reply\\" + fileName);
+		
+		log.info("file: " + file);
 		
 		ResponseEntity<byte[]> result = null;
 		

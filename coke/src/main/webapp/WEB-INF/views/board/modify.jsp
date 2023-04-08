@@ -12,6 +12,8 @@
 	.board_write_wrapper{
 		width: 100%;
 		margin-top: 1.5em;
+		display: flex;
+    	justify-content: center;
 	}
 	
 	.board_write_titleAndSort{
@@ -43,14 +45,14 @@
 	
 	.board_write_sort_first{
 		 margin-right: 0.5em;
-   		 width: 80%;
+   		 width: 70%;
 		border-radius: 8px;
 		border: 1px solid #e5e7eb;
 		padding: 10px;
 	}
 	
 	.board_write_sort_second{
-		width: 20%;
+		width: 30%;
 		border-radius: 8px;
 		border: 1px solid #e5e7eb;
 		padding: 10px;
@@ -60,13 +62,34 @@
 	    display: flex;
     	justify-content: end;
     }
+    
+    #writePate_form{
+    	width: 70%;
+    }
+    .uploadAtaachDiv{
+    	display: none;
+    }
+	
+	.modifyPate_btn{
+		display: flex;
+	    justify-content: end;
+	}
+	
+	.mbtn{
+		color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    padding: 6px;
+	    border-radius: 8px;
+	    background-color: white;
+	    margin-right: 7px;
+	}
 	
 </style>
 				
 		
 		<div class="board_write_wrapper">	
 		
-			<form action="/board/modify_board" role="form" method="post">
+			<form id="writePate_form" action="/board/modify_board" role="form" method="post">
 			
 				<div class="board_write_titleAndSort">
 					
@@ -305,11 +328,10 @@
 				 </script>
 			    	 
 
-			   <div>
-			   	
-			   	<button class="mbtn" type="submit" data-oper="modify">수정</button>
-						<button class="mbtn" type="button" data-oper="delete">삭제</button>
-				  <button class="mbtn" type="button" data-oper="list">리스트</button>
+			   <div class="modifyPate_btn">
+			   	<button class="mbtn motifyBTN" type="submit" data-oper="modify">수정</button>
+				<button class="mbtn deleteBTN" type="button" data-oper="delete">삭제</button>
+				<button class="mbtn listBTN" type="button" data-oper="list">리스트</button>
 			  </div>
 			  	<input type="hidden" name="bno" value="${boardDto.bno }">
 				<input type="hidden" name="pageNum" value="${cri.pageNum }">
@@ -330,11 +352,7 @@
 		</div> <!-- board_write_wrapper -->
 	
 	
-		<div class="footer">
-			
-				<h1>이상해..</h1>
-			
-		</div> <!-- footer -->
+		<%@ include file="../include/footer.jsp" %>
 		
 	</div> <!-- wrapper -->
 	

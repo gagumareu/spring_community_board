@@ -1,3 +1,4 @@
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -309,6 +310,7 @@
 					<c:forEach items="${boardList }" var="dto">
 						<div class="dto_list">
 							<div class="board_list_title_wrapper">							
+								
 								<div class="board_list_nickName_wrapper">
 									<div class="board_list_nickNameDiv"><a href="#">${dto.userid }</a></div>
 									<div class="board_list_date" >
@@ -317,18 +319,20 @@
 								</div>
 								
 								<a class="move" href="${dto.bno }">${dto.btitle }</a>
+								
 								<div class="tagOrsort">
-								<c:if test="${empty pageMaker.cri.bsort }">
-									<c:if test="${empty pageMaker.cri.btag }">	
-										<a href="#">${dto.bsort }</a>
-									</c:if>
-									<c:if test="${!empty pageMaker.cri.btag }">	
+									<c:if test="${empty pageMaker.cri.bsort }">
+										<c:if test="${empty pageMaker.cri.btag }">	
+											<a href="/board/list?bsort=${dto.bsort }">${dto.bsort }</a>
+										</c:if>
+										<c:if test="${!empty pageMaker.cri.btag }">	
+											<a href="/board/list?btag=${dto.btag }">${dto.btag }</a>
+										</c:if>			
+									</c:if>								
+									<c:if test="${!empty pageMaker.cri.bsort }">
 										<a href="/board/list?btag=${dto.btag }">${dto.btag }</a>
-									</c:if>			
-								</c:if>								
-								<c:if test="${!empty pageMaker.cri.bsort }">
-									<a href="/board/list?btag=${dto.btag }">${dto.btag }</a>
-								</c:if>	
+									</c:if>	
+								
 								</div>					
 							</div> <!-- board_list_title_wrapper -->
 								
@@ -396,8 +400,6 @@
 					</div>
 					<ul style="padding: 0px">
 						<li>대댓글 기능</li>
-						<li>reply 불필요 첨부파일 삭제</li>
-						<li>reply 첨부파일 폴더 변경</li>
 						<li>댓글 작성 후 summernote reset</li>
 						<li>댓글 summernote 이미지 첨부시 사진크기 제안</li>
 						<li>-------------------</li>
@@ -411,7 +413,7 @@
 						<li>게시글 및 댓글 작성시간 시간 단위로 수정</li>
 						<li>게시물 작성시 널 값 불가 기능 추가</li>
 						<li>인기 게시물 추가</li>
-						<li>modify 너비 css 수정</li>
+						
 						<li></li>
 					</ul>
 				</div>
@@ -440,16 +442,8 @@
 			</div>
 		</div> <!-- board_content -->
 	
+		<%@ include file="../include/footer.jsp" %>
 		
-		<div class="footer">
-		<ul>
-			<c:forEach begin="0" end="9" items="${topwriterList }" var="dto">
-			<li>	
-				${dto.userid } / ${dto.counting }	
-			</li>	
-			</c:forEach>
-		</ul>	
-		</div> <!-- footer -->
 		
 	</div> <!-- wrapper -->
 	

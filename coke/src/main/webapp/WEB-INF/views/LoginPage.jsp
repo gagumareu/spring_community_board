@@ -40,6 +40,8 @@
 				</div>
 			</form>
 		</div> <!-- board_loginPage -->
+		
+		<%@ include file="include/footer.jsp" %>
 	</div> <!-- board_write_wrapper -->
 	
 	

@@ -8,5 +8,6 @@ public interface MemberMapper {
 	
 	public void insert(MemberVO vo);
 	
+	public void deleteAll(long rno);
 	
 }

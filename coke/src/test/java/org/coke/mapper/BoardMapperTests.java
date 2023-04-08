@@ -2,6 +2,7 @@ package org.coke.mapper;
 
 import java.util.List;
 
+import org.coke.domain.BoardAttachVO;
 import org.coke.domain.BoardVO;
 import org.coke.domain.Criteria;
 import org.coke.domain.ReplyAttachVO;
@@ -24,6 +25,9 @@ public class BoardMapperTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyAttachMapper replyAttachMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper attachMapper;
 	
 	@Test
 	public void getListWithPage() {
@@ -119,6 +123,25 @@ public class BoardMapperTests {
 	public void getTopwriter() {
 		
 		boardMapper.getTopwriter();
+	}
+	
+	@Test
+	public void getOldfile() {
+		
+		List<BoardAttachVO> list = attachMapper.getOldFiles();
+		
+		
+		log.info(list);
+	}
+	
+	
+	@Test
+	public void getOldReplyfile() {
+		
+		List<ReplyAttachVO> list = replyAttachMapper.getOldReplyFiles();
+		
+		
+		log.info(list);
 	}
 	
 	

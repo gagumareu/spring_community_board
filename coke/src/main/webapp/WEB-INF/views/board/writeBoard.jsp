@@ -9,6 +9,15 @@
 
 <style type="text/css">
 	
+	a{
+		text-decoration: none;
+		color: black;
+	}
+
+	a:hover {
+	  color: #7ba6de;
+	  text-decoration: none;
+	}
 	
 
 	
@@ -110,11 +119,38 @@
 	
 	#uploadBtn{
 		margin-right: 0.7em;
-		
+		background-color: white;
+	    color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    padding: 6px;
+	    border-radius: 8px;
+	}
+	
+	#cancelBtn{
+		background-color: white;
+	    color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    padding: 6px;
+	    border-radius: 8px;
+
+	}
+	
+	#uploadBtn:hover{
+	
+		background-color: #e5e7eb;
+	}
+	
+	#cancelBtn:hover{
+	
+		background-color: #e5e7eb;
 	}
 	
 	.writeForm{
 	    width: 70%;
+	}
+	
+	.uploadImagesDiv{
+		display: none;
 	}
 	
 </style>
@@ -125,14 +161,14 @@
 			
 				<div class="board_write_titleAndSort">
 					
-					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required autofocus="autofocus">
+					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required="required" autofocus="autofocus">
 			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
 			 		<input type="hidden" name="nickname" value="tester3">
 			 		
 			 			 		
 			 		<div class="board_write_sort_wrapper" >
 			 			<c:if test="${bsort == '음악' }">
-			 				<select class="board_write_sort_first" name="bsort" required>
+			 				<select class="board_write_sort_first" name="bsort" required="required">
 							  	<option value="">게시판을 선택해 주세요</option>
 							  	<option value="음악" selected>음악</option>
 							  	<option value="지식">지식</option>
@@ -140,7 +176,7 @@
 							  	<option value="커뮤니티">커뮤니티</option>
 							  	<option value="질문">Q&A</option>
 					  		</select>
-					  		<select class="board_write_sort_second" name="btag" required>
+					  		<select class="board_write_sort_second" name="btag" required="required">
 							  	<option value="">테그를 선택해주세요</option>
 							  	<option value='K-pop'>K-pop</option>
 								<option value='빌보드'>빌보드</option>
@@ -148,7 +184,7 @@
 						 	 </select>
 			 			</c:if>
 			 			<c:if test="${bsort == '지식' }">
-			 				<select class="board_write_sort_first" name="bsort" required>
+			 				<select class="board_write_sort_first" name="bsort" required="required">
 							  	<option value="">게시판을 선택해 주세요</option>
 							  	<option value="음악">음악</option>
 							  	<option value="지식" selected>지식</option>
@@ -156,7 +192,7 @@
 							  	<option value="커뮤니티">커뮤니티</option>
 							  	<option value="질문">Q&A</option>
 					  		</select>
-					  		<select class="board_write_sort_second" name="btag" required>
+					  		<select class="board_write_sort_second" name="btag" required="required">
 							  	<option value="">테그를 선택해주세요</option>
 							  	<option value='일반상식'>일반상식</option>
 								<option value='역사'>역사</option>
@@ -165,7 +201,7 @@
 						 	 </select>
 			 			</c:if>
 			 			<c:if test="${bsort == '컴퓨터' }">
-			 				<select class="board_write_sort_first" name="bsort" required>
+			 				<select class="board_write_sort_first" name="bsort" required="required">
 							  	<option value="">게시판을 선택해 주세요</option>
 							  	<option value="음악">음악</option>
 							  	<option value="지식">지식</option>
@@ -173,7 +209,7 @@
 							  	<option value="커뮤니티">커뮤니티</option>
 							  	<option value="질문">Q&A</option>
 					  		</select>
-					  		<select class="board_write_sort_second" name="btag" required>
+					  		<select class="board_write_sort_second" name="btag" required="required">
 							  	<option value="">테그를 선택해주세요</option>
 							  	<option value='하드웨어'>하드웨어</option>
 								<option value='소프트웨어'>소프트웨어</option>
@@ -181,7 +217,7 @@
 						 	 </select>
 			 			</c:if>
 			 			<c:if test="${bsort == '커뮤니티' }">
-			 				<select class="board_write_sort_first" name="bsort" required>
+			 				<select class="board_write_sort_first" name="bsort" required="required">
 							  	<option value="">게시판을 선택해 주세요</option>
 							  	<option value="음악">음악</option>
 							  	<option value="지식">지식</option>
@@ -189,7 +225,7 @@
 							  	<option value="커뮤니티" selected>커뮤니티</option>
 							  	<option value="질문">Q&A</option>
 					  		</select>
-					  		<select class="board_write_sort_second" name="btag" required>
+					  		<select class="board_write_sort_second" name="btag" required="required">
 							  	<option value="">테그를 선택해주세요</option>
 							  	<option value='일상'>일상</option>
 								<option value='유머'>유머</option>
@@ -197,7 +233,7 @@
 						 	 </select>
 			 			</c:if>
 			 			<c:if test="${bsort == '질문' }">
-			 				<select class="board_write_sort_first" name="bsort" required>
+			 				<select class="board_write_sort_first" name="bsort" required="required">
 							  	<option value="">게시판을 선택해 주세요</option>
 							  	<option value="음악">음악</option>
 							  	<option value="지식">지식</option>
@@ -205,7 +241,7 @@
 							  	<option value="커뮤니티">커뮤니티</option>
 							  	<option value="질문" selected>Q&A</option>
 					  		</select>
-					  		<select class="board_write_sort_second" name="btag" required>
+					  		<select class="board_write_sort_second" name="btag" required="required">
 							  	<option value="">테그를 선택해주세요</option>
 							  	<option value='코딩'>코딩</option>
 								<option value='일반'>일반</option>
@@ -213,7 +249,7 @@
 						 	 </select>
 			 			</c:if>
 			 			<c:if test="${empty bsort}">
-			 				<select class="board_write_sort_first" name="bsort" required>
+			 				<select class="board_write_sort_first" name="bsort" required="required">
 							  	<option value="">게시판을 선택해 주세요</option>
 							  	<option value="음악">음악</option>
 							  	<option value="지식">지식</option>
@@ -221,7 +257,7 @@
 							  	<option value="커뮤니티">커뮤니티</option>
 							  	<option value="질문">Q&A</option>
 					  		</select>
-					  		<select class="board_write_sort_second" name="btag" required>
+					  		<select class="board_write_sort_second" name="btag" required="required">
 							  	<option value="">테그를 선택해주세요</option>							  	
 						 	 </select>
 			 			</c:if>
@@ -360,10 +396,7 @@
 		</div> <!-- board_write_wrapper -->
 	
 	
-		<div class="footer">
-			<h1>TEST</h1>
-			<h2>${bsort }</h2>
-		</div> <!-- footer -->
+		<%@ include file="../include/footer.jsp" %>
 		
 	</div> <!-- wrapper -->
 	
@@ -447,7 +480,7 @@
 			
 			});
 			
-			
+		
 		$("#uploadBtn").on("click", function(e){
 			
 			e.preventDefault();
@@ -472,7 +505,7 @@
 				
 			});
 			console.log(str);
-			formObj.append(str).submit();;
+			formObj.append(str).submit();
 		});	
 			
 			

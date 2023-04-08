@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.coke.domain.BoardAttachVO;
+import org.coke.domain.ReplyAttachVO;
 import org.coke.mapper.BoardAttachMapper;
+import org.coke.mapper.ReplyAttachMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,9 @@ public class FileCheckTask {
 	
 	@Setter(onMethod_ = @Autowired)
 	private BoardAttachMapper attachMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyAttachMapper reAttachMapper;
 	
 	private String getOldFolderYesterday() {
 		
@@ -67,6 +72,32 @@ public class FileCheckTask {
 			file.delete();
 		}
 	}
+	
+	@Scheduled(cron = "0 0 2 * * *")
+	public void checkReplyFiles() throws Exception{
+		
+		log.warn("Reply File Task runing.. ");
+		
+		log.warn(new Date());
+		
+		List<ReplyAttachVO> fileList = reAttachMapper.getOldReplyFiles();
+		
+		List<Path> fileListPath = fileList.stream().map(vo -> Paths.get("C:\\workspace\\upload\\reply", vo.getUploadPath(), vo.getUuid() + "_" +
+				vo.getFileName())).collect(Collectors.toList());
+		
+		fileListPath.forEach(p -> log.warn(p));
+		
+		File targetDir = Paths.get("C:\\workspace\\upload\\reply", getOldFolderYesterday()).toFile();
+		
+		File[] removeFiles = targetDir.listFiles(file -> fileListPath.contains(file.toPath()) == false);
+		
+		for(File file : removeFiles) {
+			
+			log.warn(file.getAbsolutePath());
+			file.delete();
+		}
+	}
+	
 	
 	
 	
