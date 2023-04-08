@@ -287,7 +287,7 @@
 					    	var uploadedImageList = [];
 					    						    
 					        $('#summernote').summernote({
-					        	height: 100,
+					        	height: 170,
 					            callbacks:{
 					            	onImageUpload: function(files, editor, welEditable){						
 				    		            for (var i = files.length - 1; i >= 0; i--) {

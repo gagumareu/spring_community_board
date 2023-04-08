@@ -16,7 +16,6 @@ import org.coke.domain.Criteria;
 import org.coke.domain.PageDTO;
 import org.coke.domain.ReplyAttachVO;
 import org.coke.mapper.BoardAttachMapper;
-import org.coke.mapper.ComputerMapper;
 import org.coke.mapper.ReplyMapper;
 import org.coke.service.BoardService;
 import org.springframework.http.HttpStatus;

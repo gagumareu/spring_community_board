@@ -35,4 +35,8 @@
     		]]>
     	</select>
     	
+    	<delete id="deleteAll">
+    		delete from coke_reply where bno = #{bno}
+    	</delete>
+    	
     </mapper>

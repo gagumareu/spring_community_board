@@ -9,6 +9,7 @@ import org.coke.domain.BoardVO;
 import org.coke.domain.Criteria;
 import org.coke.mapper.BoardAttachMapper;
 import org.coke.mapper.BoardMapper;
+import org.coke.mapper.ReplyMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper boardMapper;
 	
 	private BoardAttachMapper attachMapper;
+	
+	private ReplyMapper replyMapper;
 		
 	@Override
 	public List<BoardVO> getBoardList(Criteria cri) {
@@ -92,6 +95,7 @@ public class BoardServiceImpl implements BoardService{
 	public boolean removeBoard(long bno) {
 		log.info("delete board : " + bno);
 		attachMapper.deleteAll(bno);
+		replyMapper.deleteAll(bno);
 		return boardMapper.delete(bno) == 1;
 	}
 
