@@ -16,7 +16,7 @@
 	
 	html{
 		height: 100%;
-		
+		font-family: 'Prompt', sans-serif;
 
 	}
 	
@@ -42,11 +42,15 @@
 		text-align: center;
 	}
 	
+	#header_logo{
+		color: #3ab4e8;
+	}
 	.footer{
 		margin-top: auto;
 		width: 100%;
 		border-top: 1px solid #e5e7eb;
 		margin-top: 5em;
+		font-family: 'Prompt', sans-serif;
 	}
 	
 	.footerWrapper{
@@ -146,12 +150,18 @@
     	flex-direction: row;
 	}
 	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 	
 	
 </style>
+
+
+
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -187,7 +197,7 @@
 				
 				<div class="header_sortAndLogin_warpper">
 					<div class="header_main_log">
-						<a href="/board/list">MAIN</a>
+						<a id="header_logo" href="/board/list">MAIN</a>
 					</div>
 					<div class="header_sort">
 						<div>
@@ -209,7 +219,7 @@
 							<a href="/board/list?bsort=질문">Q&A</a>
 						</div>
 						<div class="header_sort_title">
-							<a href="#">공지사항</a>
+							<a href="/board/notice">공지사항</a>
 						</div>
 					</div>
 				</div>

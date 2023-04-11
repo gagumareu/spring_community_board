@@ -27,4 +27,8 @@ public interface BoardService {
 	public List<String> getTagList(Criteria cri);
 	
 	public List<BoardVO> getTowriterList();
+	
+	public List<BoardVO> getViewList();
+	
+	public List<BoardVO> getMostReplyList();
 }

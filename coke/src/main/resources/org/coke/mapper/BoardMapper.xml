@@ -163,9 +163,30 @@
 	</select>
 	
 	<select id="getTopwriter" resultType="org.coke.domain.BoardVO">
-	 	select userid, count(userid)as counting from coke_board group by userid order by counting desc
+	 	select *
+		from 
+		    (
+		    select /*+ INDEX_DESC(coke_board)*/
+		    userid, count(userid)as counting 
+		    from
+		    coke_board 
+		    group by userid order by counting desc
+		    )
+		where counting >= 2 
 	</select>
 	
+	<select id="getMostViewList" resultType="org.coke.domain.BoardVO">
+		select bhit, btitle, bno 
+		/*+ INDEX_DESC(coke_board pk_cboard)*/
+		from coke_board where bhit >= 10 order by bhit desc
+	</select>
+	
+	<select id="getMostReply" resultType="org.coke.domain.BoardVO">
+		select replycnt, btitle, bno 
+		/*+ INDEX_DESC(coke_board pk_cboard)*/
+		from coke_board
+		where replycnt >= 1 order by replycnt desc
+	</select>
 	
 
 </mapper>

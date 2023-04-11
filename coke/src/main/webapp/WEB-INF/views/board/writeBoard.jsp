@@ -28,6 +28,7 @@
 		margin-top: 1.5em;
 	    display: flex;
 	    justify-content: center;
+	    font-family: 'Prompt', sans-serif;
 	}
 	
 	.board_write_titleAndSort{
@@ -480,6 +481,9 @@
 			
 			});
 			
+		var inputDvi = $(".board_write_titleAndSort");
+		
+		var title = $(".board_write_title").val();
 		
 		$("#uploadBtn").on("click", function(e){
 			
@@ -505,6 +509,15 @@
 				
 			});
 			console.log(str);
+			
+			
+			
+			if(!inputDvi.find("[name='btitle']").val()){
+				alert("제목을 입력하세요.");
+				return false;
+			}
+			
+			
 			formObj.append(str).submit();
 		});	
 			

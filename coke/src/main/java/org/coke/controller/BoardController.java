@@ -91,14 +91,13 @@ public class BoardController {
 			log.info("cri tag: " + cri.getBtag());
 			model.addAttribute("tagList", boardService.getTagList(cri));
 			
-		}else {
-//			cri.setBsort(null);
-//			cri.setBtag(null);
 		}
 		
 		model.addAttribute("boardList", boardService.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		model.addAttribute("topwriterList", boardService.getTowriterList());						
+		model.addAttribute("topwriterList", boardService.getTowriterList());
+		model.addAttribute("mostViewList", boardService.getViewList());
+		model.addAttribute("mostReplyList", boardService.getMostReplyList());
 	}
 	
 	@PreAuthorize("isAuthenticated()")
@@ -166,7 +165,7 @@ public class BoardController {
 		log.info("--------------------------");
 		
 		log.info("modify :" + bno);
-		
+		log.info(cri);
 		model.addAttribute("boardDto", boardService.readBoard(bno));
 
 	}
@@ -227,7 +226,10 @@ public class BoardController {
 		return new ResponseEntity<>(boardService.getAttachLsit(bno), HttpStatus.OK);
 	}
 
-	
+	@GetMapping("/notice")
+	public void getNotice() {
+		
+	}
 	
 	
 	

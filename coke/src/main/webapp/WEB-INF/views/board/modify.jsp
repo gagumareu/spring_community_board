@@ -5,7 +5,15 @@
 
 <style type="text/css">
 	
+	a{
+		text-decoration: none;
+		color: black;
+	}
 	
+	a:hover {
+	  color: #7ba6de;
+	  text-decoration: none;
+	}
 	
 	
 	
@@ -14,6 +22,7 @@
 		margin-top: 1.5em;
 		display: flex;
     	justify-content: center;
+    	font-family: 'Prompt', sans-serif;
 	}
 	
 	.board_write_titleAndSort{
@@ -78,10 +87,15 @@
 	.mbtn{
 		color: #3ab4e8;
 	    border: 1px solid #3ab4e8;
-	    padding: 6px;
 	    border-radius: 8px;
 	    background-color: white;
 	    margin-right: 7px;
+	    font-size: 1.2em;
+    	font-family: 'Jua', sans-serif;
+	}
+	
+	.mbtn:hover{
+		background-color: #e5e7eb;
 	}
 	
 </style>
@@ -337,11 +351,9 @@
 				<input type="hidden" name="pageNum" value="${cri.pageNum }">
 				<input type="hidden" name="amount" value="${cri.amount }">
 				<input type="hidden" name="type" value="${cri.type }">
-				<input type="hidden" name="keyword" value="${cri.keyword }">
+				<input type="hidden" name="keyword" value="${cri.keyword }">			  	
+			  	<input type="hidden" name="userid" value="${boardDto.userid }">		  	
 			  	
-			 	 <!-- temporary input hidden tag -->			  
-			  	<input type="hidden" name="userid" value="${boardDto.userid }">
-			  	<input type="hidden" name="nickname" value="tester3">
 			</form> 
 			
 		<div class="uploadAtaachDiv">
@@ -384,12 +396,15 @@
 					var amountTag = $("input[name='amount']").clone();
 					var typeTag = $("input[name='type']").clone();
 					var keywordTag = $("input[name='keyword']").clone();
+					var sort = $("input[name='bsort']").clone();
 					
 					formObj.empty();
 					formObj.append(pageNumTag);
 					formObj.append(amountTag);
 					formObj.append(typeTag);
 					formObj.append(keywordTag);
+					formObj.append(sort);
+					
 					
 				}else if(operation == "modify"){
 					

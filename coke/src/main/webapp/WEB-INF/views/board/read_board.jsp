@@ -177,14 +177,16 @@
 		display: flex;
 	    flex-direction: column;
 	    align-items: center;
+	    font-family: 'Prompt', sans-serif;
 	}
 	
 	.button{
 		background-color: white;
 	    color: #3ab4e8;
 	    border: 1px solid #3ab4e8;
-	    padding: 6px;
 	    border-radius: 8px;
+	    font-family: 'Jua', sans-serif;
+	    font-size: 1.2em;
 	}
 	
 	.button:hover{
@@ -205,10 +207,14 @@
 		background-color: white;
 	    color: #3ab4e8;
 	    border: 1px solid #3ab4e8;
-	    padding: 6px;
 	    border-radius: 8px;
+        font-size: 1.2em;
+    	font-family: 'Jua', sans-serif;
 	}
 	
+	.replyAddBtn:hover{
+		background-color: #e5e7eb;
+	}
 	.list_btn{
     	margin-right: 30px;
 	
@@ -391,7 +397,7 @@
 						<div class="reply_contents">
 							<strong class="reply_writer"></strong>
 							<small class="reply_date"></small>
-							<div class="reply_content"></div>
+							<div class="reply_content"></div>							
 						</div>
 					</li>
 				</ul>
@@ -399,7 +405,7 @@
 			
 			<div id="reply_modal" class="reply_modal">
 				<div class="reply_modal_content">
-					<input type="text" name="replyer" value="">
+					<input type="hidden" name="replyer" value="">
 					<textarea id="summernote2"> </textarea>
 					<script>
 					    $(document).ready(function() {
@@ -503,7 +509,9 @@
 		var replyer = null;
 		
 		<security:authorize access="isAuthenticated()">
-			replyer = '<security:authentication property="principal.username"/>';
+		
+		replyer = '<security:authentication property="principal.username"/>';
+		
 		</security:authorize>
 		
 		var csrfHeaderName = "${_csrf.headerName}";
@@ -553,11 +561,11 @@
 		var replyForm = $(".replyForm");
 		var replyerValue = replyForm.find("input[name='replyer']");
 		var replyValue = replyForm.find("textarea[name='reply']");
-		
+		var replyImageUploadUL = $(".uploadImageUl");
 		var replyBtn = $(".replyAddBtn");
 	
 		console.log("bno: " + bnoValue);
-		console.log("replyer: " + replyer);
+		console.log("login user: " + replyer);
 					
 		replyBtn.on("click", function(e){
 			
@@ -576,21 +584,19 @@
 				
 				var dataObj = $(obj);
 				
-				console.log(dataObj.data("path"));
-				console.log(dataObj.data("uuid"));
-				console.log(dataObj.data("name"));
-				
 				var uploadPath = dataObj.data("path");
 				var uuid = dataObj.data("uuid");
 				var fileName = dataObj.data("name");
 				var fileType = dataObj.data("type");
+				var bno = bnoValue;
 				
 				console.log(uploadPath);
 				console.log(uuid);
 				console.log(fileName);
 				console.log(fileType);								
+				console.log(bno);
 				
-				var list = {uploadPath, uuid, fileName, fileType};
+				var list = {uploadPath, uuid, fileName, fileType, bno};
 				
 				attachList.push(list);
 			});		
@@ -613,11 +619,11 @@
 			        alert('Please enter some content');
 			        return false; // prevent the form from being submitted
 			      }
-				 
-				summernoteEditor.summernote('reset');
-				
+
 				showList(-1);
-			});						
+			});
+			replyImageUploadUL.html("");
+			summernoteEditor.summernote('reset');
 		}); // add end
 		
 		var replyModifyBtn = $(".modifyBtn");
@@ -626,7 +632,7 @@
 		var modal = $("#reply_modal");
 					
 		var summernoteEditor2 = $("#summernote2").summernote('code');
-		var replyModalWriter = modal.find("input[name='replyer']");
+		var replyModelReplyer = modal.find("input[name='replyer']");
 		var replyModalReply = modal.find("textarea[name='reply']");
 		var replyModalDate = modal.find("input[name='replydate']");
 		
@@ -636,11 +642,10 @@
 			
 			console.log("reply rno: " + rno);
 			
-			
 			$("#reply_modal").show();
 			
 			replyService.get(rno, function(param){
-				
+								
 				if(!replyer){
 					alert("로그인 사용자만 수정가능합니다.");
 					$("#reply_modal").hide();
@@ -664,9 +669,10 @@
 				modal.data("rno", param.rno);
 				modal.data("bno", param.bno);
 									
-				replyModalWriter.val(param.replyer).attr("readonly", "readonly")
+				
 				replyModalReply.val(param.reply);
 				replyModalDate.val(replyService.displayTime(param.replydate)).attr("readonly", "readonly");
+				
 				
 				$("#summernote2").summernote('code', param.reply);
 				modal.find("input[name='replyer']").val(param.replyer);
@@ -680,7 +686,7 @@
 		
 		replyDeleteBtn.on("click", function(e){
 			
-			var originalReplyer = replyModalWriter.val();
+			var originalReplyer = replyModelReplyer.val();
 			
 			var rno = modal.data("rno");
 			var bno = modal.data("bno");
@@ -713,7 +719,7 @@
 		
 		replyModifyBtn.on("click", function(e){
 			
-			var originalReplyer = replyModalWriter.val();
+			var originalReplyer = replyModelReplyer.val();
 			
 			console.log("originalReplyer: " + originalReplyer);
 			

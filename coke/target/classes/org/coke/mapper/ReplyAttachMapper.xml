@@ -6,8 +6,8 @@
     <mapper namespace="org.coke.mapper.ReplyAttachMapper">
     
     	<insert id="insert">
-    		insert into coke_replyAttach (rno, uuid, uploadPath, fileName, fileType) 
-    		values(#{rno}, #{uuid}, #{uploadPath}, #{fileName}, #{fileType})
+    		insert into coke_replyAttach (rno, uuid, uploadPath, fileName, fileType, bno) 
+    		values(#{rno}, #{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
     	</insert>
     
     	<delete id="deleteAll">
@@ -20,5 +20,10 @@
 		    
 		<select id="getOldReplyFiles" resultType="org.coke.domain.ReplyAttachVO">
 			select * from coke_replyAttach where uploadPath = to_char(sysdate -1, 'yyyy\MM\dd')
-		</select>    
+		</select>
+		
+		<delete id="deleteFindBybno">
+			delete from coke_replyattach where bno = #{bno}
+		</delete>
+		    
     </mapper>

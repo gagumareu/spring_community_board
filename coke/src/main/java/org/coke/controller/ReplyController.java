@@ -74,7 +74,8 @@ public class ReplyController {
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 	
 		log.info("ReplyVO: " + vo);
-
+		log.info("bno: " + vo.getBno());
+		
 		int insertCount = replyService.register(vo);
 
 		log.info("reply insert count: " + insertCount);

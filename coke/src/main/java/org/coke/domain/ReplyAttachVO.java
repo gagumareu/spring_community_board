@@ -11,4 +11,6 @@ public class ReplyAttachVO {
 	private String uploadPath;
 	private String fileName;
 	private boolean fileType;
+	
+	private long bno;
 }

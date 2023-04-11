@@ -30,4 +30,8 @@ public interface BoardMapper {
 	public List<String> getTagList(Criteria cri);
 	
 	public List<BoardVO> getTopwriter();
+	
+	public List<BoardVO> getMostViewList();
+	
+	public List<BoardVO> getMostReply();
 }

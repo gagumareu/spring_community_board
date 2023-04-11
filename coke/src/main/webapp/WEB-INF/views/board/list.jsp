@@ -21,7 +21,7 @@
 			display: flex;
 			flex-direction: row;
 			border-bottom: 1px solid #e5e7eb;
-			height: 90px;
+			/*height: 90px;*/
 		}
 		
 		.board_content_list{
@@ -127,8 +127,9 @@
 	.board_top_content_register a{
 		background-color: #3ab4e8;
 	    color: white;
-	    padding: 4px;
+	    padding: 5px;
 	    border-radius: 8px;
+	    font-family: 'Jua', sans-serif;
 	}
 	
 	.board_top_content_register a:hover{
@@ -172,6 +173,7 @@
     	/*border: 2px solid red;*/
     	justify-content: center;
     	width: 100%;
+    	font-family: 'Prompt', sans-serif;
 	}
 	
 	
@@ -200,7 +202,7 @@
 	
 	<!--  -->
 	
-	.topwriterList{
+	.leftSideBox{
 		width: 15%;
 		padding-right: 30px;
 	}
@@ -241,6 +243,8 @@
 	    padding: 4px;
 	    border-radius: 8px;
 	    border: wheat;
+	    font-family: 'Jua', sans-serif;
+	    
 	}
 	
 	.searchBTN:hover {
@@ -250,6 +254,21 @@
 	.searchInput{
 		border-radius: 8px;
     	border: 1px solid #e5e7eb;
+    	height: 28px;
+	}
+	.lefsSideBoxing{
+		margin-bottom: 80px;
+	}
+	
+	.backLogList{
+		display: flex;
+	    flex-direction: column;
+	    text-align: center;
+	    gap: 13px;
+	}
+	
+	.rightBoxing{
+		margin-bottom: 80px;
 	}
 	
 	</style>
@@ -292,17 +311,31 @@
 			
 			<div class="board_content_wrapper">
 				
-				<div class="topwriterList">
-					<div class="sideBox_title">
+				<div class="leftSideBox">
+					<div class="lefsSideBoxing">
+						<div class="sideBox_title">
 						TOP WRITER
+						</div>
+						<div class="topwriter_line">
+						</div>
+						<c:forEach begin="0" end="9" items="${topwriterList }" var="dto">
+						<div class="topwriterBoxes">	
+							<a href="#">${dto.userid }</a>  <div>${dto.counting }</div>	
+						</div>	
+						</c:forEach>					
 					</div>
-					<div class="topwriter_line">
-					</div>
-					<c:forEach begin="0" end="9" items="${topwriterList }" var="dto">
-					<div class="topwriterBoxes">	
-						<a href="#">${dto.userid }</a>  <div>${dto.counting }</div>	
-					</div>	
-					</c:forEach>
+					<div class="lefsSideBoxing">
+						<div class="sideBox_title">
+						MOST VIEW
+						</div>
+						<div class="topwriter_line">
+						</div>
+						<c:forEach items="${mostViewList }" var="dto" begin="0" end="9">
+						<div class="topwriterBoxes">	
+						<a class="sideTitleToReading" href="${dto.bno}">${dto.btitle }</a>  <div style="margin-left: 10px">${dto.bhit }</div>	
+						</div>	
+					</c:forEach>					
+					</div>				
 				</div> <!-- topwriterList -->
 							
 				<div class="board_content_list">
@@ -393,31 +426,33 @@
 				</div> <!-- board_content_list -->
 				
 				<div class="rigthSideBox">
-					<div class="sideBox_title">
-						개선할 사항
+					<div class="rightBoxing">
+						<div class="sideBox_title">
+						업데이트 예정
 					</div>
 					<div class="topwriter_line">
 					</div>
-					<ul style="padding: 0px">
-						<li>대댓글 기능</li>
-						<li>댓글 작성 후 summernote reset</li>
-						<li>댓글 summernote 이미지 첨부시 사진크기 제안</li>
-						<li>-------------------</li>
-						<li>게시물 삭제시 댓글삭제(foreign key)</li>
-						<li>modify-backtolist: sortAndtag</li>
-						<li>-------------------</li>
-						<li>비로그인 access denied</li>
-						<li>delete access denied</li>
-						<li>검색 후 분류와 태그 함께 넘기기</li>
-						<li>-------------------</li>
-						<li>게시글 및 댓글 작성시간 시간 단위로 수정</li>
-						<li>게시물 작성시 널 값 불가 기능 추가</li>
-						<li>인기 게시물 추가</li>
-						<li>topwriter 스키마 인덱스 처리</li>
-						<li>게시물 삭제시 댓글 첨부파일 삭제</li>
-						
-						<li></li>
-					</ul>
+					<div class="backLogList">
+						<div>회원 마이 페이지</div>
+						<div>게시물 스크렙 기능</div>
+						<div>회원 프로파일 이미지</div>
+						<div>회원 가입 페이지</div>
+					</div>
+					</div>
+					<div class="rightBoxing">
+						<div class="sideBox_title">
+						MOST REPLY
+					</div>
+					<div class="topwriter_line">
+					</div>
+					<div class="backLogList">
+						<c:forEach items="${mostReplyList }" var="dto">
+							<div class="topwriterBoxes">
+								<a class="sideTitleToReading" href="${dto.bno }">${dto.btitle }</a> <div style="margin-left: 10px">${dto.replycnt }</div>
+							</div>
+						</c:forEach>
+					</div>
+					</div>
 				</div>
 			
 			</div> <!-- board_content_wrapper -->
@@ -439,16 +474,18 @@
 					<c:if test="${!empty pageMaker.cri.bsort }">
 						<input type="hidden" name="bsort" value="${pageMaker.cri.bsort }">
 					</c:if>
-					
+					<c:if test="${!empty pageMaker.cri.btag }">
+						<input type="hidden" name="btag" value="${pageMaker.cri.btag }">
+					</c:if>
 				</form >
 			</div>
 		</div> <!-- board_content -->
 	
-		<%@ include file="../include/footer.jsp" %>
+		
 		
 		
 	</div> <!-- wrapper -->
-	
+	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript">
 	
 	$(document).ready(function(){
@@ -474,6 +511,14 @@
 		$(".move").click(function(e){
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href") +"' >");
+			actionForm.attr("action", "/board/read_board");
+			actionForm.submit();
+			
+		});
+		
+		$(".sideTitleToReading").on("click", function(e){
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
 			actionForm.attr("action", "/board/read_board");
 			actionForm.submit();
 			

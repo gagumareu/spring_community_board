@@ -14,5 +14,6 @@ public interface ReplyAttachMapper {
 	
 	public List<ReplyAttachVO> getOldReplyFiles();
 	
+	public void deleteFindBybno(long bno);
 
 }
