@@ -8,11 +8,44 @@
 
 
 <style type="text/css">
+
+	a:hover {
+	 color: #7ba6de;
+	  text-decoration: none;
+	}
 	
 	.board_loginPage{
 		text-align: center;
 	}
 	
+	.board_write_wrapper{
+		margin-top: 53px;
+	}
+	
+	.loginForm{
+		display: flex;
+	    flex-direction: column;
+	    gap: 6px;
+	}
+	
+	.loginBTN{
+		background-color: #3ab4e8;
+	    color: white;
+	    /* padding: 4px; */
+	    border-radius: 1.5rem;
+	    border: solid;
+	    padding: 5px 12px 5px 12px;
+	}
+	
+	.loginBTN:hover{
+		background-color: #0c81b3;
+	}
+	
+	.loginInput{
+		border-radius: 8px;
+	    border: 1px solid #e5e7eb;
+	    height: 28px;
+	}
 	
 	
 </style>
@@ -20,23 +53,26 @@
 	<div class="board_write_wrapper">
 	
 		<div class="board_loginPage">
-			<h1>Login Page COKE</h1>
+			<h1 style="font-family: 'Jua', sans-serif">로그인</h1>
 			<h2>${error }</h2>
 			<h2>${logout }</h2>
 			
-			<form action="/login" method="post">
+			<form class="loginForm" action="/login" method="post">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<div>
-					<input type="text" name="username">
+					<input class="loginInput" type="text" name="username" autofocus="autofocus" placeholder="ID">
 				</div>
 				<div>
-					<input type="password" name="password">
+					<input class="loginInput" type="password" name="password" placeholder="PASSWORD">
 				</div>
 				<div>
-					<input type="checkbox" name="remember-me">자동 로그인
+					<input type="checkbox" name="remember-me">로그인 정보 기억
 				</div>
 				<div>
-					<input type="submit">
+					<button class="loginBTN" type="submit">로그인</button>
+				</div>
+				<div>
+					<a href="/SignUpPage">회원가입</a>
 				</div>
 			</form>
 		</div> <!-- board_loginPage -->

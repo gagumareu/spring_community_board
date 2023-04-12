@@ -146,7 +146,7 @@
     	flex-direction: row;
     	width: 60%;
     	justify-content: center;
-    	
+    	font-family: 'Jua', sans-serif;
 	}
 	
 	.board_top_content_filter{

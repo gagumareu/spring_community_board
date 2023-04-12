@@ -9,6 +9,11 @@
 
 <style type="text/css">
 	
+	a:hover {
+	 color: #7ba6de;
+	  text-decoration: none;
+	}
+	
 	.idOkay{
 		display: none;
 	}
@@ -26,28 +31,51 @@
 	}
 	
 	.signUpFormWrapper{
-		margin-top: 100px;
+		margin-top: 53px;
 		display: flex;
 		justify-content: center;
+		flex-direction: column;
+    	text-align: center;
 	}
 	
 	#signUpForm{
 		text-align: center;
-	    width: 70%;
+	    
 	    display: flex;
 	    flex-direction: column;
+	    gap: 8px;
+	}
+	
+	.signUpInput{
+		border-radius: 8px;
+	    border: 1px solid #e5e7eb;
+	    height: 28px;
+	}
+	
+	.signUpBTN{
+		background-color: #3ab4e8;
+	    color: white;
+	    /* padding: 4px; */
+	    border-radius: 1.5rem;
+	    border: solid;
+	    padding: 5px 12px 5px 12px;
+	}
+	
+	.signUpBTN:hover{
+		background-color: #0c81b3;
 	}
 </style>
 
 		<div class="board_write_wrapper">		
 			<div class="signUpFormWrapper">
+				<h1 style="font-family: 'Jua', sans-serif">회원 가입</h1>
 				<form id="signUpForm" action="/insertUser" method="post">
 				
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					
 					<div class="inputIdBoxing">
 						<div>
-							<input id="idInput" type="text" name="userid" placeholder="ID" autofocus="autofocus" oninput="checkingId()">
+							<input class="signUpInput" id="idInput" type="text" name="userid" placeholder="ID" autofocus="autofocus" oninput="checkingId()">
 						</div>
 						<div class="idOkay">사용 가능한 아이디입니다.</div>
 						<div class="idExist">이미 사용중인 아이디입니다.</div>
@@ -56,18 +84,18 @@
 					</div>
 					
 					<div>
-						<input id="pwInput" type="password" name="userpw" placeholder="password" oninput="checkPw()" required="required">
+						<input class="signUpInput" id="pwInput" type="password" name="userpw" placeholder="password" oninput="checkPw()" required="required">
 					</div>
 					<div>
-						<input id="pwDoubleChecking" type="password" name="userpw" placeholder="confirm password" oninput="checkPw()" required="required">
+						<input class="signUpInput" id="pwDoubleChecking" type="password" name="userpw" placeholder="confirm password" oninput="checkPw()" required="required">
 					</div>
 					<div>
-						<input type="text" name="userName" placeholder="name" required="required">
+						<input class="signUpInput" type="text" name="userName" placeholder="name" required="required">
 					</div>
 					
 					<div>
-						<button id="signUpBTN" type="submit" disabled="disabled">가입</button>
-						<button type="button">취소</button>
+						<button class="signUpBTN" id="signUpBTN" type="submit" disabled="disabled">가입</button>
+						<button class="signUpBTN" type="button">취소</button>
 					</div>					
 					
 				</form>
@@ -76,11 +104,11 @@
 	
 	
 		
-		
+	<%@ include file="include/footer.jsp" %>
 	</div> <!-- wrapper -->
 	
 	
-	<%@ include file="include/footer.jsp" %>
+	
 	
 	<script type="text/javascript">
 		

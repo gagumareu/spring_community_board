@@ -46,6 +46,7 @@
 		display: flex;
 	    flex-direction: row;
 	    justify-content: space-between;
+	    margin-bottom: 30px;
 	}
 	
 	.reply_wrapper{
@@ -544,9 +545,10 @@
 				
 				for(var i = 0, len = list.length || 0; i < len; i++){
 					str += "<li class='reply_box' data-rno='"+list[i].rno+"' data-bno='"+bnoValue+"'>";				
-					str += "	<div class='reply_box_info'><div><strong class='reply_writer'>"+[list[i].rno]+list[i].replyer+"</strong>";
+					str += "	<div class='reply_box_info'><div><strong class='reply_writer'>"+list[i].replyer+"</strong>";
 					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small></div>"
-					str += "    <div class='rmbtn'>수정</div></div>"
+					//str += "    <div class='rmbtn'>수정</div></div>"
+					str += "    </div>"
 					str += "	<div class='reply_content'>"+list[i].reply+"</div>";
 					str += "</li>"
 				}
