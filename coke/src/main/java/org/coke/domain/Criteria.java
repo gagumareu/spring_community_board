@@ -1,4 +1,4 @@
-package org.coke.domain;
+ package org.coke.domain;
 
 import lombok.Getter;
 import lombok.Setter;

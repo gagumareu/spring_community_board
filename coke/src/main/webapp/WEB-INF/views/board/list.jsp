@@ -17,11 +17,13 @@
 		
 		.dto_list{
 			padding: 10px;
-			justify-content: space-between;
+			font-size: 12px;
 			display: flex;
 			flex-direction: row;
 			border-bottom: 1px solid #e5e7eb;
-			/*height: 90px;*/
+			/*height: 90px;
+			justify-content: space-between;
+			*/
 		}
 		
 		.board_content_list{
@@ -33,7 +35,7 @@
 		.board_list_title_wrapper{
 			display: flex;
     		flex-direction: column;
-    		gap: 0.2em;
+    		gap: 4px;
 		}
 		
 		.board_list_nickName_wrapper{
@@ -53,17 +55,19 @@
 			display: flex;
 	   		flex-direction: row;
 	    	align-items: center;
+	    	margin-left: 8px;
 		}
 		
 		.board_list_view{
-		    margin-left: 20px;
+		    margin-left: 5px;
 
 			display: flex;
     		flex-direction: row;
 		}
 		
 		.board_list_view img{
-			width: 25px;
+			width: 17px;
+    		height: 17px;
 		}
 		
 		.board_list_hit{
@@ -73,12 +77,12 @@
 		}
 		
 		.board_list_hit img {
-			width: 26px;
+			width: 23px;
 		}
 		
 		.hitCounting{
 			align-self: center;
-		
+			margin-left: 5px;
 		}
 		
 		.board_list_viewCounting{
@@ -349,6 +353,18 @@
 									<div class="board_list_date" >
 										<fmt:formatDate value="${dto.bregdate }" pattern="yyyy-MM-dd"/>
 									</div>
+									<div class="board_list_hit_wrapper">
+										<div class="board_list_hit">
+											<img src="/resources/upload/icon/view5.png">
+											<div class="hitCounting" >${dto.bhit }</div>	
+										</div>
+										<div class="board_list_view">
+											<img src="/resources/upload/icon/replyIcon.png"> 
+											<div class="board_list_viewCounting">
+												${dto.replycnt }
+											</div>
+										</div>
+									</div> <!-- board_list_hit_wrapper -->
 								</div>
 								
 								<a class="move" href="${dto.bno }">${dto.btitle }</a>
@@ -369,18 +385,7 @@
 								</div>					
 							</div> <!-- board_list_title_wrapper -->
 								
-							<div class="board_list_hit_wrapper">
-								<div class="board_list_hit">
-									<img src="/resources/upload/icon/view1.png">
-									<div class="hitCounting" >${dto.bhit }</div>	
-								</div>
-								<div class="board_list_view">
-									<img src="/resources/upload/icon/replyIcon.png"> 
-									<div class="board_list_viewCounting">
-										${dto.replycnt }
-									</div>
-								</div>
-							</div>
+							
 						</div> <!-- dto_list -->
 	
 					</c:forEach>
