@@ -30,4 +30,12 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public int checkId(String userid) {
+		
+		return mapper.checkDistinctId(userid);
+	}
+
+	
+
 }

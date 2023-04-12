@@ -11,4 +11,6 @@ public interface MemberMapper {
 	
 	public void grantAuth(AuthVO avo);
 	
+	public int checkDistinctId(String userid);
+	
 }

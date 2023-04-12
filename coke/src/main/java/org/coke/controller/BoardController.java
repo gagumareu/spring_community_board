@@ -220,7 +220,6 @@ public class BoardController {
 	
 	 
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
 	public ResponseEntity<List<BoardAttachVO>> getAttachList(long bno){
 		
 		

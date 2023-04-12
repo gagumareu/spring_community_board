@@ -37,6 +37,9 @@
     	<insert id="grantAuth">
     		insert into coke_member_auth (userid, auth) values (#{userid}, #{auth})
     	</insert>
-    	
+	    
+	    <select id="checkDistinctId" resultType="int">
+	    	select count(userid) from coke_member where userid = #{userid}
+	    </select>	
     
     </mapper>
