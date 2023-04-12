@@ -362,12 +362,10 @@
 		</div>	
 		 	 
 		</div> <!-- board_write_wrapper -->
-	
-	
-		<%@ include file="../include/footer.jsp" %>
 		
 	</div> <!-- wrapper -->
 	
+	<%@ include file="../include/footer.jsp" %>
 
 	<script type="text/javascript">
 		$(function(){

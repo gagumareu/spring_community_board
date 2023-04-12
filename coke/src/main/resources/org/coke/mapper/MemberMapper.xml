@@ -31,7 +31,12 @@
     	
     	
     	<insert id="insert">
-    		insert into coke_member (userid, userpw, username) values(#{userid}, #{userpw}, #{username})
+    		insert into coke_member (userid, userpw, username) values(#{userid}, #{userpw}, #{userName})
     	</insert>
+    	
+    	<insert id="grantAuth">
+    		insert into coke_member_auth (userid, auth) values (#{userid}, #{auth})
+    	</insert>
+    	
     
     </mapper>

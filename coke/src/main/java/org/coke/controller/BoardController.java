@@ -13,9 +13,11 @@ import java.util.UUID;
 import org.coke.domain.BoardAttachVO;
 import org.coke.domain.BoardVO;
 import org.coke.domain.Criteria;
+import org.coke.domain.MemberVO;
 import org.coke.domain.PageDTO;
 import org.coke.domain.ReplyAttachVO;
 import org.coke.mapper.BoardAttachMapper;
+import org.coke.mapper.MemberMapper;
 import org.coke.mapper.ReplyMapper;
 import org.coke.service.BoardService;
 import org.springframework.http.HttpStatus;
@@ -43,7 +45,6 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	private BoardService boardService;
-		
 	
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		
@@ -230,7 +231,6 @@ public class BoardController {
 	public void getNotice() {
 		
 	}
-	
 	
 	
 	

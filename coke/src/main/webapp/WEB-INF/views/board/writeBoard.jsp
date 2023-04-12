@@ -164,7 +164,7 @@
 					
 					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required="required" autofocus="autofocus">
 			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-			 		<input type="hidden" name="nickname" value="tester3">
+			 		<input type="hidden" name="nickname" value="<security:authentication property="principal.username"/>">
 			 		
 			 			 		
 			 		<div class="board_write_sort_wrapper" >
@@ -396,10 +396,9 @@
 			</div>
 		</div> <!-- board_write_wrapper -->
 	
-	
-		<%@ include file="../include/footer.jsp" %>
-		
 	</div> <!-- wrapper -->
+	
+	<%@ include file="../include/footer.jsp" %>
 	
 	<script type="text/javascript">
 	

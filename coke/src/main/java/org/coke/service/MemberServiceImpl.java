@@ -1,5 +1,6 @@
 package org.coke.service;
 
+import org.coke.domain.AuthVO;
 import org.coke.domain.MemberVO;
 import org.coke.mapper.MemberMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,13 +18,15 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void signUpMember(MemberVO vo) {
 		
-		log.info("insert member");
-		System.out.println("insert member");
-		
+		log.info("insert member");		
 		log.info("userpw: " + vo.getUserpw());
 		
-		
 		mapper.insert(vo);
+		
+		AuthVO avo = new AuthVO();
+		avo.setUserid(vo.getUserid());
+		avo.setAuth("ROLE_USER");
+		mapper.grantAuth(avo);
 		
 	}
 

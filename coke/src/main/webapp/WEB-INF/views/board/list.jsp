@@ -304,7 +304,7 @@
 				
 					
 					<div class="board_top_content_filter">
-						필터 
+						 
 					</div>
 				</div>
 			</div> <!-- board_top_content -->	
@@ -437,6 +437,7 @@
 						<div>게시물 스크렙 기능</div>
 						<div>회원 프로파일 이미지</div>
 						<div>회원 가입 페이지</div>
+						<div>게시물 리스트 정렬 방식</div>
 					</div>
 					</div>
 					<div class="rightBoxing">
@@ -446,7 +447,7 @@
 					<div class="topwriter_line">
 					</div>
 					<div class="backLogList">
-						<c:forEach items="${mostReplyList }" var="dto">
+						<c:forEach items="${mostReplyList }" var="dto" begin="0" end="9">
 							<div class="topwriterBoxes">
 								<a class="sideTitleToReading" href="${dto.bno }">${dto.btitle }</a> <div style="margin-left: 10px">${dto.replycnt }</div>
 							</div>

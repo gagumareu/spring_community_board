@@ -131,47 +131,52 @@ public class MemberTests {
 	}
 	
 	
+	
+	
 	@Test
-	public void insermember() {
+	public void inserUser() {
 		
 		String sql = "insert into coke_member (userid, userpw, username) values(?,?,?)";
 		
-		String sql2 = "insert into coke_member_auth (userid, auth) values(?,?)";
-				
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt= null;
 		
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "test00");
-			pstmt.setString(2, encoder.encode("tt00"));
-			pstmt.setString(3, "tester00");
+			pstmt.setString(1, "testuser1");
+			pstmt.setString(2, encoder.encode("1234"));
+			pstmt.setString(3, "tester1");
 			
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
-			
+			// TODO: handle exception
 		}finally {
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (Exception e2) {
-					
-				}
-			}
 			if(con != null) {
 				try {
 					con.close();
 				} catch (Exception e2) {
-					
+					// TODO: handle exception
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
 				}
 			}
 		}
 		
+		
+		
+		
+		
+		
+		
 	}
-	
 	
 	
 	

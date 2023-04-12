@@ -1,5 +1,6 @@
 package org.coke.controller;
 
+import org.coke.domain.AuthVO;
 import org.coke.domain.MemberVO;
 import org.coke.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +24,7 @@ public class CommonController {
 	@Setter(onMethod_ = @Autowired)
 	private MemberService memberService;
 
+	@Setter(onMethod_ = {@Autowired})
 	private PasswordEncoder encoder;
 	
 	@GetMapping("/LoginPage")
@@ -58,15 +61,21 @@ public class CommonController {
 	}
 	
 	@PreAuthorize("isAnonymous()")
-	@PostMapping("/signUp")
-	public void SignUpPost(MemberVO vo) {
+	@Transactional
+	@PostMapping("/insertUser")
+	public String SignUpPost(MemberVO vo) {
 		
-		log.info("insert member_log.info");
-		System.out.println("insert member_system.out.pring");
+		log.info("insert user");
+		
 		vo.setUserpw(encoder.encode(vo.getUserpw()));
 		
+		log.info(vo);
+		
 		memberService.signUpMember(vo);
+		
+		return "redirect:/board/list";
 	}
+	
 	
 	
 }

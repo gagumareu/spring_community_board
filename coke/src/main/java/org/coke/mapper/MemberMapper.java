@@ -1,5 +1,6 @@
 package org.coke.mapper;
 
+import org.coke.domain.AuthVO;
 import org.coke.domain.MemberVO;
 
 public interface MemberMapper {
@@ -8,6 +9,6 @@ public interface MemberMapper {
 	
 	public void insert(MemberVO vo);
 	
-	public void deleteAll(long rno);
+	public void grantAuth(AuthVO avo);
 	
 }

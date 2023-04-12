@@ -23,29 +23,40 @@
 				<h1>SignUp Page</h1>
 			</div>
 			
-			<form action="/signUp" method="post">
-				<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+			<form action="/insertUser" method="post">
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<div>
-					<label>userid</label><input type="text" name="userid">
+					<input type="text" name="userid" placeholder="ID" autofocus="autofocus">
 				</div>
 				<div>
-					<label>passwoard</label><input type="password" name="userpw">
+					<input type="password" name="userpw" placeholder="password">
 				</div>
 				<div>
-					<label>username</label><input type="text" name="username">
+					<input type="text" name="userName" placeholder="name">
 				</div>
-				<input type="hidden" name="auth" value="ROLE_USER">
+				
 				<button type="submit">제출</button>
 			</form>
 			
 		</div> <!-- board_write_wrapper -->
 	
 	
-		<%@ include file="include/footer.jsp" %>
+		
 		
 	</div> <!-- wrapper -->
 	
 	
+	<%@ include file="include/footer.jsp" %>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			var inputId = $("input[name='userid']").val();
+			
+			
+		});	
+	
+	</script>
 	
 	
 </body>

@@ -21,7 +21,7 @@
 	}
 	
 	a:hover {
-	  /*color: #7ba6de;*/
+	  color: black;
 	  text-decoration: none;
 	}
 	
@@ -51,6 +51,8 @@
 		border-top: 1px solid #e5e7eb;
 		margin-top: 5em;
 		font-family: 'Prompt', sans-serif;
+		width: 1200px;
+    	min-width: 1200px;
 	}
 	
 	.footerWrapper{
@@ -104,6 +106,10 @@
 	.header_sort_title {
 		margin-left: 1.5em;
 	}
+	
+	.header_sort_title a{
+		color: #337ab7;
+	}
 	.header_login{
 		display: flex;
     	flex-direction: row;
@@ -131,7 +137,7 @@
 	}
 	
 	.header_login_btn {
-		margin-left: 7em;
+		margin-left: 1em;
 	}
 	
 	.header_signUp_btn {
@@ -201,7 +207,7 @@
 					</div>
 					<div class="header_sort">
 						<div>
-							<a href="/board/list">전체글</a>
+							<a style="color: #337ab7" href="/board/list">전체글</a>
 						</div>
 						<div class="header_sort_title">
 							<a href="/board/list?bsort=음악">음악</a>
@@ -229,24 +235,43 @@
 						<div>
 							<a href="/LoginPage">로그인</a>
 						</div>
+						<div class="header_signUp_btn">
+							<a href="/SignUpPage">회원가입</a>
+						</div>
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">
 						<div class="header_login_btn">
-							<a href="/Logout">로그아웃</a>
+							<a href="#">마이페이지</a>
+						</div>
+						<div class="header_login_btn">
+							<a class="logoutBtn" href="/Logout">로그아웃</a>
 						</div>
 					</security:authorize>
 					
-					<div class="header_signUp_btn">
-						<a href="/SignUpPage">회원가입</a>
-					</div>
+					
 				</div> <!-- header_login -->
 				
 			</div> <!-- header_navbar -->
-			
+			<form id="logoutForm" action="/Logout" method="post">
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+			</form>
 			
 			
 		</div> <!-- header -->
 
+
+	<script>
+		$(document).ready(function(){
+			var actionForm = $("#logoutForm");
+			$(".logoutBtn").on("click", function(e){
+				e.preventDefault();
+				console.log("clicking");
+				actionForm.submit();
+				
+			});
+		});
+	
+	</script>
 
 
 

@@ -492,11 +492,10 @@
 			
 		</div> <!-- board_content -->
 		
-	
-		<%@ include file="../include/footer.jsp" %>
-		
+
 	</div> <!-- wrapper -->
 	
+	<%@ include file="../include/footer.jsp" %>
 	
 	<script type="text/javascript" src="/resources/js/board_reply.js"></script>
 	
