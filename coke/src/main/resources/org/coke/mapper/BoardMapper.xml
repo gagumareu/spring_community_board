@@ -188,5 +188,44 @@
 		where replycnt >= 1 order by replycnt desc
 	</select>
 	
+	<select id="getMusicList" resultType="org.coke.domain.BoardVO">
+		select /*+ INDEX_DESC(coke_board pk_cboard)*/
+			rownum rn, bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+		from
+			coke_board
+		where
+			bsort = '음악'
+	</select>
+	
+	<select id="getKnowList" resultType="org.coke.domain.BoardVO">
+	select /*+ INDEX_DESC(coke_board pk_cboard)*/
+		rownum rn, bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+	from
+		coke_board
+	where
+		bsort = '지식'
+	</select>
+	
+	
+	<select id="getCompList" resultType="org.coke.domain.BoardVO">
+	select /*+ INDEX_DESC(coke_board pk_cboard)*/
+		rownum rn, bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+	from
+		coke_board
+	where
+		bsort = '컴퓨터'
+	</select>
+	
+	<select id="getComuniList" resultType="org.coke.domain.BoardVO">
+	select /*+ INDEX_DESC(coke_board pk_cboard)*/
+		rownum rn, bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+	from
+		coke_board
+	where
+		bsort = '커뮤니티'
+	</select>
+	
+	
+	
 
 </mapper>

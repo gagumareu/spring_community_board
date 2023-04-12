@@ -203,7 +203,7 @@
 				
 				<div class="header_sortAndLogin_warpper">
 					<div class="header_main_log">
-						<a id="header_logo" href="/board/list">MAIN</a>
+						<a id="header_logo" href="/">MAIN</a>
 					</div>
 					<div class="header_sort">
 						<div>

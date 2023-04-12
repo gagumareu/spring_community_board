@@ -145,6 +145,26 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.getMostReply();
 	}
 
+	@Override
+	public List<BoardVO> getMusicList() {
+		return boardMapper.getMusicList();
+	}
+
+	@Override
+	public List<BoardVO> getKnowList() {
+		return boardMapper.getKnowList();
+	}
+
+	@Override
+	public List<BoardVO> getComList() {
+		return boardMapper.getCompList();
+	}
+
+	@Override
+	public List<BoardVO> getComuList() {
+		return boardMapper.getComuniList();
+	}
+
 	
 	
 

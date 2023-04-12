@@ -34,4 +34,13 @@ public interface BoardMapper {
 	public List<BoardVO> getMostViewList();
 	
 	public List<BoardVO> getMostReply();
+	
+	public List<BoardVO> getMusicList();
+	
+	public List<BoardVO> getKnowList();
+	
+	public List<BoardVO> getCompList();
+	
+	public List<BoardVO> getComuniList();
+	
 }

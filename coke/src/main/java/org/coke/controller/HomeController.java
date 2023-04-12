@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.coke.mapper.BoardMapper;
+import org.coke.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class HomeController {
 	
+	private BoardService boardService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -39,6 +43,15 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		
+		model.addAttribute("musicList", boardService.getMusicList());
+		model.addAttribute("knowList", boardService.getKnowList());
+		model.addAttribute("comList", boardService.getComList());
+		model.addAttribute("comuList", boardService.getComuList());
+		
+		model.addAttribute("topwriterList", boardService.getTowriterList());
+		model.addAttribute("mostViewList", boardService.getViewList());
+		model.addAttribute("mostReplyList", boardService.getMostReplyList());
 		
 		return "home";
 	}

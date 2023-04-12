@@ -31,4 +31,13 @@ public interface BoardService {
 	public List<BoardVO> getViewList();
 	
 	public List<BoardVO> getMostReplyList();
+	
+	public List<BoardVO> getMusicList();
+	
+	public List<BoardVO> getKnowList();
+	
+	public List<BoardVO> getComList();
+	
+	public List<BoardVO> getComuList();
+	
 }
