@@ -15,4 +15,12 @@ Database : Oracle SQL Developer
 
 버전 관리 : Git 
 
+
+
+메인페이지
+![main](https://user-images.githubusercontent.com/98436199/231664133-747e60f4-a5fb-4ef5-8584-1499900fc5bc.png)
+
+
+
+전체 기시물 
 ![ListAll](https://user-images.githubusercontent.com/98436199/231664325-0e38a48c-69f6-4e6c-a71a-d0b918a3dab2.png)
