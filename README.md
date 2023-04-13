@@ -1,5 +1,5 @@
 ## 개발 목표
-커뮤니티 게시판 웹 ***개인 프로젝트***
+커뮤니티 게시판 웹 **개인 프로젝트**
 - 카테고리 별로 게시판 분류
 - 케테고리 안에 소분류로 원하는 게시판 분류 가능
 - 검색기능 "선택한 게시판(카테고리)내에서 검색 및 뒤로가기 적용"
@@ -13,7 +13,7 @@
 - Mybatis
 - Spring Security
 - summernote edition
-Database : Oracle SQL Developer
+- Database : Oracle SQL Developer
 
 사용 언어 : Java, HTML, CSS, Jquery, SQL
 
@@ -25,7 +25,7 @@ Database : Oracle SQL Developer
 - 게시물 스크렙 기능
 - 회원 프로파일 이미지
 - 게시물 리스트 정렬 방식(필터)
-- 소셜 
+- 소셜 로그인
 ------
 ### 메인페이지
 - 사이드 박스에 조회수 순위가 높은 게시물, 댓글 달린 순위가 높은 게시물, 게시물 작성 순위가 높은 회원순을 사이드 박스에 표시
