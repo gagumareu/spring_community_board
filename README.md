@@ -14,4 +14,4 @@ Database : Oracle SQL Developer
 사용 언어 : Java, HTML, CSS, Jquery, SQL
 
 버전 관리 : Git 
-:blush:
+
