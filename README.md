@@ -38,10 +38,10 @@
 ![ListAll](https://user-images.githubusercontent.com/98436199/231664325-0e38a48c-69f6-4e6c-a71a-d0b918a3dab2.png)
 ---
 ### 원하는 게시판 선택
-![musicList](https://user-images.githubusercontent.com/98436199/231667888-30dc195b-b832-4458-a75a-2daf4ba6e6d1.png)
+![KakaoTalk_20230413_152456526_01](https://user-images.githubusercontent.com/98436199/231672196-09011ae7-699b-4813-bcf6-47d734d7dc65.jpg)
 ---
 ### 선택한 게시판 내에서 소분류 가능
-![tagList](https://user-images.githubusercontent.com/98436199/231668385-1d52deec-e11b-47ee-84c5-9726ccb6c0a6.png)
+![KakaoTalk_20230413_152456526](https://user-images.githubusercontent.com/98436199/231672113-71da4845-ea9d-4375-81a8-89983f90eb0b.jpg)
 ---
 ### summernote edtion 적용
 - 첨부파일 첨부시 DB서버에 저장
