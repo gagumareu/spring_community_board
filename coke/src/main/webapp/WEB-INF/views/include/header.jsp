@@ -241,7 +241,7 @@
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">
 						<div class="header_login_btn">
-							<a href="#">마이페이지</a>
+							<a href="/board/MyPage?userid='<security:authentication property="principal.username"/>'">마이페이지</a>
 						</div>
 						<div class="header_login_btn">
 							<a class="logoutBtn" href="/Logout">로그아웃</a>

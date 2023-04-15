@@ -41,5 +41,10 @@
 	    <select id="checkDistinctId" resultType="int">
 	    	select count(userid) from coke_member where userid = #{userid}
 	    </select>	
+	    
+	    <select id="getuser" resultType="org.coke.domain.MemberVO">
+	    	select * from coke_member where userid = #{userid}
+	    </select>
+	    
     
     </mapper>

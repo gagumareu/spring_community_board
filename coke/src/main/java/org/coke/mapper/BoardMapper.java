@@ -43,4 +43,7 @@ public interface BoardMapper {
 	
 	public List<BoardVO> getComuniList();
 	
+	public List<BoardVO> getMyBoard(String userid);
+	
+	
 }

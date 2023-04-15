@@ -13,4 +13,6 @@ public interface MemberMapper {
 	
 	public int checkDistinctId(String userid);
 	
+	public MemberVO getuser(String userid);
+	
 }

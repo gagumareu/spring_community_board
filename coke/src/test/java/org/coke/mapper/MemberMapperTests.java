@@ -46,6 +46,16 @@ public class MemberMapperTests {
 		mapper.insert(vo);
 	}
 	
-	
+	@Test
+	public void readMember() {
+		
+		String user = "pizzatoday";
+		
+		MemberVO dto = mapper.read(user);
+		
+		log.info(dto.getUserid());
+		log.info(dto.getUserName());
+		log.info(dto.getRegDate());
+	}
 
 }

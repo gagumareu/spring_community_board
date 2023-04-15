@@ -7,4 +7,6 @@ public interface MemberService {
 	public void signUpMember(MemberVO vo);
 	
 	public int checkId(String userid);
+	
+	public MemberVO getMember(String userid);
 }

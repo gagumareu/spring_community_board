@@ -165,6 +165,12 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.getComuniList();
 	}
 
+	@Override
+	public List<BoardVO> getMemberBoardList(String userid) {
+		
+		return boardMapper.getMyBoard(userid);
+	}
+
 	
 	
 

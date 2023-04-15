@@ -36,6 +36,14 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.checkDistinctId(userid);
 	}
 
+	@Override
+	public MemberVO getMember(String userid) {
+		
+		return mapper.getuser(userid);
+	}
+
+	
+
 	
 
 }

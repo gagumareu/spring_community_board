@@ -225,7 +225,9 @@
 		bsort = '커뮤니티'
 	</select>
 	
-	
+	<select id="getMyBoard" resultType="org.coke.domain.BoardVO">
+		select * from coke_board where userid = #{userid} order by bregdate desc
+	</select>
 	
 
 </mapper>

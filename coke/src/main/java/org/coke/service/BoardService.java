@@ -40,4 +40,6 @@ public interface BoardService {
 	
 	public List<BoardVO> getComuList();
 	
+	public List<BoardVO> getMemberBoardList(String userid);
+	
 }

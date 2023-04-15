@@ -20,6 +20,7 @@ import org.coke.mapper.BoardAttachMapper;
 import org.coke.mapper.MemberMapper;
 import org.coke.mapper.ReplyMapper;
 import org.coke.service.BoardService;
+import org.coke.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	private BoardService boardService;
+	
+	private MemberService memberService;
 	
 	private void deleteFiles(List<BoardAttachVO> attachList) {
 		
@@ -231,6 +234,24 @@ public class BoardController {
 		
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/MyPage")
+	public void myPage(Model model, @RequestParam("userid") String userid) {
+		
+		log.info("-----------------------------");
+		log.info("my page");
+		log.info("param id: " + userid);
+		
+		MemberVO member = memberService.getMember(userid);
+		
+		log.info("memberVO: " + member);
+		
+		model.addAttribute("memberDto", member);
+		
+		model.addAttribute("topwriterList", boardService.getTowriterList());
+		model.addAttribute("mostViewList", boardService.getViewList());
+		model.addAttribute("mostReplyList", boardService.getMostReplyList());
+	}
 	
 	
 }
