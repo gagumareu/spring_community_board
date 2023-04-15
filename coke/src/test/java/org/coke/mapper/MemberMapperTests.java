@@ -1,6 +1,7 @@
 package org.coke.mapper;
 
 import org.coke.domain.MemberVO;
+import org.coke.security.domain.CustomUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/security-context.xml", "file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @Log4j
 public class MemberMapperTests {
 	
@@ -53,9 +54,26 @@ public class MemberMapperTests {
 		
 		MemberVO dto = mapper.read(user);
 		
+		CustomUser de =  new CustomUser(dto);
+		
+		log.info(dto);
+		log.info(de);
+		
+	}
+	
+	@Test
+	public void readMember2() {
+		
+		String user = "pizzatoday";
+		
+		MemberVO dto = mapper.getuser(user);
+		
+		
+		
 		log.info(dto.getUserid());
 		log.info(dto.getUserName());
 		log.info(dto.getRegDate());
 	}
+	
 
 }

@@ -19,6 +19,7 @@ import org.coke.domain.ReplyAttachVO;
 import org.coke.mapper.BoardAttachMapper;
 import org.coke.mapper.MemberMapper;
 import org.coke.mapper.ReplyMapper;
+import org.coke.security.domain.CustomUser;
 import org.coke.service.BoardService;
 import org.coke.service.MemberService;
 import org.springframework.http.HttpStatus;
@@ -242,11 +243,13 @@ public class BoardController {
 		log.info("my page");
 		log.info("param id: " + userid);
 		
-		MemberVO member = memberService.getMember(userid);
+		MemberVO vo = memberService.getMember(userid);
 		
-		log.info("memberVO: " + member);
+//		CustomUser user = new CustomUser(vo);
+//		
+		log.info("memberVO: " + vo);
 		
-		model.addAttribute("memberDto", member);
+		model.addAttribute("memberDto", vo);
 		
 		model.addAttribute("topwriterList", boardService.getTowriterList());
 		model.addAttribute("mostViewList", boardService.getViewList());
