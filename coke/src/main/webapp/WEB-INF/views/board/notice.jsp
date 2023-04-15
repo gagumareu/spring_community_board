@@ -265,14 +265,10 @@
 				<div class="notice_wrapper">
 					<h3>개선할 사항</h3>
 					<ul style="list-style: initial">
-						<li>첫 페이지 만들기</li>
-						<li></li>
-						<li>-------------------</li>
 						<li>로그인 / 비밀번호 오류시 알림</li>
 						<li>로그인 / 회원정보 찾기</li>
 						<li>-------------------</li>
 						<li>대댓글 기능</li>
-						<li>댓글 summernote 이미지 첨부시 사진크기 제안(보류)</li>
 						<li>-------------------</li>
 						<li>비로그인 access denied</li>
 						<li>delete access denied</li>

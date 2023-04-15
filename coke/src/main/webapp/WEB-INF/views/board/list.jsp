@@ -443,6 +443,7 @@
 						<div>회원 프로파일 이미지</div>
 						<div>회원 가입 페이지</div>
 						<div>게시물 리스트 정렬 방식</div>
+						<div>대 댓글</div>
 					</div>
 					</div>
 					<div class="rightBoxing">

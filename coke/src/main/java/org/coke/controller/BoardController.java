@@ -245,9 +245,11 @@ public class BoardController {
 		
 		MemberVO vo = memberService.getMember(userid);
 		
-//		CustomUser user = new CustomUser(vo);
-//		
+//		MemberVO vo2 = memberService.readCustomUser(userid);
+//		CustomUser user = new CustomUser(vo2);
+		
 		log.info("memberVO: " + vo);
+//		log.info("customUser: " + user);
 		
 		model.addAttribute("memberDto", vo);
 		
