@@ -375,6 +375,9 @@
 							</div>
 							<div>
 								merge test fifth from master
+							</div>	
+							<div>
+								merge test sixth from master vis git command
 							</div>				
 						</div>
 					</div> <!-- securityInfobox -->
