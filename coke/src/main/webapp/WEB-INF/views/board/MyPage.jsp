@@ -361,13 +361,11 @@
 						</div>
 						</security:authorize>
 						<div>
-<<<<<<< HEAD
 							<div>
 								master merge test
 							</div>	
-=======
 							<h3>Merge test</h3>	
->>>>>>> pizzatoday
+
 						</div>
 					</div> <!-- securityInfobox -->
 					
