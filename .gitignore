@@ -234,5 +234,8 @@ $RECYCLE.BIN/
 
 #spring 
 root-context.xml
+pom.properties
+MANIFEST.MF
+
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij,windows
