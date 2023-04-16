@@ -236,6 +236,7 @@ $RECYCLE.BIN/
 root-context.xml
 pom.properties
 MANIFEST.MF
-
+MANIFEST
+*.MANIFEST
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij,windows
