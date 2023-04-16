@@ -362,10 +362,14 @@
 						</security:authorize>
 						<div>
 							<div>
+								<h3>Merge test</h3>
+							</div>	
+							<div>
 								master merge test
 							</div>	
-							<h3>Merge test</h3>	
-
+							<div>
+								merge test third
+							</div>						
 						</div>
 					</div> <!-- securityInfobox -->
 					
