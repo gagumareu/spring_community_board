@@ -369,8 +369,7 @@
 							</div>	
 							<div>
 								merge test third
-							</div>
-							
+							</div>						
 						</div>
 					</div> <!-- securityInfobox -->
 					
