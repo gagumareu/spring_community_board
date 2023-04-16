@@ -37,7 +37,7 @@ public class CommonController {
 		log.info("logout: " + logout);
 		
 		if(error != null) {
-			model.addAttribute("error", "Login Error Check Your Account");
+			model.addAttribute("error", "회원 정보가 일지하지 않습니다.");
 		}
 		if(logout != null) {
 			model.addAttribute("logout", "Logout!!!");

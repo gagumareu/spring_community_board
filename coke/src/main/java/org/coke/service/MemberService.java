@@ -9,4 +9,6 @@ public interface MemberService {
 	public int checkId(String userid);
 	
 	public MemberVO getMember(String userid);
+	
+	public MemberVO readCustomUser(String userid);
 }
