@@ -361,7 +361,7 @@
 						</div>
 						</security:authorize>
 						<div>
-								
+							<h3>Merge test</h3>	
 						</div>
 					</div> <!-- securityInfobox -->
 					
