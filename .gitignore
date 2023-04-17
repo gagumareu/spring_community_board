@@ -238,5 +238,6 @@ pom.properties
 MANIFEST.MF
 MANIFEST
 *.MANIFEST
+log4jdbc.log4j2.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij,windows
