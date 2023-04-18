@@ -421,7 +421,7 @@
 					<div class="securityInfoBox">
 						<div class="profileDvi">
 							<div class="profileImageBox">
-								<img id="profileImg" alt="" style="width: 100px" src="/resources/upload/icon/profileIamge.png">													
+								<img id="profileImg" src="/resources/upload/icon/profileIamge.png">													
 							</div> <!-- profileImageBox -->
 							<form action="" method="post">
 								<input id="InputFile" type="file" name="uploadFile">
@@ -495,8 +495,15 @@
 		<security:authorize access="isAuthenticated()">		
 			userid ="<security:authentication property="principal.username"/>";		
 		</security:authorize>
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
 		
-		var actionForm = $(".actionForm");
+		var actionForm = $(".actionForm");			
+		//var imageBox = $("#profileImg");
+		var imageBox = $(".ProfileBtn");
+		var inputImage = $("input[name='uploadFile']");	
+		var submitActionForm = $(".userIdAndName");
+		var imageDiv = $(".profileImageBox");
 		
 		$("#modify").on("click", function(){
 			console.log("clicked");	
@@ -504,13 +511,6 @@
 			actionForm.submit();
 			
 		});
-		
-		//var imageBox = $("#profileImg");
-		var imageBox = $(".ProfileBtn");
-		var inputImage = $("input[name='uploadFile']");
-		
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
 		
 		$(imageBox).on("click", function(e){
 			console.log("clicked");
@@ -560,15 +560,18 @@
 			});			
 		}); 
 		
+		
 		function showUpload(arr){
 			
 			if(!arr){
 				return;
 			}
 			
-			var imageDiv = $(".profileImageBox");
+			
 			
 			var str = "";
+			
+			var img = "";
 			
 			$(arr).each(function(i, dto){
 				
@@ -581,17 +584,30 @@
 						+ "_" + dto.fileName);
 				console.log(fileCallPath);
 				
-				var path = ""+dto.uploadPath+" + '/' + "+dto.uuid+" + '_' + "+dto.fileName+"";
-				console.log(path);
-				str += "<img id='profileImg' style='width: 100px' src='/displayProfile?fileName="+fileCallPath+"'>";
-			//	str += "<img id='profileImg' style='width: 100px' src='/resources/upload/icon/click1.png'>";
-				
+				str += "<img id='profileImg' src='/displayProfile?fileName="+fileCallPath+"'>";
+				img += "<input type='hidden' name='uuid' value='"+dto.uuid+"'>";
+				img += "<input type='hidden' name='fileName' value='"+dto.fileName+"'>";
+				img += "<input type='hidden' name='uploadPath' value='"+dto.uploadPath+"'>";
 			});
 			imageDiv.html("");
 			imageDiv.append(str);
+			submitActionForm.append(img);
 		} // showUpload end
 		
-		
+		$.getJSON("/myPage/getUserAttach", {userid: userid}, function(dto){
+			
+			console.log(dto);
+			
+			var str = "";
+			
+			var fileCallPath = encodeURIComponent(dto.uploadPath + "/" + dto.uuid + "_" + dto.fileName);
+			console.log(fileCallPath);
+			
+			str = "<img id='profileImg' src='/displayProfile?fileName="+fileCallPath+"'>";
+			
+			imageDiv.html("");
+			imageDiv.append(str);
+		});
 		
 		
 	});	

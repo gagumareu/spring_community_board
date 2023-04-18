@@ -1,8 +1,12 @@
 package org.coke.controller;
 
+import org.coke.domain.MemberAttachVO;
 import org.coke.domain.MemberVO;
 import org.coke.service.BoardService;
 import org.coke.service.MemberService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -55,6 +60,7 @@ public class MyPageController {
 		log.info("-------------------");
 		log.info("member update");
 		log.info(vo);
+		vo.setFileType(true);
 		
 		if(memberService.updateMember(vo)) {
 			rttr.addFlashAttribute("result", "success");
@@ -65,5 +71,19 @@ public class MyPageController {
 		
 		return "redirect:/myPage/main";
 	}
+	
+	@GetMapping(value = "/getUserAttach", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<MemberAttachVO> getUserAttach(String userid){
+		
+		log.info("get attach by memberControll: " + userid);
+		
+		return new ResponseEntity<>(memberService.getUserAttach(userid), HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
 
 }

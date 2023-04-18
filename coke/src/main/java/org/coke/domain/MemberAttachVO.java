@@ -9,5 +9,6 @@ public class MemberAttachVO {
 	private String uuid;
 	private String uploadPath;
 	private String fileType;
+	private String fileName;
 
 }

@@ -17,4 +17,8 @@ public class MemberVO {
 	private Date updateDate;
 	private List<AuthVO> authList;
 	
+	private String uuid;
+	private String uploadPath;
+	private String fileName;
+	private boolean fileType;
 }

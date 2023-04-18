@@ -1,10 +1,12 @@
 package org.coke.service;
 
 import org.coke.domain.AuthVO;
+import org.coke.domain.MemberAttachVO;
 import org.coke.domain.MemberVO;
 import org.coke.mapper.MemberMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -49,12 +51,24 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.read(userid);
 	}
 
+	@Transactional
 	@Override
-	public boolean updateMember(MemberVO vo) {
+	public boolean updateMember(MemberVO vo) {		
+		
+		if(vo.getUuid() != null && vo.getUploadPath() != null && vo.getFileName() != null) {
+			mapper.deleteProfileImage(vo.getUserid());
+			mapper.insertProfile(vo);
+		}
 		
 		boolean result = mapper.update(vo) == 1;
 		
 		return result;
+	}
+
+	@Override
+	public MemberAttachVO getUserAttach(String userid) {
+		
+		return mapper.getAttach(userid);
 	}
 
 	

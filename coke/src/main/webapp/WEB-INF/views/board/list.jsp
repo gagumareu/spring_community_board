@@ -285,13 +285,16 @@
 					<div class="board_top_content_register">
 						<security:authorize access="isAuthenticated()">
 							<c:if test="${pageMaker.cri.bsort eq null and pageMaker.cri.btag eq null}">
-								<a href="/board/writeBoard?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
+								<a href="/board/writeBoard?pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&
+								userid='<security:authentication property="principal.username"/>'">글 작성하기</a>
 							</c:if>
 							<c:if test="${!empty pageMaker.cri.bsort}">
-								<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
+								<a href="/board/writeBoard?bsort=${pageMaker.cri.bsort }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&
+								userid='<security:authentication property="principal.username"/>'">글 작성하기</a>
 							</c:if>
 							<c:if test="${!empty pageMaker.cri.btag}">
-								<a href="/board/writeBoard?btag=${pageMaker.cri.btag }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">글 작성하기</a>
+								<a href="/board/writeBoard?btag=${pageMaker.cri.btag }&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&
+								userid='<security:authentication property="principal.username"/>'">글 작성하기</a>
 							</c:if>
 							
 						</security:authorize>
@@ -349,7 +352,7 @@
 							<div class="board_list_title_wrapper">							
 								
 								<div class="board_list_nickName_wrapper">
-									<div class="board_list_nickNameDiv"><a href="#">${dto.userid }</a></div>
+									<div class="board_list_nickNameDiv"><a href="#">${dto.nickname }</a></div>
 									<div class="board_list_date" >
 										<fmt:formatDate value="${dto.bregdate }" pattern="yyyy-MM-dd"/>
 									</div>

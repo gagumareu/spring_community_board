@@ -108,25 +108,29 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/writeBoard")
 	public void writeBoard(@RequestParam(value = "bsort", required = false) String bsort, Model model, 
-			@RequestParam(value = "btag", required = false) String btag, @ModelAttribute("cri") Criteria cri) {
+			@RequestParam(value = "btag", required = false) String btag, @ModelAttribute("cri") Criteria cri, 
+			@RequestParam("userid") String userid) {
 		
 		log.info("---------------------------");
 		log.info("sort on writeBoard: " + bsort);
 		log.info("tag on writeBoard: " + btag);
 		log.info("page: " + cri.getPageNum());
 		log.info("amount: " + cri.getAmount());
+		log.info("userid: " + userid);
 		
-		if(bsort != null) {
-			
-			log.info("sort: " + bsort);
-			
+		MemberVO vo = memberService.getMember(userid);
+		log.info("memberVO: " + vo);
+		
+	//	model.addAttribute("userName", vo.getUserName());
+		
+		if(bsort != null) {			
+			log.info("sort: " + bsort);			
 			model.addAttribute("bsort", bsort);
-		}else if(btag != null) {
-			
-			log.info("tag: " + btag);
-			
+		}else if(btag != null) {			
+			log.info("tag: " + btag);		
 			model.addAttribute("btag", btag);
 		}
+		
 	}
 	
 	@PreAuthorize("isAuthenticated()")

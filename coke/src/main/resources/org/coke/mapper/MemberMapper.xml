@@ -47,11 +47,21 @@
 	    </select>
 	    
 	    <insert id="insertProfile">
-	    	insert into coke_member_attach (userid, uudi, uploadpath, filetype)	values(#{userid}, #{uuid}, #{uploadPath}, #{fileType})
+	    	insert into coke_member_attach (userid, uuid, uploadPath, fileType, fileName)	
+	    	values(#{userid}, #{uuid}, #{uploadPath}, #{fileType}, #{fileName})
 	    </insert>
 	    
 	    <update id="update">
 	    	update coke_member set userName = #{userName}, updatedate = sysdate where userid = #{userid}
 	    </update>
+	    
+	    <delete id="deleteProfileImage">
+	    	delete from coke_member_attach where userid = #{userid}
+	    </delete>
+	    
+	    <select id="getAttach" resultType="org.coke.domain.MemberAttachVO">
+	    	select * from coke_member_attach where userid = #{userid}
+	    </select>
+	    
     
     </mapper>

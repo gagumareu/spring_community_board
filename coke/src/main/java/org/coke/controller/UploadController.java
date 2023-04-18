@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.coke.domain.AttachFileDTO;
+import org.coke.domain.MemberAttachVO;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;

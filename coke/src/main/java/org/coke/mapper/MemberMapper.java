@@ -16,8 +16,12 @@ public interface MemberMapper {
 	
 	public MemberVO getuser(String userid);
 	
-	public void insertProfile(String userid);
+	public void insertProfile(MemberVO vo);
 	
 	public int update(MemberVO vo);
+	
+	public void deleteProfileImage(String userid);
+	
+	public MemberAttachVO getAttach(String userid);
 	
 }

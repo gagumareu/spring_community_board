@@ -164,7 +164,7 @@
 					
 					<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required="required" autofocus="autofocus">
 			 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-			 		<input type="hidden" name="nickname" value="<security:authentication property="principal.username"/>">
+			 		<input type="hidden" name="nickname" value="${userName }">
 			 		
 			 			 		
 			 		<div class="board_write_sort_wrapper" >
