@@ -272,6 +272,29 @@
 		margin-bottom: 80px;
 	}
 	
+	.profileDvi{
+		display: flex;
+    	justify-content: center;
+	}
+	
+	.profileImageBox{
+	    border-radius: 100%;
+        width: 100px;
+    	height: 100px;
+	}
+	
+	
+	
+	#InputFile{
+		display: none;
+	}
+	
+	#profileImg{
+		border-radius: 100%;
+		width: 100%;
+		height: 100%;
+	}
+	
 	.memberinfoBox{
 		display: grid;
     	grid-template-columns: 1fr 1fr 1fr;
@@ -292,17 +315,6 @@
 		cursor:pointer;
 	}
 	
-	.myList{
-		display: none;
-	}
-	
-	.profileIage img {
-		border-radius: 50px
-	}
-	
-	.securityInfoBox{
-		margin-top: 55px;
-	}
 	</style>
 		
 		
@@ -338,9 +350,9 @@
 				</div> <!-- topwriterList -->
 							
 				<div class="board_content_list">
-					
+				
 					<div class="memberinfoBox">
-						<div class="inforBoxes">
+						<div class="inforBoxes" id="modify">
 							회원 정보 변경
 						</div>
 						<div class="inforBoxes">
@@ -351,42 +363,18 @@
 						</div>
 					</div> <!-- memberinfoBox -->
 					
-					<div class="securityInfoBox">
-						<div class="profileIage">
-							<img alt="" src="/resources/upload/icon/profileIamge.png" style="width: 100px">
-						</div>
-						<security:authorize access="isAuthenticated()">
-						<div>
-							ID: <security:authentication property="principal.username"/>
-						</div>
-						</security:authorize>
-						<div>
-							<div>
-								<h3>Merge test</h3>
-							</div>	
-							<div>
-								master merge test
-							</div>	
-							<div>
-								merge test third
-							</div>
-							<div>
-								merge test fourth
-							</div>
-							<div>
-								merge test fifth from master
-							</div>	
-							<div>
-								merge test sixth from master vis git command
-							</div>				
-						</div>
-					</div> <!-- securityInfobox -->
+					<div class="profileDvi">
+						<div class="profileImageBox">
+							<img id="profileImg" alt="" style="width: 100px" src="/resources/upload/icon/profileIamge.png">													
+						</div> <!-- profileImageBox -->
+						<form action="" method="post">
+							<input id="InputFile" type="file" name="uploadFile">
+						</form>
+					</div> <!-- profileDvi -->
 					
 				</div> <!-- board_content_list -->
 				
-				<div class="myList"> 
 				
-				</div>
 				
 				<div class="rigthSideBox">
 					<div class="rightBoxing">
@@ -429,13 +417,112 @@
 	</div> <!-- wrapper -->
 	<%@ include file="../include/footer.jsp" %>
 	
-	<script>
+<script>
+	$(document).ready(function(){
 		
-		var userid ="<security:authentication property="principal.username"/>";
 		
+		var userid = null;		
+		<security:authorize access="isAuthenticated()">		
+			userid ="<security:authentication property="principal.username"/>";		
+		</security:authorize>
+		
+		var actionForm = $(".actionForm");
+		
+		$("#modify").on("click", function(){
+			console.log("clicked");	
+			actionForm.append("<input type='hidden' name='userid' value='"+userid+"'>");
+			actionForm.submit();
+			
+		});
+				
+		var imageBox = $("#profileImg");
+		var inputImage = $("input[name='uploadFile']");
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		$(imageBox).on("click", function(e){
+			console.log("clicked");
+			inputImage.click();
+		});
+		
+		$("input[type='file']").change(function(e){
+			
+			var formData = new FormData();
+			
+			console.log("changed");
+			
+			var file = inputImage[0].files;
+			
+			console.log(file);
+			
+			for(var i = 0; i < file.length; i++){
+				formData.append("uploadFile", file[i]);	
+			}
+										
+			console.log(formData);
+			
+			// FormData의 key 확인
+			for (var key of formData.keys()) {
+			     console.log(key);
+			}
+			            
+			// FormData의 value 확인
+			for (var value of formData.values()) {
+			     console.log(value);
+			}
+			
+			$.ajax({
+				url: '/uploadProfile',
+				processData: false,
+				contentType: false, 
+				beforeSend: function(xhr){
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				data: formData,
+				type: 'POST',				
+				dataType: 'json',
+				success: function(result){
+					console.log(result);
+					showUpload(result);
+				}
+			});			
+		}); 
+		
+		function showUpload(arr){
+			
+			if(!arr){
+				return;
+			}
+			
+			var imageDiv = $(".profileImageBox");
+			
+			var str = "";
+			
+			$(arr).each(function(i, dto){
+				
+				console.log(dto.uploadPath);
+				console.log(dto.uuid);
+				console.log(dto.fileName);
+				console.log(dto.image);
+				
+				var fileCallPath = encodeURIComponent(dto.uploadPath + "/" + dto.uuid
+						+ "_" + dto.fileName);
+				console.log(fileCallPath);
+				
+				var path = ""+dto.uploadPath+" + '/' + "+dto.uuid+" + '_' + "+dto.fileName+"";
+				console.log(path);
+				str += "<img id='profileImg' style='width: 100px' src='/displayProfile?fileName="+fileCallPath+"'>";
+			//	str += "<img id='profileImg' style='width: 100px' src='/resources/upload/icon/click1.png'>";
+				
+			});
+			imageDiv.html("");
+			imageDiv.append(str);
+		} // showUpload end
+	});
 	
-	
-	</script>
+
+</script>
 	
 	
 </body>

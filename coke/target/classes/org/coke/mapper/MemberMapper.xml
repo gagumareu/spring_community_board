@@ -46,5 +46,12 @@
 	    	select * from coke_member where userid = #{userid}
 	    </select>
 	    
+	    <insert id="insertProfile">
+	    	insert into coke_member_attach (userid, uudi, uploadpath, filetype)	values(#{userid}, #{uuid}, #{uploadPath}, #{fileType})
+	    </insert>
+	    
+	    <update id="update">
+	    	update coke_member set userName = #{userName}, updatedate = sysdate where userid = #{userid}
+	    </update>
     
     </mapper>

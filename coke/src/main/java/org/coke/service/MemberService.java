@@ -11,4 +11,6 @@ public interface MemberService {
 	public MemberVO getMember(String userid);
 	
 	public MemberVO readCustomUser(String userid);
+	
+	public boolean updateMember(MemberVO vo);
 }

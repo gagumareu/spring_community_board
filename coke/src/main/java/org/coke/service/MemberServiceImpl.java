@@ -49,6 +49,16 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.read(userid);
 	}
 
+	@Override
+	public boolean updateMember(MemberVO vo) {
+		
+		boolean result = mapper.update(vo) == 1;
+		
+		return result;
+	}
+
+	
+
 	
 
 	

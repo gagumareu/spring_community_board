@@ -241,7 +241,7 @@
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">
 						<div class="header_login_btn">
-							<a href="/board/MyPage?userid='<security:authentication property="principal.username"/>'">마이페이지</a>
+							<a class="myPageBtn" href="/myPage/main?userid='<security:authentication property="principal.username"/>'">마이페이지</a>
 						</div>
 						<div class="header_login_btn">
 							<a class="logoutBtn" href="/Logout">로그아웃</a>
@@ -258,17 +258,36 @@
 			
 			
 		</div> <!-- header -->
-
+	
 
 	<script>
 		$(document).ready(function(){
+			
+			var userid = null;
+			<security:authorize access="isAuthenticated()">
+				userid = "<security:authentication property="principal.username"/>";
+			</security:authorize>
+			
 			var actionForm = $("#logoutForm");
+			
 			$(".logoutBtn").on("click", function(e){
 				e.preventDefault();
 				console.log("clicking");
 				actionForm.submit();
 				
 			});
+			
+			$(".myPageBtn").on("click", function(e){
+				e.preventDefault();
+				console.log("clicking");
+				actionForm.append("<input type='hidden' name=userid value='"+userid+"'>")
+				actionForm.attr("action", "/myPage/main");
+				actionForm.attr("method", "get");
+				actionForm.submit();
+				
+			});
+			
+			
 		});
 	
 	</script>

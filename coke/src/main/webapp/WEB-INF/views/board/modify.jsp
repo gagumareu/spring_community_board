@@ -346,7 +346,7 @@
 			   	<button class="mbtn motifyBTN" type="submit" data-oper="modify">수정</button>
 				<button class="mbtn deleteBTN" type="button" data-oper="delete">삭제</button>
 				<button class="mbtn listBTN" type="button" data-oper="list">리스트</button>
-			  </div>
+			  </div> <!-- modifyPate_btn -->
 			  	<input type="hidden" name="bno" value="${boardDto.bno }">
 				<input type="hidden" name="pageNum" value="${cri.pageNum }">
 				<input type="hidden" name="amount" value="${cri.amount }">

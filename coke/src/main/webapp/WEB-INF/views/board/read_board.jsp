@@ -399,7 +399,7 @@
 							<strong class="reply_writer"></strong>
 							<small class="reply_date"></small>
 							<div class="reply_content"></div>							
-						</div>
+						</div>					
 					</li>
 				</ul>
 			</div>
@@ -546,11 +546,12 @@
 				for(var i = 0, len = list.length || 0; i < len; i++){
 					str += "<li class='reply_box' data-rno='"+list[i].rno+"' data-bno='"+bnoValue+"'>";				
 					str += "	<div class='reply_box_info'><div><strong class='reply_writer'>"+list[i].replyer+"</strong>";
-					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small></div>"
-					//str += "    <div class='rmbtn'>수정</div></div>"
-					str += "    </div>"
+					str += "	<small class='reply_date'>"+replyService.displayTime(list[i].replydate)+"</small></div>";
+					//str += "    <button id='rmbtn'>수정</div></button>";
+					str += "    </div>";
 					str += "	<div class='reply_content'>"+list[i].reply+"</div>";
-					str += "</li>"
+					//str += "	<div class='reply_reReply'><a href='#'>댓글 달기</a></div>";
+					str += "</li>";
 				}
 				
 				replyUL.html(str);
@@ -637,6 +638,9 @@
 		var replyModalReply = modal.find("textarea[name='reply']");
 		var replyModalDate = modal.find("input[name='replydate']");
 		
+		$("#rmbtn").on("click", function(e){
+			console.log("clicked");
+		});
 		$(".reply_boxes").on("click", "li", function(e){
 			
 			var rno = $(this).data('rno');

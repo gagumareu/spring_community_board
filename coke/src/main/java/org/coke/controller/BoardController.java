@@ -235,28 +235,7 @@ public class BoardController {
 		
 	}
 	
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/MyPage")
-	public void myPage(Model model, @RequestParam("userid") String userid) {
-		
-		log.info("-----------------------------");
-		log.info("my page");
-		log.info("param id: " + userid);
-		
-		MemberVO vo = memberService.getMember(userid);
-		
-//		MemberVO vo2 = memberService.readCustomUser(userid);
-//		CustomUser user = new CustomUser(vo2);
-		
-		log.info("memberVO: " + vo);
-//		log.info("customUser: " + user);
-		
-		model.addAttribute("memberDto", vo);
-		
-		model.addAttribute("topwriterList", boardService.getTowriterList());
-		model.addAttribute("mostViewList", boardService.getViewList());
-		model.addAttribute("mostReplyList", boardService.getMostReplyList());
-	}
+	
 	
 	
 }

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +34,7 @@ import com.google.gson.JsonObject;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Pre;
 
 @Controller
 @Log4j
@@ -253,6 +255,86 @@ public class UploadController {
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 	
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/uploadProfile", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<AttachFileDTO> uploadProfile(@RequestPart("uploadFile") MultipartFile uploadFile){
+		
+		log.info("-------------------------------");
+		log.info("upload profile ajax");
+		log.info("uploadFile: " + uploadFile);
+		
+		AttachFileDTO dto = new AttachFileDTO();
+				
+		String uploadFolder = "C:\\workspace\\upload\\profile";
+		
+		String uploadFolderPath = getFoler();
+		
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
+		
+		log.info("uploadPath: " + uploadPath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		String uploadFileName = uploadFile.getOriginalFilename();
+		uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
+		dto.setFileName(uploadFileName);
+		
+		log.info("uploadFileName: " + uploadFileName);
+		
+		UUID uuid = UUID.randomUUID();
+		
+		uploadFileName = uuid.toString() + "_" + uploadFileName;
+		
+		log.info("fileNameWithUUID: " + uploadFileName);
+		
+		try {
+			
+			File saveFile = new File(uploadPath, uploadFileName);
+			
+			uploadFile.transferTo(saveFile);
+			
+			dto.setUuid(uuid.toString());
+			dto.setUploadPath(uploadFolderPath);
+			dto.setImage(true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+		
+	}
+	
+	
+	@GetMapping("/displayProfile")
+	@ResponseBody
+	public ResponseEntity<byte[]> getProfileFiles(String fileName){
+		
+		log.info("fileName : " + fileName);
+		
+		File file = new File("C:\\workspace\\upload\\profile\\" + fileName);
+		
+		log.info("file: " + file);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 
