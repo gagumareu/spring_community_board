@@ -1,5 +1,10 @@
 package org.coke.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.coke.domain.AuthVO;
 import org.coke.domain.MemberAttachVO;
 import org.coke.domain.MemberVO;
@@ -56,7 +61,7 @@ public class MemberServiceImpl implements MemberService{
 	public boolean updateMember(MemberVO vo) {		
 		
 		if(vo.getUuid() != null && vo.getUploadPath() != null && vo.getFileName() != null) {
-			mapper.deleteProfileImage(vo.getUserid());
+			mapper.deleteProfileImage(vo.getUserid());	
 			mapper.insertProfile(vo);
 		}
 		

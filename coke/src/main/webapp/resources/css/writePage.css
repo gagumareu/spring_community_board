@@ -1,0 +1,150 @@
+@charset "EUC-KR";
+
+<style>
+
+a{
+		text-decoration: none;
+		color: black;
+	}
+
+	a:hover {
+	  color: #7ba6de;
+	  text-decoration: none;
+	}
+	
+
+	
+	/******* board content***********/
+	
+	.board_write_wrapper{
+		width: 100%;
+		margin-top: 1.5em;
+	    display: flex;
+	    justify-content: center;
+	    font-family: 'Prompt', sans-serif;
+	}
+	
+	.board_write_titleAndSort{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	
+	
+	
+	
+	.board_write_title{
+		margin-top: 0.7em;
+		margin-bottom: 1.7em;
+		height: 50px;
+		border-radius: 8px;
+		border: 1px solid #e5e7eb;
+		font-size: 1.4em;
+		padding: 10px;
+
+	}
+	
+	.board_write_sort_wrapper{
+		display: flex;
+   	 	flex-direction: row;
+    	margin-top: 0.7em;
+		margin-bottom: 1.7em;
+	}
+	
+	.board_write_sort_first{
+		 margin-right: 0.5em;
+   		 width: 70%;
+		border-radius: 8px;
+		border: 1px solid #e5e7eb;
+		padding: 10px;
+	}
+	
+	.board_write_sort_second{
+		width: 30%;
+		border-radius: 8px;
+		border: 1px solid #e5e7eb;
+		padding: 10px;
+	}
+	
+	.board_write_insert_btn{
+	    display: flex;
+    	justify-content: end;
+    }
+	
+	.uploadImagesLi{
+		display: none;
+	}
+	
+	/******** tag and search *******/
+	
+	.board_search{
+		text-align: center;
+	}
+	
+	.board_top_content {
+		display: flex;
+    	flex-direction: row;
+	}
+	
+	.board_top_content_register{
+    	width: 20%;
+	
+	}
+	
+	.board_top_content_tagSort{
+		display: flex;
+    	flex-direction: row;
+    	width: 60%;
+    	justify-content: center;
+    	
+	}
+	
+	.board_top_content_filter{
+    	width: 20%;
+		text-align: end;
+	}
+	
+	.tag_btn{
+		padding: 0px 10px 0px 10px;
+	}
+	
+	/******************************/
+	
+	
+	#uploadBtn{
+		margin-right: 0.7em;
+		background-color: white;
+	    color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    padding: 6px;
+	    border-radius: 8px;
+	}
+	
+	#cancelBtn{
+		background-color: white;
+	    color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    padding: 6px;
+	    border-radius: 8px;
+
+	}
+	
+	#uploadBtn:hover{
+	
+		background-color: #e5e7eb;
+	}
+	
+	#cancelBtn:hover{
+	
+		background-color: #e5e7eb;
+	}
+	
+	.writeForm{
+	    width: 70%;
+	}
+	
+	.uploadImagesDiv{
+		display: none;
+	}
+	
+</style>

@@ -1,0 +1,98 @@
+@charset "EUC-KR";
+
+<style type="text/css">
+	
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	
+	a:hover {
+	  color: #7ba6de;
+	  text-decoration: none;
+	}
+	
+	
+	
+	.board_write_wrapper{
+		width: 100%;
+		margin-top: 1.5em;
+		display: flex;
+    	justify-content: center;
+    	font-family: 'Prompt', sans-serif;
+	}
+	
+	.board_write_titleAndSort{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	
+	
+	
+	
+	.board_write_title{
+		margin-top: 0.7em;
+		margin-bottom: 1.7em;
+		height: 50px;
+		border-radius: 8px;
+		border: 1px solid #e5e7eb;
+		font-size: 1.4em;
+		padding: 10px;
+
+	}
+	
+	.board_write_sort_wrapper{
+		display: flex;
+   	 	flex-direction: row;
+    	margin-top: 0.7em;
+		margin-bottom: 1.7em;
+	}
+	
+	.board_write_sort_first{
+		 margin-right: 0.5em;
+   		 width: 70%;
+		border-radius: 8px;
+		border: 1px solid #e5e7eb;
+		padding: 10px;
+	}
+	
+	.board_write_sort_second{
+		width: 30%;
+		border-radius: 8px;
+		border: 1px solid #e5e7eb;
+		padding: 10px;
+	}
+	
+	.board_write_insert_btn{
+	    display: flex;
+    	justify-content: end;
+    }
+    
+    #writePate_form{
+    	width: 70%;
+    }
+    .uploadAtaachDiv{
+    	display: none;
+    }
+	
+	.modifyPate_btn{
+		display: flex;
+	    justify-content: end;
+	}
+	
+	.mbtn{
+		color: #3ab4e8;
+	    border: 1px solid #3ab4e8;
+	    border-radius: 8px;
+	    background-color: white;
+	    margin-right: 7px;
+	    font-size: 1.2em;
+    	font-family: 'Jua', sans-serif;
+	}
+	
+	.mbtn:hover{
+		background-color: #e5e7eb;
+	}
+	
+</style>

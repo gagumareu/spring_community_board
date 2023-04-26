@@ -121,7 +121,8 @@ public class BoardController {
 		MemberVO vo = memberService.getMember(userid);
 		log.info("memberVO: " + vo);
 		
-	//	model.addAttribute("userName", vo.getUserName());
+		model.addAttribute("userName", vo.getUserName());
+		log.info("userName: " + vo.getUserName());
 		
 		if(bsort != null) {			
 			log.info("sort: " + bsort);			

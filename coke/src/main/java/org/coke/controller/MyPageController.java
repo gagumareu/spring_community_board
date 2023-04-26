@@ -1,5 +1,10 @@
 package org.coke.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.coke.domain.MemberAttachVO;
 import org.coke.domain.MemberVO;
 import org.coke.service.BoardService;
@@ -29,6 +34,25 @@ public class MyPageController {
 	private BoardService boardService;
 	
 	private MemberService memberService;
+	
+	private void deleteFile(MemberAttachVO vo) {
+		
+		if(vo == null) {
+			return;
+		}
+		
+		log.info("delete user attach file");
+		
+		try {
+			
+			Path file = Paths.get("C:\\workspace\\upload\\profile\\" + vo.getUploadPath() +"\\"+ vo.getUuid() +"_"+ vo.getFileName());
+			
+			Files.deleteIfExists(file);
+			
+		} catch (Exception e) {
+			log.error("delete file error" + e.getMessage());
+		}
+	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/main")
