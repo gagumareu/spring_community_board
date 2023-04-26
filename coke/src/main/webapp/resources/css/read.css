@@ -108,6 +108,11 @@
 	.board_read_member_dateAndHit{
 		display: flex;
 		flex-direction: row;
+		gap: 10px;
+	}
+	
+	.read_board_hit_img{
+    	width: 23px;
 	}
 	
 	.board_member_nickNmae{

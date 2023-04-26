@@ -18,14 +18,14 @@
 			<div class="board_read_member_dateAndHit">
 				<div>
 					<c:if test="${BoardVO.bregdate == BoardVO.bupdate }">
-						등록일: <fmt:formatDate value="${BoardVO.bregdate }" pattern="yyyy-MM-dd"/>	
+						<fmt:formatDate value="${BoardVO.bregdate }" pattern="yyyy-MM-dd"/>	
 					</c:if>
 					<c:if test="${BoardVO.bregdate != BoardVO.bupdate }">
-						수정일: <fmt:formatDate value="${BoardVO.bupdate }" pattern="yyyy-MM-dd"/>	
+						<fmt:formatDate value="${BoardVO.bupdate }" pattern="yyyy-MM-dd"/>	
 					</c:if>
 				</div>
 				<div>
-					조회: ${BoardVO.bhit } ${BoardVO.bno }
+					<img class="read_board_hit_img" src="/resources/upload/icon/view5.png"> ${BoardVO.bhit } 
 				</div>
 			</div>
 			

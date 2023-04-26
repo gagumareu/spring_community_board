@@ -207,7 +207,8 @@
 															        			        							        				
         				$('#summernote').summernote('insertImage', '/display?fileName='+fileCallPath);				        				
         				
-        				str += "<li name='display?fileName="+fileCallPath+"' data-path='"+dto.uploadPath+"' data-uuid='"+dto.uuid+"' data-fileName='"+dto.fileName+"' data-type='"+dto.image+"'></li>"
+        				str += "<li name='display?fileName="+fileCallPath+"' data-path='"+dto.uploadPath+"'"
+        				str +=	"	data-uuid='"+dto.uuid+"' data-fileName='"+dto.fileName+"' data-type='"+dto.image+"'></li>"
         						        				
         				imageList.push("display?fileName="+fileCallPath);	        									        				
         				
