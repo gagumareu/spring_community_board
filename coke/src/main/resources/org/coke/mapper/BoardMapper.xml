@@ -52,7 +52,7 @@
 	<select id="getListWithPage"
 		resultType="org.coke.domain.BoardVO">
     		<![CDATA[
-    			select bno, userid, btitle, bcontent, bhit, bsort, bregdate, bupdate, nickname, replycnt, btag
+    			select b.bno, b.userid, b.btitle, b.bcontent, b.bhit, b.bsort, b.bregdate, b.bupdate, b.replycnt, b.btag, m.username as nickname
     			from 
     			(
 	    			select /*+ INDEX_DESC(coke_board pk_cboard)*/
@@ -86,7 +86,9 @@
     		<![CDATA[
     			
     				bno > 0 and rownum <= #{pageNum} * #{amount}
-    			)    		   	  				
+    			) b
+    			left join coke_member m
+				on b.userid = m.userid    		   	  				
     			where			
     			 rn > (#{pageNum} -1) * #{amount}    			
     		]]>

@@ -15,7 +15,7 @@
 			
 			<input class="board_write_title" type="text" name="btitle" placeholder="제목을 입력하세요." required="required" autofocus="autofocus">
 	 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-	 		<input type="hidden" name="nickname" value="${userName }">
+	 		<input type="hidden" name="userid" value='<security:authentication property="principal.username"/>'>
 	 		
 	 			 		
 	 		<div class="board_write_sort_wrapper" >
@@ -116,7 +116,7 @@
 				  
 	 		</div> <!-- board_write_sort_wrapper -->	
 	 		
-	 	<input class="board_write_title" type="text" name="userid" value='<security:authentication property="principal.username"/>' readonly="readonly">
+	 	<input class="board_write_title" type="text" name="nickname" value="${userName }" readonly="readonly">
 	 		
 		</div> <!-- board_write_titleAndSort -->
 	 
