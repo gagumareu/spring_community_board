@@ -29,8 +29,8 @@
 - 소셜 로그인
 ------
 ### 메인페이지
-- 사이드 박스에 most view, most reply, top writer 순위 
-- 카테 고리 네개를 최신 순서로 박싱처리
+- 사이드 박스에 most view, most reply, top writer 순위 박싱
+- 카테고리 별로 게시물 최신 순서로 박싱처리
 ![main](https://user-images.githubusercontent.com/98436199/231664133-747e60f4-a5fb-4ef5-8584-1499900fc5bc.png)
 
 
