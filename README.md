@@ -39,6 +39,7 @@
 - index를 이용하여 리스트 조회 및 정렬
 - 검색 키워드 및 카테고리 값과 함께 조회하여 리시트 출력 
 - https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c57e6bf663d/coke/src/main/resources/org/coke/mapper/BoardMapper.xml
+
 ![ListAll](https://user-images.githubusercontent.com/98436199/231664325-0e38a48c-69f6-4e6c-a71a-d0b918a3dab2.png)
 ![sql_select](https://user-images.githubusercontent.com/98436199/236725308-6118a5d5-5015-4f5d-ae1e-9428cf48ad74.png)
 
@@ -56,7 +57,12 @@ https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c
 ---
 ### spring security를 통하여 게시물 및 댓글 작성, 수정, 삭제 권한 부여
 - 비회원은 댓글 작성 불가능(spring security 적용)
+https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c57e6bf663d/coke/src/main/java/org/coke/controller/ReplyController.java
+
 ![requiredLoginForReply](https://user-images.githubusercontent.com/98436199/236726826-a3939dd5-16b4-4cae-b062-5a64971f6de9.png)
 ---
 - 본인이 작성하지 않은 댓글은 수정 및 삭제 
 ![modifyReplyForAuthUser](https://user-images.githubusercontent.com/98436199/231669046-e7c68218-60f2-4fa2-80a1-c8183ae7941a.png)
+---
+![replyControllerWithSpringsecurity](https://user-images.githubusercontent.com/98436199/236727534-97acb36e-5ab5-44ea-a939-04d4073ee459.png)
+
