@@ -12,6 +12,7 @@
 - Spring Tool Suite 3
 - Mybatis
 - Spring Security
+- Ajax
 - summernote edition
 - Database : Oracle SQL Developer
 
