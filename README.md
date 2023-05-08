@@ -7,8 +7,7 @@
 - text edition 'summernote edition' 적용
 
 ## 사용기술
-서버 : apache - tomcat - 9.0.11
-
+- apache - tomcat - 9.0.11
 - Spring Tool Suite 3
 - Mybatis
 - Spring Security
