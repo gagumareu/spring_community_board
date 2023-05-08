@@ -57,6 +57,6 @@ https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c
 ### spring security를 통하여 게시물 및 댓글 작성, 수정, 삭제 권한 부여
 - 비회원은 댓글 작성 불가능(spring security 적용)
 ![requiredLoginForReply](https://user-images.githubusercontent.com/98436199/236726826-a3939dd5-16b4-4cae-b062-5a64971f6de9.png)
---
+---
 - 본인이 작성하지 않은 댓글은 수정 및 삭제 
 ![modifyReplyForAuthUser](https://user-images.githubusercontent.com/98436199/231669046-e7c68218-60f2-4fa2-80a1-c8183ae7941a.png)
