@@ -51,6 +51,7 @@
 ---
 ### summernote edtion 적용
 - 첨부파일 첨부시 DB서버에 저장
+https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c57e6bf663d/coke/src/main/webapp/WEB-INF/views/board/read_board.jsp
 ![writePage](https://user-images.githubusercontent.com/98436199/231668638-8eb8d565-9d62-4483-ab12-aaee570854b0.png)
 ---
 ### spring security를 통하여 게시물 및 댓글 작성, 수정, 삭제 권한 부여
