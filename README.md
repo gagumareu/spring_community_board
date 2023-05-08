@@ -55,6 +55,6 @@ https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c
 ![writePage](https://user-images.githubusercontent.com/98436199/231668638-8eb8d565-9d62-4483-ab12-aaee570854b0.png)
 ---
 ### spring security를 통하여 게시물 및 댓글 작성, 수정, 삭제 권한 부여
-![afterLoginAvailableReply](https://user-images.githubusercontent.com/98436199/231669008-0b9e6d88-5a49-4a6d-bdf8-0259a727b904.png)
+![requiredLoginForReply](https://user-images.githubusercontent.com/98436199/236726826-a3939dd5-16b4-4cae-b062-5a64971f6de9.png)
 --
 ![modifyReplyForAuthUser](https://user-images.githubusercontent.com/98436199/231669046-e7c68218-60f2-4fa2-80a1-c8183ae7941a.png)
