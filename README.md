@@ -36,7 +36,9 @@
 
 ### 전체 게시물 
 - 전체 게시물을 생성 시간으로 페이징 정렬
+- https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c57e6bf663d/coke/src/main/resources/org/coke/mapper/BoardMapper.xml
 ![ListAll](https://user-images.githubusercontent.com/98436199/231664325-0e38a48c-69f6-4e6c-a71a-d0b918a3dab2.png)
+https://github.com/gagumareu/community_board/issues/6#issue-1699428083
 ---
 ### 원하는 게시판 선택
 ![KakaoTalk_20230413_152456526_01](https://user-images.githubusercontent.com/98436199/231672196-09011ae7-699b-4813-bcf6-47d734d7dc65.jpg)
