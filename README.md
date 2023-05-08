@@ -7,7 +7,6 @@
 - text edition 'summernote edition' 적용
 
 ## 사용기술
-- apache - tomcat - 9.0.11
 - Spring Tool Suite 3
 - Mybatis
 - Spring Security
@@ -16,7 +15,7 @@
 - Database : Oracle SQL Developer
 
 사용 언어 : Java, HTML, CSS, Jquery, SQL
-
+서버 : apache - tomcat - 9.0.11****
 버전 관리 : Git 
 
 
