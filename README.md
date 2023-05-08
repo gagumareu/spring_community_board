@@ -36,6 +36,8 @@
 
 ### 전체 게시물 
 - 전체 게시물을 생성 시간으로 페이징 정렬
+- index를 이용하여 리스트 조회 및 정렬
+- 검색 키워드 및 카테고리 값과 함께 조회하여 리시트 출력 
 - https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c57e6bf663d/coke/src/main/resources/org/coke/mapper/BoardMapper.xml
 ![ListAll](https://user-images.githubusercontent.com/98436199/231664325-0e38a48c-69f6-4e6c-a71a-d0b918a3dab2.png)
 ![sql_select](https://user-images.githubusercontent.com/98436199/236725308-6118a5d5-5015-4f5d-ae1e-9428cf48ad74.png)
