@@ -11,7 +11,7 @@
 - Mybatis
 - Spring Security
 - Ajax
-- summernote edition
+- summernote editor
 - Database : Oracle SQL Developer
 
 사용 언어 : Java, HTML, CSS, Jquery, SQL
@@ -49,7 +49,7 @@
 ### 선택한 게시판 내에서 소분류 가능
 ![KakaoTalk_20230413_152456526](https://user-images.githubusercontent.com/98436199/231672113-71da4845-ea9d-4375-81a8-89983f90eb0b.jpg)
 ---
-### summernote edtion 적용
+### summernote editor 적용
 - 첨부파일 첨부시 DB서버에 저장
 https://github.com/gagumareu/community_board/blob/a815127932fccb2ee0042f292ccf1c57e6bf663d/coke/src/main/webapp/WEB-INF/views/board/read_board.jsp
 ![writePage](https://user-images.githubusercontent.com/98436199/231668638-8eb8d565-9d62-4483-ab12-aaee570854b0.png)
