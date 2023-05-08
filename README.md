@@ -15,7 +15,9 @@
 - Database : Oracle SQL Developer
 
 사용 언어 : Java, HTML, CSS, Jquery, SQL
+
 서버 : apache - tomcat - 9.0.11
+
 버전 관리 : Git 
 
 
